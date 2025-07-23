@@ -5,8 +5,11 @@ import { useEffect, useState } from "react";
 
 const Hero = () => {
   const [show, setShow] = useState(false);
+  const [showHeadline, setShowHeadline] = useState(false);
   useEffect(() => {
     setShow(true);
+    const t = setTimeout(() => setShowHeadline(true), 200);
+    return () => clearTimeout(t);
   }, []);
 
   return (
@@ -22,7 +25,10 @@ const Hero = () => {
         className={`relative z-10 flex flex-col items-center text-center px-4 transition-opacity duration-1000 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} max-w-2xl mx-auto`}
       >
         <img src="/logo.png" alt="DürümX Logo" className="h-16 w-auto mb-6 drop-shadow-xl" />
-        <h1 className="text-5xl sm:text-7xl md:text-8xl font-extrabold mb-8 tracking-tight bg-gradient-to-r from-[#e63946] via-[#ff7f50] to-[#ffb703] text-transparent bg-clip-text drop-shadow-2xl leading-[1.15]">
+        <h1
+          className={`text-5xl sm:text-7xl md:text-8xl font-extrabold mb-8 tracking-tight bg-gradient-to-r from-[#e63946] via-[#ff7f50] to-[#ffb703] text-transparent bg-clip-text drop-shadow-2xl leading-[1.15] transition-all duration-1000 ease-out
+            ${showHeadline ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-8 scale-95"}`}
+        >
           DürümX’e Hoşgeldiniz
         </h1>
         <p className="text-xl sm:text-2xl md:text-3xl mb-10 font-semibold text-[#22223b] bg-white/40 backdrop-blur-sm border border-white/60 rounded-xl px-6 py-3 shadow-lg inline-block">

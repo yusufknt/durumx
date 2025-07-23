@@ -40,7 +40,7 @@ const Navbar = () => {
   }, [orderOpen]);
 
   return (
-    <nav className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md shadow-xl flex items-center justify-between px-6 py-4 border-b border-[#ececec] rounded-b-2xl">
+    <nav className="sticky top-0 z-50 w-full bg-white/20 backdrop-blur-lg shadow-xl flex items-center justify-between px-6 py-4 border-b border-white/30 rounded-b-2xl">
       <div className="flex items-center gap-2">
         <Link href="/" aria-label="DürümX Anasayfa" className="flex items-center gap-2">
           <img src="/logo.png" alt="DürümX Logo" className="h-12 w-auto object-contain" />
@@ -89,11 +89,34 @@ const Navbar = () => {
                 href={YEMEKSEPETI_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block px-5 py-3 text-[#22223b] hover:bg-[#f9fafb] transition-colors rounded-b-xl"
+                className="block px-5 py-3 text-[#22223b] hover:bg-[#f9fafb] transition-colors flex items-center gap-2"
                 aria-label="Yemeksepeti'nden Sipariş Ver"
                 tabIndex={0}
               >
-                🍔 Yemeksepeti
+                <img src="/logo/yemeksepeti-logo.png" alt="Yemeksepeti" className="h-6 w-6 object-contain" />
+                Yemeksepeti
+              </a>
+              <a
+                href="https://getir.com/yemek/restoran/hatay-doneri-durum-x-ipekyolu-halilaga-mah-ipekyolu-van/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block px-5 py-3 text-[#5f259f] hover:bg-[#f9fafb] transition-colors flex items-center gap-2"
+                aria-label="Getir'den Sipariş Ver"
+                tabIndex={0}
+              >
+                <img src="/logo/getiryemek.png" alt="Getir" className="h-6 w-6 object-contain" />
+                Getir
+              </a>
+              <a
+                href="https://tgoyemek.com/restoranlar/127596"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block px-5 py-3 text-[#ff7100] hover:bg-[#f9fafb] transition-colors flex items-center gap-2 rounded-b-xl"
+                aria-label="Trendyol Yemek'ten Sipariş Ver"
+                tabIndex={0}
+              >
+                <img src="/logo/trendyolyemek.png" alt="Trendyol Yemek" className="h-6 w-6 object-contain" />
+                Trendyol Yemek
               </a>
             </div>
           )}

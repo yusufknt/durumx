@@ -1,6 +1,9 @@
+"use client";
+
 import Hero from "@/components/Hero";
 import Link from "next/link";
 import { FaLeaf, FaClock, FaUserTie, FaPepperHot, FaStar } from "react-icons/fa";
+import { useState, useEffect } from "react";
 
 const KATEGORILER = [
   { name: "Dürümler", icon: <FaPepperHot size={32} className="text-[#e63946]" />, href: "/menu" },
@@ -47,14 +50,28 @@ const YEMEKSEPETI_URL = "https://www.yemeksepeti.com/restaurant/meej/durumx-meej
 const PHONE_NUMBER = "+905555555555";
 
 export default function HomePage() {
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    const timeout = setTimeout(() => setShow(true), 100);
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <>
-      <Hero />
+      <div className={`transition-all duration-1000 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <Hero />
+      </div>
       {/* Hızlı Menü Kategorileri */}
-      <section className="max-w-4xl mx-auto py-12 px-4">
+      <section className={`max-w-4xl mx-auto py-12 px-4 transition-all duration-1000 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         <div className="flex flex-col sm:flex-row justify-center gap-8">
-          {KATEGORILER.map((kat) => (
-            <Link key={kat.name} href={kat.href} className="flex flex-col items-center bg-white rounded-3xl shadow-xl p-8 w-full sm:w-1/3 border border-[#ececec] hover:scale-105 hover:shadow-2xl transition-all duration-200 group">
+          {KATEGORILER.map((kat, i) => (
+            <Link
+              key={kat.name}
+              href={kat.href}
+              className={`flex flex-col items-center bg-white rounded-3xl shadow-xl p-8 w-full sm:w-1/3 border border-[#ececec] hover:scale-105 hover:shadow-2xl transition-all duration-300 group
+                ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              style={{ transitionDelay: `${200 + i * 100}ms` }}
+            >
               <span className="mb-2 group-hover:scale-110 transition-transform duration-200">{kat.icon}</span>
               <span className="mt-3 text-xl font-extrabold text-[#22223b] tracking-tight">{kat.name}</span>
             </Link>
@@ -62,11 +79,16 @@ export default function HomePage() {
         </div>
       </section>
       {/* Avantajlar */}
-      <section className="relative max-w-5xl mx-auto py-16 px-4 rounded-3xl overflow-hidden mb-12 bg-gradient-to-br from-[#fff0e6] via-[#ffe5ec] to-[#f7f7fa] shadow-xl border border-[#ececec]">
+      <section className={`relative max-w-5xl mx-auto py-16 px-4 rounded-3xl overflow-hidden mb-12 bg-gradient-to-br from-[#fff0e6] via-[#ffe5ec] to-[#f7f7fa] shadow-xl border border-[#ececec] transition-all duration-1000 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         <h3 className="text-3xl font-extrabold mb-8 text-center text-[#e63946] tracking-tight drop-shadow-lg">Neden DürümX?</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-          {AVANTAJLAR.map((a) => (
-            <div key={a.title} className="flex flex-col items-center bg-white rounded-2xl shadow-lg p-7 border border-[#ececec] hover:scale-105 hover:shadow-2xl transition-all duration-200">
+          {AVANTAJLAR.map((a, i) => (
+            <div
+              key={a.title}
+              className={`flex flex-col items-center bg-white rounded-2xl shadow-lg p-7 border border-[#ececec] hover:scale-105 hover:shadow-2xl transition-all duration-300
+                ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              style={{ transitionDelay: `${300 + i * 100}ms` }}
+            >
               <span className="mb-2">{a.icon}</span>
               <span className="mt-3 text-lg font-bold text-[#22223b]">{a.title}</span>
               <span className="text-sm text-[#555] mt-1 text-center">{a.desc}</span>
@@ -75,11 +97,16 @@ export default function HomePage() {
         </div>
       </section>
       {/* Müşteri Yorumları */}
-      <section className="relative max-w-4xl mx-auto py-16 px-4 rounded-3xl overflow-hidden mb-12 bg-gradient-to-br from-[#e0f7fa] via-[#f7f7fa] to-[#ffe5ec] shadow-xl border border-[#ececec]">
+      <section className={`relative max-w-4xl mx-auto py-16 px-4 rounded-3xl overflow-hidden mb-12 bg-gradient-to-br from-[#e0f7fa] via-[#f7f7fa] to-[#ffe5ec] shadow-xl border border-[#ececec] transition-all duration-1000 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         <h3 className="text-3xl font-extrabold mb-8 text-center text-[#e63946] tracking-tight drop-shadow-lg">Müşteri Yorumları</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {YORUMLAR.map((y) => (
-            <div key={y.name} className="bg-white rounded-2xl shadow-xl p-7 flex flex-col items-center border border-[#ececec] hover:scale-105 hover:shadow-2xl transition-all duration-200">
+          {YORUMLAR.map((y, i) => (
+            <div
+              key={y.name}
+              className={`bg-white rounded-2xl shadow-xl p-7 flex flex-col items-center border border-[#ececec] hover:scale-105 hover:shadow-2xl transition-all duration-300
+                ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              style={{ transitionDelay: `${400 + i * 100}ms` }}
+            >
               <img src={y.avatar} alt={y.name} className="w-16 h-16 object-cover rounded-full mb-3 border-2 border-[#ffb703] shadow-md hover:scale-110 transition-transform duration-200" />
               <span className="font-bold text-[#22223b] text-lg">{y.name}</span>
               <div className="flex gap-1 my-1">
@@ -91,7 +118,7 @@ export default function HomePage() {
         </div>
       </section>
       {/* Sabit Hızlı Sipariş Butonu */}
-      <div className="fixed bottom-6 right-6 z-50">
+      <div className={`fixed bottom-6 right-6 z-50 transition-all duration-1000 ease-out ${show ? "opacity-100 scale-100" : "opacity-0 scale-90"}`}>
         <a
           href={YEMEKSEPETI_URL}
           target="_blank"
