@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const MENU_ITEMS = [
   {
@@ -42,16 +42,27 @@ const MENU_ITEMS = [
 
 const MenuPage = () => {
   const [modalImg, setModalImg] = useState<string | null>(null);
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setShow(true), 100);
+    return () => clearTimeout(t);
+  }, []);
 
   const handleImgClick = (img: string) => setModalImg(img);
   const handleClose = () => setModalImg(null);
 
   return (
-    <section className="max-w-5xl mx-auto py-12 px-4">
-      <h2 className="text-4xl font-extrabold mb-12 text-center text-[#e63946] tracking-tight">Menü</h2>
+    <section className={`max-w-5xl mx-auto py-12 px-4 transition-all duration-1000 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+      <img src="/logo.png" alt="DürümX Logo" className="h-14 w-auto mx-auto mb-4 drop-shadow-xl" />
+      <h2 className={`text-4xl font-extrabold mb-12 text-center text-[#e63946] tracking-tight transition-all duration-1000 ease-out ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-8 scale-95"}`}>Menü</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-        {MENU_ITEMS.map((item) => (
-          <div key={item.name} className="bg-white rounded-3xl shadow-2xl p-7 flex flex-col items-center border border-[#ececec] hover:scale-105 hover:shadow-3xl transition-all duration-200">
+        {MENU_ITEMS.map((item, i) => (
+          <div
+            key={item.name}
+            className={`bg-white rounded-3xl shadow-2xl p-7 flex flex-col items-center border border-[#ececec] hover:scale-105 hover:shadow-3xl transition-all duration-300
+              ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-8 scale-95"}`}
+            style={{ transitionDelay: `${200 + i * 100}ms` }}
+          >
             <img
               src={item.img}
               alt={item.name}
