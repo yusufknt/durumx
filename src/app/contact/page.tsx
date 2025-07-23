@@ -58,6 +58,7 @@ const ContactPage = () => {
                   tooltipClass: "bg-[#38b000]"
                 }
               }[type];
+              if (!iconProps) return null;
               return (
                 <a
                   key={type}
