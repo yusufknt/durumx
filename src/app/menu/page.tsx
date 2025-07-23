@@ -1,0 +1,89 @@
+"use client";
+import { useState } from "react";
+
+const MENU_ITEMS = [
+  {
+    name: "Hatay Usulü Tavuk Dürüm",
+    desc: "Özel baharatlı tavuk, çıtır lavaş, bol yeşillik ve Hatay usulü sos.",
+    price: "85₺",
+    img: "/menu-durum.jpg",
+  },
+  {
+    name: "Hatay Usulü Et Dürüm",
+    desc: "Dana eti, közlenmiş biber, sumaklı soğan ve nefis Hatay sosu.",
+    price: "110₺",
+    img: "/menu-durum2.jpg",
+  },
+  {
+    name: "Hamburger Menü",
+    desc: "Ev yapımı burger köftesi, taze sebzeler ve patates kızartması.",
+    price: "95₺",
+    img: "/menu-burger.jpg",
+  },
+  {
+    name: "Cheeseburger Menü",
+    desc: "Çedar peynirli burger, çıtır patates ve özel sos.",
+    price: "105₺",
+    img: "/menu-cheeseburger.jpg",
+  },
+  {
+    name: "Ayran",
+    desc: "Doğal ve serinletici ayran.",
+    price: "20₺",
+    img: "/menu-ayran.jpg",
+  },
+  {
+    name: "Kola",
+    desc: "Buz gibi kola.",
+    price: "25₺",
+    img: "/menu-kola.jpg",
+  },
+];
+
+const MenuPage = () => {
+  const [modalImg, setModalImg] = useState<string | null>(null);
+
+  const handleImgClick = (img: string) => setModalImg(img);
+  const handleClose = () => setModalImg(null);
+
+  return (
+    <section className="max-w-5xl mx-auto py-12 px-4">
+      <h2 className="text-4xl font-extrabold mb-12 text-center text-[#e63946] tracking-tight">Menü</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+        {MENU_ITEMS.map((item) => (
+          <div key={item.name} className="bg-white rounded-3xl shadow-2xl p-7 flex flex-col items-center border border-[#ececec] hover:scale-105 hover:shadow-3xl transition-all duration-200">
+            <img
+              src={item.img}
+              alt={item.name}
+              className="w-48 h-48 object-cover rounded-2xl mb-6 border-4 border-[#ffb703] shadow-lg cursor-pointer transition-transform duration-300 hover:scale-110"
+              onClick={() => handleImgClick(item.img)}
+              tabIndex={0}
+              aria-label={`${item.name} görselini büyüt`}
+              onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') handleImgClick(item.img); }}
+            />
+            <h3 className="text-2xl font-bold mb-2 text-[#e63946]">{item.name}</h3>
+            <p className="text-base text-[#22223b] mb-3 text-center">{item.desc}</p>
+            <span className="text-xl font-extrabold text-[#38b000]">{item.price}</span>
+          </div>
+        ))}
+      </div>
+      {/* Modal */}
+      {modalImg && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm" onClick={handleClose}>
+          <div className="relative max-w-lg w-full mx-4" onClick={e => e.stopPropagation()}>
+            <button
+              onClick={handleClose}
+              aria-label="Kapat"
+              className="absolute top-2 right-2 bg-white/80 hover:bg-white text-[#e63946] rounded-full p-2 shadow focus:outline-none"
+            >
+              <span className="text-2xl font-bold">&times;</span>
+            </button>
+            <img src={modalImg} alt="Büyük ürün görseli" className="w-full h-auto rounded-2xl shadow-2xl border-4 border-[#ffb703]" />
+          </div>
+        </div>
+      )}
+    </section>
+  );
+};
+
+export default MenuPage; 
