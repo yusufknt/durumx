@@ -146,7 +146,7 @@ const Navbar = () => {
       </div>
       {/* Mobil hamburger menü butonu */}
       <button
-        className="md:hidden flex items-center justify-center p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e63946]"
+        className="md:hidden ml-auto flex items-center justify-center p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e63946]"
         aria-label={mobileMenuOpen ? "Menüyü Kapat" : "Menüyü Aç"}
         aria-expanded={mobileMenuOpen}
         onClick={handleMobileMenuToggle}
@@ -159,7 +159,7 @@ const Navbar = () => {
       {mobileMenuOpen && (
         <div
           ref={mobileMenuRef}
-          className="fixed inset-0 z-50 bg-black/40 flex justify-end md:hidden"
+          className="fixed inset-0 z-50 bg-white/95 flex justify-end md:hidden"
           aria-modal="true"
           role="dialog"
         >
@@ -184,69 +184,7 @@ const Navbar = () => {
                 {link.label}
               </Link>
             ))}
-            {/* Mobilde Sipariş Ver dropdown */}
-            <div className="relative mt-2">
-              <button
-                className="w-full bg-gradient-to-r from-[#e63946] to-[#ffb703] text-white px-4 py-3 rounded-xl font-bold shadow hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#e63946]"
-                aria-label="Sipariş Ver"
-                aria-haspopup="true"
-                aria-expanded={orderOpen}
-                onClick={handleOrderToggle}
-                onKeyDown={handleOrderKeyDown}
-                tabIndex={0}
-              >
-                Sipariş Ver
-              </button>
-              {orderOpen && (
-                <div ref={dropdownRef} className="absolute left-0 mt-2 w-full bg-white border border-[#ececec] rounded-xl shadow-xl z-50">
-                  <a
-                    href={`tel:${PHONE_NUMBER}`}
-                    className="block px-5 py-3 text-[#22223b] hover:bg-[#f9fafb] transition-colors rounded-t-xl"
-                    aria-label="Telefonla Sipariş Ver"
-                    tabIndex={0}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    📞 Telefonla Sipariş
-                  </a>
-                  <a
-                    href={YEMEKSEPETI_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block px-5 py-3 text-[#22223b] hover:bg-[#f9fafb] transition-colors flex items-center gap-2"
-                    aria-label="Yemeksepeti'nden Sipariş Ver"
-                    tabIndex={0}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    <Image src="/logo/yemeksepeti-logo.png" alt="Yemeksepeti" width={48} height={48} className="h-6 w-6 object-contain" unoptimized quality={100} />
-                    Yemeksepeti
-                  </a>
-                  <a
-                    href="https://getir.com/yemek/restoran/hatay-doneri-durum-x-ipekyolu-halilaga-mah-ipekyolu-van/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block px-5 py-3 text-[#5f259f] hover:bg-[#f9fafb] transition-colors flex items-center gap-2"
-                    aria-label="Getir'den Sipariş Ver"
-                    tabIndex={0}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    <Image src="/logo/getiryemek.png" alt="Getir" width={48} height={48} className="h-6 w-6 object-contain" unoptimized quality={100} />
-                    Getir
-                  </a>
-                  <a
-                    href="https://tgoyemek.com/restoranlar/127596"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block px-5 py-3 text-[#ff7100] hover:bg-[#f9fafb] transition-colors flex items-center gap-2 rounded-b-xl"
-                    aria-label="Trendyol Yemek'ten Sipariş Ver"
-                    tabIndex={0}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    <Image src="/logo/trendyolyemek.png" alt="Trendyol Yemek" width={48} height={48} className="h-6 w-6 object-contain" unoptimized quality={100} />
-                    Trendyol Yemek
-                  </a>
-                </div>
-              )}
-            </div>
+            {/* Mobilde Sipariş Ver dropdown kaldırıldı */}
           </div>
         </div>
       )}

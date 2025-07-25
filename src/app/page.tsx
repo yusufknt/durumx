@@ -77,18 +77,18 @@ export default function HomePage() {
       </div>
       {/* Hızlı Menü Kategorileri */}
       <section className={`max-w-4xl mx-auto py-12 px-4 transition-all duration-1000 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-        <div className="flex flex-col sm:flex-row justify-center gap-8">
+        <div className="grid grid-cols-3 gap-3 sm:gap-8">
           {KATEGORILER.map((kat, i) => (
             <Link
               key={kat.name}
               href={kat.href}
-              className={`flex flex-col items-center rounded-3xl shadow-xl p-8 w-full sm:w-1/3 border border-[#ececec] hover:scale-105 hover:shadow-2xl transition-all duration-300 group bg-gradient-to-br from-[#ff1a1a] to-black relative
+              className={`flex flex-col items-center rounded-2xl shadow-md p-4 sm:p-8 border border-[#ececec] hover:scale-105 hover:shadow-xl transition-all duration-300 group bg-gradient-to-br from-[#ff1a1a] to-black relative
                 ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               style={{ transitionDelay: `${200 + i * 100}ms` }}
             >
-              <div className="absolute inset-0 bg-black/30 rounded-3xl pointer-events-none" />
-              <span className="mb-2 group-hover:scale-110 transition-transform duration-200 relative z-10">{kat.icon}</span>
-              <span className="mt-3 text-xl font-extrabold text-gray-100 tracking-tight relative z-10">{kat.name}</span>
+              <div className="absolute inset-0 bg-black/20 rounded-2xl pointer-events-none" />
+              <span className="mb-1 group-hover:scale-110 transition-transform duration-200 relative z-10 text-2xl sm:text-3xl">{kat.icon}</span>
+              <span className="mt-2 text-base sm:text-xl font-extrabold text-gray-100 tracking-tight relative z-10">{kat.name}</span>
             </Link>
           ))}
         </div>
@@ -137,7 +137,7 @@ export default function HomePage() {
         </div>
       </section>
       {/* Sabit Hızlı Sipariş Butonu */}
-      <div className={`fixed bottom-6 right-6 z-50 transition-all duration-1000 ease-out ${show ? "opacity-100 scale-100" : "opacity-0 scale-90"}`}>
+      <div className={`fixed bottom-6 right-6 z-50 transition-all duration-1000 ease-out ${show ? "opacity-100 scale-100" : "opacity-0 scale-90"} hidden md:block`}>
         <button
           ref={orderBtnRef}
           className="px-10 py-4 rounded-full text-white font-extrabold text-xl shadow-2xl hover:scale-105 hover:brightness-110 hover:shadow-3xl focus:outline-none focus:ring-4 focus:ring-[#ff1a1a]/60 focus:ring-offset-2 transition-all duration-300 w-full block"
