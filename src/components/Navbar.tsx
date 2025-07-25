@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
-import { FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Image from "next/image";
 
@@ -62,11 +61,85 @@ const Navbar = () => {
   }, [mobileMenuOpen]);
 
   return (
-    <nav className="sticky top-0 z-50 w-full bg-white/20 backdrop-blur-lg shadow-xl flex items-center justify-between px-6 py-4 border-b border-white/30 rounded-b-2xl">
+    <nav className={`sticky top-0 z-50 w-full shadow-xl flex items-center justify-between px-6 py-4 border-b border-white/30 rounded-b-2xl relative ${mobileMenuOpen ? 'bg-white' : 'bg-white/20 backdrop-blur-lg'}`}>
       <div className="flex items-center gap-2">
         <Link href="/" aria-label="DürümX Anasayfa" className="flex items-center gap-2">
           <Image src="/logo.png" alt="DürümX Logo" width={48} height={48} className="h-12 w-auto object-contain" unoptimized quality={100} />
         </Link>
+      </div>
+      {/* Mobilde sağ üstte Sipariş Ver ve hamburger menü yan yana */}
+      <div className="md:hidden flex items-center gap-2 absolute right-3 top-3">
+        <button
+          className="px-3 py-2 rounded-full text-white text-sm font-bold shadow focus:outline-none focus:ring-2 focus:ring-[#e63946]/60"
+          style={{ background: 'linear-gradient(90deg, #ff1a1a 0%, #000 100%)' }}
+          aria-label="Sipariş Ver"
+          aria-haspopup="true"
+          aria-expanded={orderOpen}
+          onClick={handleOrderToggle}
+          onKeyDown={handleOrderKeyDown}
+          tabIndex={0}
+        >
+          Sipariş Ver
+        </button>
+        <button
+          className="flex items-center justify-center p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e63946]"
+          aria-label={mobileMenuOpen ? "Menüyü Kapat" : "Menüyü Aç"}
+          aria-expanded={mobileMenuOpen}
+          onClick={handleMobileMenuToggle}
+          onKeyDown={handleMobileMenuKeyDown}
+          tabIndex={0}
+        >
+          {mobileMenuOpen ? <FaTimes size={28} /> : <FaBars size={28} />}
+        </button>
+        {orderOpen && (
+          <div ref={dropdownRef} className="fixed top-16 right-3 w-48 bg-white border border-[#ececec] rounded-xl shadow-xl z-50 animate-fade-in">
+            <a
+              href={`tel:${PHONE_NUMBER}`}
+              className="block px-5 py-3 text-[#22223b] hover:bg-[#f9fafb] transition-colors rounded-t-xl"
+              aria-label="Telefonla Sipariş Ver"
+              tabIndex={0}
+              onClick={() => setOrderOpen(false)}
+            >
+              📞 Telefonla Sipariş
+            </a>
+            <a
+              href={YEMEKSEPETI_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block px-5 py-3 text-[#22223b] hover:bg-[#f9fafb] transition-colors flex items-center gap-2"
+              aria-label="Yemeksepeti'nden Sipariş Ver"
+              tabIndex={0}
+              onClick={() => setOrderOpen(false)}
+            >
+              <Image src="/logo/yemeksepeti-logo.png" alt="Yemeksepeti" width={24} height={24} className="object-contain" />
+              Yemeksepeti
+            </a>
+            <a
+              href="https://getir.com/yemek/restoran/hatay-doneri-durum-x-ipekyolu-halilaga-mah-ipekyolu-van/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block px-5 py-3 text-[#5f259f] hover:bg-[#f9fafb] transition-colors flex items-center gap-2"
+              aria-label="Getir'den Sipariş Ver"
+              tabIndex={0}
+              onClick={() => setOrderOpen(false)}
+            >
+              <Image src="/logo/getiryemek.png" alt="Getir" width={24} height={24} className="object-contain" />
+              Getir
+            </a>
+            <a
+              href="https://tgoyemek.com/restoranlar/127596"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block px-5 py-3 text-[#ff7100] hover:bg-[#f9fafb] transition-colors flex items-center gap-2 rounded-b-xl"
+              aria-label="Trendyol Yemek'ten Sipariş Ver"
+              tabIndex={0}
+              onClick={() => setOrderOpen(false)}
+            >
+              <Image src="/logo/trendyolyemek.png" alt="Trendyol Yemek" width={24} height={24} className="object-contain" />
+              Trendyol Yemek
+            </a>
+          </div>
+        )}
       </div>
       <div className="hidden md:flex gap-8 items-center">
         {NAV_LINKS.map((link) => (
@@ -83,87 +156,18 @@ const Navbar = () => {
             {link.label}
           </Link>
         ))}
-        <div className="relative">
-          <button
-            ref={orderBtnRef}
-            className="px-6 py-2 rounded-full text-white font-bold text-base shadow-lg hover:scale-105 hover:brightness-110 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#ff1a1a]/60 focus:ring-offset-2 transition-all duration-200 inline-block"
-            style={{ background: 'linear-gradient(90deg, #ff1a1a 0%, #000 100%)' }}
-            aria-label="Sipariş Ver"
-            aria-haspopup="true"
-            aria-expanded={orderOpen}
-            onClick={handleOrderToggle}
-            onKeyDown={handleOrderKeyDown}
-            tabIndex={0}
-          >
-            Sipariş Ver
-          </button>
-          {orderOpen && (
-            <div ref={dropdownRef} className="absolute right-0 mt-2 w-52 bg-white/95 border border-[#ececec] rounded-xl shadow-xl z-50 backdrop-blur-md">
-              <a
-                href={`tel:${PHONE_NUMBER}`}
-                className="block px-5 py-3 text-[#22223b] hover:bg-[#f9fafb] transition-colors rounded-t-xl"
-                aria-label="Telefonla Sipariş Ver"
-                tabIndex={0}
-              >
-                📞 Telefonla Sipariş
-              </a>
-              <a
-                href={YEMEKSEPETI_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block px-5 py-3 text-[#22223b] hover:bg-[#f9fafb] transition-colors flex items-center gap-2"
-                aria-label="Yemeksepeti'nden Sipariş Ver"
-                tabIndex={0}
-              >
-                <Image src="/logo/yemeksepeti-logo.png" alt="Yemeksepeti" width={48} height={48} className="h-6 w-6 object-contain" unoptimized quality={100} />
-                Yemeksepeti
-              </a>
-              <a
-                href="https://getir.com/yemek/restoran/hatay-doneri-durum-x-ipekyolu-halilaga-mah-ipekyolu-van/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block px-5 py-3 text-[#5f259f] hover:bg-[#f9fafb] transition-colors flex items-center gap-2"
-                aria-label="Getir'den Sipariş Ver"
-                tabIndex={0}
-              >
-                <Image src="/logo/getiryemek.png" alt="Getir" width={48} height={48} className="h-6 w-6 object-contain" unoptimized quality={100} />
-                Getir
-              </a>
-              <a
-                href="https://tgoyemek.com/restoranlar/127596"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block px-5 py-3 text-[#ff7100] hover:bg-[#f9fafb] transition-colors flex items-center gap-2 rounded-b-xl"
-                aria-label="Trendyol Yemek'ten Sipariş Ver"
-                tabIndex={0}
-              >
-                <Image src="/logo/trendyolyemek.png" alt="Trendyol Yemek" width={48} height={48} className="h-6 w-6 object-contain" unoptimized quality={100} />
-                Trendyol Yemek
-              </a>
-            </div>
-          )}
-        </div>
       </div>
-      {/* Mobil hamburger menü butonu */}
-      <button
-        className="md:hidden ml-auto flex items-center justify-center p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e63946]"
-        aria-label={mobileMenuOpen ? "Menüyü Kapat" : "Menüyü Aç"}
-        aria-expanded={mobileMenuOpen}
-        onClick={handleMobileMenuToggle}
-        onKeyDown={handleMobileMenuKeyDown}
-        tabIndex={0}
-      >
-        {mobileMenuOpen ? <FaTimes size={28} /> : <FaBars size={28} />}
-      </button>
       {/* Mobil açılır menü */}
       {mobileMenuOpen && (
         <div
           ref={mobileMenuRef}
-          className="fixed inset-0 z-50 bg-white/95 flex justify-end md:hidden"
+          className="fixed inset-0 z-50 flex justify-end md:hidden"
+          style={{ background: 'rgba(0,0,0,0.3)' }}
+          onClick={() => setMobileMenuOpen(false)}
           aria-modal="true"
           role="dialog"
         >
-          <div className="w-64 bg-white h-full shadow-2xl flex flex-col gap-2 p-6 animate-slide-in-right">
+          <div className="w-64 bg-white h-full shadow-2xl flex flex-col gap-2 p-6 animate-slide-in-right" onClick={e => e.stopPropagation()}>
             <button
               className="self-end mb-4 p-2 rounded focus:outline-none focus:ring-2 focus:ring-[#e63946]"
               aria-label="Menüyü Kapat"
@@ -184,50 +188,10 @@ const Navbar = () => {
                 {link.label}
               </Link>
             ))}
-            {/* Mobilde Sipariş Ver dropdown kaldırıldı */}
           </div>
         </div>
       )}
-      <div className="flex gap-4 ml-6">
-        <a
-          href="https://www.instagram.com/durum_x/?hl=tr"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Instagram'a git"
-          tabIndex={0}
-          className="text-[#22223b] hover:text-[#e1306c] focus:outline-none focus:ring-2 focus:ring-[#e1306c] rounded-full p-1 transition-colors duration-200 shadow-sm"
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              window.open('https://www.instagram.com/durum_x/?hl=tr', '_blank', 'noopener,noreferrer');
-            }
-          }}
-        >
-          <FaInstagram size={22} />
-        </a>
-        <a
-          href="#"
-          aria-label="TikTok"
-          tabIndex={0}
-          className="text-[#22223b] hover:text-black focus:outline-none focus:ring-2 focus:ring-black rounded-full p-1 transition-colors duration-200 shadow-sm"
-        >
-          <FaTiktok size={22} />
-        </a>
-        <a
-          href="https://wa.me/904322151555"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="WhatsApp ile iletişime geç"
-          tabIndex={0}
-          className="text-[#22223b] hover:text-[#38b000] focus:outline-none focus:ring-2 focus:ring-[#38b000] rounded-full p-1 transition-colors duration-200 shadow-sm"
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              window.open('https://wa.me/904322151555', '_blank', 'noopener,noreferrer');
-            }
-          }}
-        >
-          <FaWhatsapp size={22} />
-        </a>
-      </div>
+      {/* Sosyal medya ikonları tamamen kaldırıldı */}
     </nav>
   );
 }

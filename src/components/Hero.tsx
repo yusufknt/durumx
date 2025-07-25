@@ -1,17 +1,42 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
+
+const YEMEKSEPETI_URL = "https://www.yemeksepeti.com/restaurant/meej/durumx-meej";
+const PHONE_NUMBER = "+905555555555";
 
 const Hero = () => {
   const [show, setShow] = useState(false);
   const [showHeadline, setShowHeadline] = useState(false);
+  const [orderOpen, setOrderOpen] = useState(false);
+  const orderBtnRef = useRef<HTMLButtonElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const handleOrderToggle = () => setOrderOpen((prev) => !prev);
+  const handleOrderKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === "Enter" || e.key === " ") setOrderOpen((prev) => !prev);
+  };
   useEffect(() => {
     setShow(true);
     const t = setTimeout(() => setShowHeadline(true), 200);
     return () => clearTimeout(t);
   }, []);
+  useEffect(() => {
+    if (!orderOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node) &&
+        orderBtnRef.current &&
+        !orderBtnRef.current.contains(e.target as Node)
+      ) {
+        setOrderOpen(false);
+      }
+    };
+    window.addEventListener("mousedown", handleClickOutside);
+    return () => window.removeEventListener("mousedown", handleClickOutside);
+  }, [orderOpen]);
 
   return (
     <section
@@ -43,19 +68,73 @@ const Hero = () => {
           Otantik lezzetler, modern dokunuşlar. Hatay’dan elinize.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
-          <div className="rounded-full overflow-hidden">
-            <Link
-              href="https://www.yemeksepeti.com/restaurant/meej/durumx-meej"
-              target="_blank"
-              rel="noopener noreferrer"
+          <div className="rounded-full overflow-hidden relative">
+            <button
+              ref={orderBtnRef}
               className="px-10 py-4 rounded-full text-white font-extrabold text-xl shadow-2xl hover:scale-105 hover:brightness-110 hover:shadow-3xl focus:outline-none focus:ring-4 focus:ring-[#ff1a1a]/60 focus:ring-offset-2 transition-all duration-300 w-full block"
               style={{ background: 'linear-gradient(90deg, #ff1a1a 0%, #000 100%)' }}
               aria-label="Şimdi Sipariş Ver"
+              aria-haspopup="true"
+              aria-expanded={orderOpen}
+              onClick={handleOrderToggle}
+              onKeyDown={handleOrderKeyDown}
               tabIndex={0}
-              onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { window.open('https://www.yemeksepeti.com/restaurant/meej/durumx-meej', '_blank'); } }}
             >
               Şimdi Sipariş Ver
-            </Link>
+            </button>
+            {orderOpen && (
+              <div
+                ref={dropdownRef}
+                className="fixed left-1/2 -translate-x-1/2 top-[30%] sm:absolute sm:left-auto sm:translate-x-0 sm:top-auto sm:right-0 sm:mt-3 w-64 bg-white border border-[#ececec] rounded-xl shadow-xl z-50 animate-fade-in"
+                role="menu"
+              >
+                <a
+                  href={`tel:${PHONE_NUMBER}`}
+                  className="block px-5 py-4 text-[#22223b] hover:bg-[#f9fafb] transition-colors rounded-t-xl"
+                  aria-label="Telefonla Sipariş Ver"
+                  tabIndex={0}
+                  onClick={() => setOrderOpen(false)}
+                >
+                  📞 Telefonla Sipariş
+                </a>
+                <a
+                  href={YEMEKSEPETI_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block px-5 py-4 text-[#22223b] hover:bg-[#f9fafb] transition-colors flex items-center gap-2"
+                  aria-label="Yemeksepeti'nden Sipariş Ver"
+                  tabIndex={0}
+                  onClick={() => setOrderOpen(false)}
+                >
+                  <Image src="/logo/yemeksepeti-logo.png" alt="Yemeksepeti" width={24} height={24} className="object-contain" />
+                  Yemeksepeti
+                </a>
+                <a
+                  href="https://getir.com/yemek/restoran/hatay-doneri-durum-x-ipekyolu-halilaga-mah-ipekyolu-van/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block px-5 py-4 text-[#5f259f] hover:bg-[#f9fafb] transition-colors flex items-center gap-2"
+                  aria-label="Getir'den Sipariş Ver"
+                  tabIndex={0}
+                  onClick={() => setOrderOpen(false)}
+                >
+                  <Image src="/logo/getiryemek.png" alt="Getir" width={24} height={24} className="object-contain" />
+                  Getir
+                </a>
+                <a
+                  href="https://tgoyemek.com/restoranlar/127596"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block px-5 py-4 text-[#ff7100] hover:bg-[#f9fafb] transition-colors flex items-center gap-2 rounded-b-xl"
+                  aria-label="Trendyol Yemek'ten Sipariş Ver"
+                  tabIndex={0}
+                  onClick={() => setOrderOpen(false)}
+                >
+                  <Image src="/logo/trendyolyemek.png" alt="Trendyol Yemek" width={24} height={24} className="object-contain" />
+                  Trendyol Yemek
+                </a>
+              </div>
+            )}
           </div>
           <Link
             href="/menu"
