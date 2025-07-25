@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { FaLeaf, FaClock, FaUserTie, FaPepperHot } from "react-icons/fa";
+import Image from "next/image";
 
 const NEDENLER = [
   { icon: <FaLeaf size={28} className="text-[#38b000]" />, title: "Taze Malzeme", desc: "Her gün taze ve kaliteli ürünler." },
@@ -21,11 +22,11 @@ const AboutPage = () => {
       <div className={`max-w-5xl w-full mx-auto bg-white/70 backdrop-blur-md rounded-3xl shadow-2xl border border-[#ececec] flex flex-col md:flex-row items-center md:items-stretch gap-10 p-8 md:p-14 transition-all duration-1000 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         {/* Sol: Görsel */}
         <div className={`flex-1 flex items-center justify-center transition-all duration-1000 ease-out ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-8 scale-95"}`} style={{ transitionDelay: '150ms' }}>
-          <img src="/about-placeholder.jpg" alt="DürümX Hakkımızda" className="w-64 h-64 object-cover rounded-3xl shadow-xl border-4 border-[#e63946]" />
+          <Image src="/about-placeholder.jpg" alt="DürümX Hakkımızda" width={256} height={256} className="w-64 h-64 object-cover rounded-3xl shadow-xl border-4 border-[#e63946]" />
         </div>
         {/* Sağ: İçerik */}
         <div className={`flex-1 flex flex-col justify-center transition-all duration-1000 ease-out ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-8 scale-95"}`} style={{ transitionDelay: '250ms' }}>
-          <img src="/logo.png" alt="DürümX Logo" className="h-14 w-auto mx-auto mb-4 drop-shadow-xl" />
+          <Image src="/logo.png" alt="DürümX Logo" width={56} height={56} className="h-14 w-auto mx-auto mb-4 drop-shadow-xl" unoptimized quality={100} />
           <h2 className="text-4xl font-extrabold mb-4 text-[#e63946] tracking-tight">Hakkımızda</h2>
           <p className="text-lg mb-4 font-medium text-[#22223b]">
             <b>DürümX</b>, Hatay’ın eşsiz sokak lezzetlerini modern bir dokunuşla sunmak için 2024 yılında kuruldu. Amacımız, gerçek Hatay dürümünü ve sokak lezzetlerini en taze ve kaliteli malzemelerle sizlerle buluşturmak. Menüdeki her ürün, ustalarımızın elinden özenle hazırlanır ve Hatay’ın sıcak misafirperverliğini sofralarınıza taşır.

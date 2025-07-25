@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { FaInstagram, FaTiktok, FaWhatsapp, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import Image from "next/image";
 
 const ContactPage = () => {
   const [show, setShow] = useState(false);
@@ -14,7 +15,7 @@ const ContactPage = () => {
       <div className={`max-w-5xl w-full mx-auto bg-white/70 backdrop-blur-md rounded-3xl shadow-2xl border border-[#ececec] flex flex-col md:flex-row gap-10 p-8 md:p-14 transition-all duration-1000 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         {/* Sol: Bilgi ve Sosyal */}
         <div className={`flex-1 flex flex-col gap-6 justify-center transition-all duration-1000 ease-out ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-8 scale-95"}`} style={{ transitionDelay: '150ms' }}>
-          <img src="/logo.png" alt="DürümX Logo" className="h-14 w-auto mx-auto mb-4 drop-shadow-xl" />
+          <Image src="/logo.png" alt="DürümX Logo" width={56} height={56} className="h-14 w-auto mx-auto mb-4 drop-shadow-xl" unoptimized quality={100} />
           <h2 className="text-4xl font-extrabold mb-2 text-[#e63946] tracking-tight">Bize Ulaşın</h2>
           <p className="text-base text-[#22223b] mb-4">Her türlü soru, öneri ve sipariş için bize ulaşabilirsiniz.</p>
           <div className="flex items-center gap-3 text-[#e63946] font-bold text-lg">
@@ -101,7 +102,11 @@ const ContactPage = () => {
                 )}
               </label>
             ))}
-            <button type="submit" className={`bg-gradient-to-r from-[#e63946] to-[#ffb703] text-white px-6 py-3 rounded-full font-bold text-lg shadow hover:scale-105 hover:shadow-xl transition-all duration-200 mt-2 transition-all duration-700 ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-8 scale-95"}`} style={{ transitionDelay: '700ms' }}>
+            <button
+              type="submit"
+              className={`px-10 py-4 rounded-full text-white font-extrabold text-xl shadow-2xl hover:scale-105 hover:brightness-110 hover:shadow-3xl focus:outline-none focus:ring-4 focus:ring-[#ff1a1a]/60 focus:ring-offset-2 transition-all duration-300 w-full block mt-2 transition-all duration-700 ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-8 scale-95"}`}
+              style={{ background: 'linear-gradient(90deg, #ff1a1a 0%, #000 100%)', transitionDelay: '700ms' }}
+            >
               Gönder
             </button>
           </form>

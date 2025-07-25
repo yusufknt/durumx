@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const Hero = () => {
   const [show, setShow] = useState(false);
@@ -19,15 +20,22 @@ const Hero = () => {
       aria-label="DürümX Karşılama Bölümü"
     >
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#e63946]/80 via-white/80 to-[#fff0e6]/90 backdrop-blur-[2px]" aria-hidden="true" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#ffb3b3]/70 via-[#ffe5ec]/80 to-[#f9fafb]/90 backdrop-blur-[2px]" aria-hidden="true" />
       {/* Content */}
       <div
         className={`relative z-10 flex flex-col items-center text-center px-4 transition-opacity duration-1000 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} max-w-2xl mx-auto`}
       >
-        <img src="/logo.png" alt="DürümX Logo" className="h-16 w-auto mb-6 drop-shadow-xl" />
+        <Image src="/logo.png" alt="DürümX Logo" width={64} height={64} className="h-16 w-auto mb-6 drop-shadow-xl" unoptimized quality={100} />
         <h1
-          className={`text-5xl sm:text-7xl md:text-8xl font-extrabold mb-8 tracking-tight bg-gradient-to-r from-[#e63946] via-[#ff7f50] to-[#ffb703] text-transparent bg-clip-text drop-shadow-2xl leading-[1.15] transition-all duration-1000 ease-out
+          className={`text-5xl sm:text-7xl md:text-8xl font-extrabold mb-8 tracking-tight drop-shadow-2xl leading-[1.15] transition-all duration-1000 ease-out font-sans
             ${showHeadline ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-8 scale-95"}`}
+          style={{
+            background: "linear-gradient(90deg, #ff1a1a 0%, #000 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            color: "black"
+          }}
         >
           DürümX’e Hoşgeldiniz
         </h1>
@@ -40,8 +48,8 @@ const Hero = () => {
               href="https://www.yemeksepeti.com/restaurant/meej/durumx-meej"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-10 py-4 bg-transparent rounded-full text-white font-extrabold text-xl shadow-2xl hover:scale-105 hover:brightness-110 hover:shadow-3xl focus:outline-none focus:ring-4 focus:ring-[#e63946]/60 focus:ring-offset-2 transition-all duration-300 border-2 border-transparent w-full block"
-              style={{ background: 'linear-gradient(135deg, #e63946 0%, #ff7f50 50%, #ffb703 100%)' }}
+              className="px-10 py-4 rounded-full text-white font-extrabold text-xl shadow-2xl hover:scale-105 hover:brightness-110 hover:shadow-3xl focus:outline-none focus:ring-4 focus:ring-[#ff1a1a]/60 focus:ring-offset-2 transition-all duration-300 w-full block"
+              style={{ background: 'linear-gradient(90deg, #ff1a1a 0%, #000 100%)' }}
               aria-label="Şimdi Sipariş Ver"
               tabIndex={0}
               onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { window.open('https://www.yemeksepeti.com/restaurant/meej/durumx-meej', '_blank'); } }}
