@@ -13,15 +13,18 @@ const Hero = () => {
   const [orderOpen, setOrderOpen] = useState(false);
   const orderBtnRef = useRef<HTMLButtonElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  
   const handleOrderToggle = () => setOrderOpen((prev) => !prev);
   const handleOrderKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
     if (e.key === "Enter" || e.key === " ") setOrderOpen((prev) => !prev);
   };
+  
   useEffect(() => {
     setShow(true);
-    const t = setTimeout(() => setShowHeadline(true), 200);
+    const t = setTimeout(() => setShowHeadline(true), 100);
     return () => clearTimeout(t);
   }, []);
+  
   useEffect(() => {
     if (!orderOpen) return;
     const handleClickOutside = (e: MouseEvent) => {
@@ -45,15 +48,15 @@ const Hero = () => {
       aria-label="DürümX Karşılama Bölümü"
     >
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#ffb3b3]/70 via-[#ffe5ec]/80 to-[#f9fafb]/90 backdrop-blur-[2px]" aria-hidden="true" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#ffb3b3]/70 via-[#ffe5ec]/80 to-[#f9fafb]/90 md:backdrop-blur-[2px]" aria-hidden="true" />
       {/* Content */}
       <div
-        className={`relative z-10 flex flex-col items-center text-center px-4 transition-opacity duration-1000 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} max-w-2xl mx-auto`}
+        className={`relative z-10 flex flex-col items-center text-center px-4 transition-all duration-300 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"} max-w-2xl mx-auto`}
       >
-        <Image src="/logo.png" alt="DürümX Logo" width={64} height={64} className="h-16 w-auto mb-6 drop-shadow-xl" unoptimized quality={100} />
+        <Image src="/logo.png" alt="DürümX Logo" width={64} height={64} className="h-16 w-auto mb-6 drop-shadow-xl" unoptimized quality={75} />
         <h1
-          className={`text-5xl sm:text-7xl md:text-8xl font-extrabold mb-8 tracking-tight drop-shadow-2xl leading-[1.15] transition-all duration-1000 ease-out font-sans
-            ${showHeadline ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-8 scale-95"}`}
+          className={`text-5xl sm:text-7xl md:text-8xl font-extrabold mb-8 tracking-tight drop-shadow-2xl leading-[1.15] transition-all duration-300 ease-out font-sans
+            ${showHeadline ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`}
           style={{
             background: "linear-gradient(90deg, #ff1a1a 0%, #000 100%)",
             WebkitBackgroundClip: "text",
@@ -62,16 +65,16 @@ const Hero = () => {
             color: "black"
           }}
         >
-          DürümX’e Hoşgeldiniz
+          DürümX'e Hoşgeldiniz
         </h1>
-        <p className="text-xl sm:text-2xl md:text-3xl mb-10 font-semibold text-[#22223b] bg-white/40 backdrop-blur-sm border border-white/60 rounded-xl px-6 py-3 shadow-lg inline-block">
-          Otantik lezzetler, modern dokunuşlar. Hatay’dan elinize.
+        <p className="text-xl sm:text-2xl md:text-3xl mb-10 font-semibold text-[#22223b] bg-white/40 md:backdrop-blur-sm border border-white/60 rounded-xl px-6 py-3 shadow-lg inline-block">
+          Otantik lezzetler, modern dokunuşlar. Hatay'dan elinize.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
-          <div className="rounded-full overflow-hidden relative">
+          <div className="relative">
             <button
               ref={orderBtnRef}
-              className="px-10 py-4 rounded-full text-white font-extrabold text-xl shadow-2xl hover:scale-105 hover:brightness-110 hover:shadow-3xl focus:outline-none focus:ring-4 focus:ring-[#ff1a1a]/60 focus:ring-offset-2 transition-all duration-300 w-full block"
+              className="px-10 py-4 rounded-full text-white font-extrabold text-xl shadow-2xl hover:scale-105 hover:brightness-110 hover:shadow-3xl focus:outline-none focus:ring-4 focus:ring-[#ff1a1a]/60 focus:ring-offset-2 transition-all duration-200"
               style={{ background: 'linear-gradient(90deg, #ff1a1a 0%, #000 100%)' }}
               aria-label="Şimdi Sipariş Ver"
               aria-haspopup="true"
@@ -85,7 +88,7 @@ const Hero = () => {
             {orderOpen && (
               <div
                 ref={dropdownRef}
-                className="fixed left-1/2 -translate-x-1/2 top-[30%] sm:absolute sm:left-auto sm:translate-x-0 sm:top-auto sm:right-0 sm:mt-3 w-64 bg-white border border-[#ececec] rounded-xl shadow-xl z-50 animate-fade-in"
+                className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-64 bg-white border border-[#ececec] rounded-xl shadow-xl z-50 animate-fade-in"
                 role="menu"
               >
                 <a
@@ -138,7 +141,7 @@ const Hero = () => {
           </div>
           <Link
             href="/menu"
-            className="px-10 py-4 rounded-full bg-white/90 border-2 border-[#e63946] text-[#e63946] font-extrabold text-xl shadow-2xl hover:bg-[#fff0e6] hover:scale-105 hover:shadow-3xl focus:outline-none focus:ring-4 focus:ring-[#e63946]/60 focus:ring-offset-2 transition-all duration-300"
+            className="px-10 py-4 rounded-full bg-white/90 border-2 border-[#e63946] text-[#e63946] font-extrabold text-xl shadow-2xl hover:bg-[#fff0e6] hover:scale-105 hover:shadow-3xl focus:outline-none focus:ring-4 focus:ring-[#e63946]/60 focus:ring-offset-2 transition-all duration-200"
             aria-label="Menüyü Görüntüle"
             tabIndex={0}
             onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { window.location.href = '/menu'; } }}

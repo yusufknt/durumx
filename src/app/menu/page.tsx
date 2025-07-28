@@ -45,7 +45,7 @@ const MenuPage = () => {
   const [modalImg, setModalImg] = useState<string | null>(null);
   const [show, setShow] = useState(false);
   useEffect(() => {
-    const t = setTimeout(() => setShow(true), 100);
+    const t = setTimeout(() => setShow(true), 50);
     return () => clearTimeout(t);
   }, []);
 
@@ -54,16 +54,16 @@ const MenuPage = () => {
 
   return (
     <div className="min-h-[90vh] w-full bg-gradient-to-br from-[#ffb3b3]/70 via-[#ffe5ec]/80 to-[#f9fafb]/90 flex items-center justify-center py-10">
-      <section className={`max-w-5xl w-full mx-auto py-12 px-4 transition-all duration-1000 ease-out bg-white/90 rounded-3xl shadow-xl border border-[#f3f3f3] ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-        <Image src="/logo.png" alt="DürümX Logo" width={56} height={56} className="h-14 w-auto mx-auto mb-4 drop-shadow-xl" unoptimized quality={100} />
-        <h2 className={`text-4xl font-extrabold mb-12 text-center text-[#e63946] tracking-tight transition-all duration-1000 ease-out ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-8 scale-95"}`}>Menü</h2>
+      <section className={`max-w-5xl w-full mx-auto py-12 px-4 transition-all duration-300 ease-out bg-white/90 rounded-3xl shadow-xl border border-[#f3f3f3] ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+        <Image src="/logo.png" alt="DürümX Logo" width={56} height={56} className="h-14 w-auto mx-auto mb-4 drop-shadow-xl" unoptimized quality={75} />
+        <h2 className={`text-4xl font-extrabold mb-12 text-center text-[#e63946] tracking-tight transition-all duration-300 ease-out ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`}>Menü</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
           {MENU_ITEMS.map((item, i) => (
             <div
               key={item.name}
-              className={`bg-white rounded-3xl shadow-2xl p-7 flex flex-col items-center border border-[#ececec] hover:scale-105 hover:shadow-3xl transition-all duration-300
-                ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-8 scale-95"}`}
-              style={{ transitionDelay: `${200 + i * 100}ms` }}
+              className={`bg-white rounded-3xl shadow-2xl p-7 flex flex-col items-center border border-[#ececec] hover:scale-105 hover:shadow-3xl transition-all duration-200
+                ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`}
+              style={{ transitionDelay: `${100 + i * 50}ms` }}
             >
               <Image
                 src={item.img}
@@ -75,6 +75,7 @@ const MenuPage = () => {
                 tabIndex={0}
                 aria-label={`${item.name} görselini büyüt`}
                 onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') handleImgClick(item.img); }}
+                loading="lazy"
               />
               <h3 className="text-2xl font-bold mb-2 text-[#e63946]">{item.name}</h3>
               <p className="text-base text-[#22223b] mb-3 text-center">{item.desc}</p>

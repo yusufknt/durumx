@@ -66,25 +66,25 @@ export default function HomePage() {
     return () => window.removeEventListener("mousedown", handleClickOutside);
   }, [orderOpen]);
   useEffect(() => {
-    const timeout = setTimeout(() => setShow(true), 100);
+    const timeout = setTimeout(() => setShow(true), 50);
     return () => clearTimeout(timeout);
   }, []);
 
   return (
     <>
-      <div className={`transition-all duration-1000 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+      <div className={`transition-all duration-300 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
         <Hero />
       </div>
       {/* Hızlı Menü Kategorileri */}
-      <section className={`max-w-4xl mx-auto py-12 px-4 transition-all duration-1000 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+      <section className={`max-w-4xl mx-auto py-12 px-4 transition-all duration-300 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
         <div className="grid grid-cols-3 gap-3 sm:gap-8">
           {KATEGORILER.map((kat, i) => (
             <Link
               key={kat.name}
               href={kat.href}
-              className={`flex flex-col items-center rounded-2xl shadow-md p-4 sm:p-8 border border-[#ececec] hover:scale-105 hover:shadow-xl transition-all duration-300 group bg-gradient-to-br from-[#ff1a1a] to-black relative
-                ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-              style={{ transitionDelay: `${200 + i * 100}ms` }}
+              className={`flex flex-col items-center rounded-2xl shadow-md p-4 sm:p-8 border border-[#ececec] hover:scale-105 hover:shadow-xl transition-all duration-200 group bg-gradient-to-br from-[#ff1a1a] to-black relative
+                ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+              style={{ transitionDelay: `${100 + i * 50}ms` }}
             >
               <div className="absolute inset-0 bg-black/20 rounded-2xl pointer-events-none" />
               <span className="mb-1 group-hover:scale-110 transition-transform duration-200 relative z-10 text-2xl sm:text-3xl">{kat.icon}</span>
@@ -94,14 +94,14 @@ export default function HomePage() {
         </div>
       </section>
       {/* Avantajlar */}
-      <section className="relative max-w-5xl mx-auto py-20 px-6 rounded-3xl overflow-hidden mb-16 bg-white shadow-lg border border-[#f3f3f3] transition-all duration-1000 ease-out">
+      <section className="relative max-w-5xl mx-auto py-20 px-6 rounded-3xl overflow-hidden mb-16 bg-white shadow-lg border border-[#f3f3f3] transition-all duration-300 ease-out">
         <h3 className="text-3xl font-extrabold mb-10 text-center text-[#e63946] tracking-tight drop-shadow-lg">Neden DürümX?</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
           {AVANTAJLAR.map((a, i) => (
             <div
               key={a.title}
-              className="flex flex-col items-center rounded-2xl shadow-md p-8 border border-[#f3f3f3] bg-white hover:shadow-xl transition-all duration-300"
-              style={{ transitionDelay: `${300 + i * 100}ms` }}
+              className="flex flex-col items-center rounded-2xl shadow-md p-8 border border-[#f3f3f3] bg-white hover:shadow-xl transition-all duration-200"
+              style={{ transitionDelay: `${150 + i * 50}ms` }}
             >
               <span className="mb-4 text-3xl">{a.icon}</span>
               <span className="mt-2 text-lg font-bold text-[#22223b]">{a.title}</span>
@@ -111,14 +111,14 @@ export default function HomePage() {
         </div>
       </section>
       {/* Müşteri Yorumları */}
-      <section className="relative max-w-4xl mx-auto py-20 px-6 rounded-3xl overflow-hidden mb-16 bg-white shadow-lg border border-[#f3f3f3] transition-all duration-1000 ease-out">
+      <section className="relative max-w-4xl mx-auto py-20 px-6 rounded-3xl overflow-hidden mb-16 bg-white shadow-lg border border-[#f3f3f3] transition-all duration-300 ease-out">
         <h3 className="text-3xl font-extrabold mb-10 text-center text-[#e63946] tracking-tight drop-shadow-lg">Müşteri Yorumları</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {YORUMLAR.map((y, i) => (
             <div
               key={y.name}
-              className="rounded-2xl shadow-md p-8 flex flex-col items-center border border-[#f3f3f3] bg-white hover:shadow-xl transition-all duration-300"
-              style={{ transitionDelay: `${400 + i * 100}ms` }}
+              className="rounded-2xl shadow-md p-8 flex flex-col items-center border border-[#f3f3f3] bg-white hover:shadow-xl transition-all duration-200"
+              style={{ transitionDelay: `${200 + i * 50}ms` }}
             >
               <Image
                 src={y.avatar}
@@ -126,6 +126,7 @@ export default function HomePage() {
                 width={64}
                 height={64}
                 className="w-16 h-16 object-cover rounded-full mb-4 border-2 border-[#ffb703] shadow-md"
+                loading="lazy"
               />
               <span className="font-bold text-[#22223b] text-lg">{y.name}</span>
               <div className="flex gap-1 my-2">
@@ -137,7 +138,7 @@ export default function HomePage() {
         </div>
       </section>
       {/* Sabit Hızlı Sipariş Butonu */}
-      <div className={`fixed bottom-6 right-6 z-50 transition-all duration-1000 ease-out ${show ? "opacity-100 scale-100" : "opacity-0 scale-90"} hidden md:block`}>
+      <div className={`fixed bottom-6 right-6 z-50 transition-all duration-300 ease-out ${show ? "opacity-100 scale-100" : "opacity-0 scale-95"} hidden md:block`}>
         <button
           ref={orderBtnRef}
           className="px-10 py-4 rounded-full text-white font-extrabold text-xl shadow-2xl hover:scale-105 hover:brightness-110 hover:shadow-3xl focus:outline-none focus:ring-4 focus:ring-[#ff1a1a]/60 focus:ring-offset-2 transition-all duration-300 w-full block"

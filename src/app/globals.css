@@ -5,3 +5,106 @@ body {
   color: #22223b;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Mobil performans optimizasyonları */
+@media (max-width: 768px) {
+  * {
+    /* Mobilde animasyonları kısalt */
+    transition-duration: 200ms !important;
+    animation-duration: 200ms !important;
+  }
+  
+  /* Mobilde backdrop-blur'u kaldır */
+  .backdrop-blur-lg,
+  .backdrop-blur-md {
+    backdrop-filter: none !important;
+  }
+  
+  /* Mobilde transform animasyonlarını basitleştir */
+  .translate-y-8 {
+    transform: translateY(4px) !important;
+  }
+  
+  .translate-y-4 {
+    transform: translateY(2px) !important;
+  }
+  
+  .scale-95 {
+    transform: scale(0.98) !important;
+  }
+  
+  .scale-98 {
+    transform: scale(0.99) !important;
+  }
+  
+  /* Mobilde hover efektlerini kısalt */
+  .hover\:scale-105:hover {
+    transform: scale(1.02) !important;
+  }
+  
+  /* Mobilde gölge efektlerini azalt */
+  .shadow-xl,
+  .shadow-2xl,
+  .shadow-3xl {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+  }
+  
+  /* Hero bölümü için özel optimizasyonlar */
+  .drop-shadow-2xl {
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1)) !important;
+  }
+  
+  /* Mobilde gradient text efektini basitleştir */
+  [style*="WebkitBackgroundClip"] {
+    background: #ff1a1a !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: unset !important;
+    background-clip: unset !important;
+    color: #ff1a1a !important;
+  }
+  
+  /* Hero bölümü için mobil optimizasyonlar */
+  section[style*="backgroundImage"] {
+    background-attachment: scroll !important;
+    will-change: auto !important;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.2s ease-out;
+}
+
+/* Mobilde animasyon sürelerini kısalt */
+@media (max-width: 768px) {
+  .animate-fade-in {
+    animation-duration: 0.15s;
+  }
+  
+  .animate-slide-in-right {
+    animation-duration: 0.15s;
+  }
+}

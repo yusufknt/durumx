@@ -61,10 +61,10 @@ const Navbar = () => {
   }, [mobileMenuOpen]);
 
   return (
-    <nav className={`sticky top-0 z-50 w-full shadow-xl flex items-center justify-between px-6 py-4 border-b border-white/30 rounded-b-2xl relative ${mobileMenuOpen ? 'bg-white' : 'bg-white/20 backdrop-blur-lg'}`}>
+    <nav className={`sticky top-0 z-50 w-full shadow-xl flex items-center justify-between px-6 py-4 border-b border-white/30 rounded-b-2xl relative ${mobileMenuOpen ? 'bg-white' : 'bg-white/20 backdrop-blur-lg md:backdrop-blur-lg'}`}>
       <div className="flex items-center gap-2">
         <Link href="/" aria-label="DürümX Anasayfa" className="flex items-center gap-2">
-          <Image src="/logo.png" alt="DürümX Logo" width={48} height={48} className="h-12 w-auto object-contain" unoptimized quality={100} />
+          <Image src="/logo.png" alt="DürümX Logo" width={48} height={48} className="h-12 w-auto object-contain" unoptimized quality={75} />
         </Link>
       </div>
       {/* Mobilde sağ üstte Sipariş Ver ve hamburger menü yan yana */}
@@ -156,6 +156,70 @@ const Navbar = () => {
             {link.label}
           </Link>
         ))}
+        <div className="relative">
+          <button
+            ref={orderBtnRef}
+            className="px-6 py-2 rounded-full text-white font-bold text-base shadow-lg hover:scale-105 hover:brightness-110 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#e63946]/60 focus:ring-offset-2 transition-all duration-200 inline-block"
+            style={{ background: 'linear-gradient(90deg, #ff1a1a 0%, #000 100%)' }}
+            aria-label="Sipariş Ver"
+            aria-haspopup="true"
+            aria-expanded={orderOpen}
+            onClick={handleOrderToggle}
+            onKeyDown={handleOrderKeyDown}
+            tabIndex={0}
+          >
+            Sipariş Ver
+          </button>
+          {orderOpen && (
+            <div ref={dropdownRef} className="absolute right-0 mt-3 w-56 bg-white border border-[#ececec] rounded-xl shadow-xl z-50 animate-fade-in">
+              <a
+                href={`tel:${PHONE_NUMBER}`}
+                className="block px-5 py-3 text-[#22223b] hover:bg-[#f9fafb] transition-colors rounded-t-xl"
+                aria-label="Telefonla Sipariş Ver"
+                tabIndex={0}
+                onClick={() => setOrderOpen(false)}
+              >
+                📞 Telefonla Sipariş
+              </a>
+              <a
+                href={YEMEKSEPETI_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block px-5 py-3 text-[#22223b] hover:bg-[#f9fafb] transition-colors flex items-center gap-2"
+                aria-label="Yemeksepeti'nden Sipariş Ver"
+                tabIndex={0}
+                onClick={() => setOrderOpen(false)}
+              >
+                <Image src="/logo/yemeksepeti-logo.png" alt="Yemeksepeti" width={24} height={24} className="object-contain" />
+                Yemeksepeti
+              </a>
+              <a
+                href="https://getir.com/yemek/restoran/hatay-doneri-durum-x-ipekyolu-halilaga-mah-ipekyolu-van/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block px-5 py-3 text-[#5f259f] hover:bg-[#f9fafb] transition-colors flex items-center gap-2"
+                aria-label="Getir'den Sipariş Ver"
+                tabIndex={0}
+                onClick={() => setOrderOpen(false)}
+              >
+                <Image src="/logo/getiryemek.png" alt="Getir" width={24} height={24} className="object-contain" />
+                Getir
+              </a>
+              <a
+                href="https://tgoyemek.com/restoranlar/127596"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block px-5 py-3 text-[#ff7100] hover:bg-[#f9fafb] transition-colors flex items-center gap-2 rounded-b-xl"
+                aria-label="Trendyol Yemek'ten Sipariş Ver"
+                tabIndex={0}
+                onClick={() => setOrderOpen(false)}
+              >
+                <Image src="/logo/trendyolyemek.png" alt="Trendyol Yemek" width={24} height={24} className="object-contain" />
+                Trendyol Yemek
+              </a>
+            </div>
+          )}
+        </div>
       </div>
       {/* Mobil açılır menü */}
       {mobileMenuOpen && (
