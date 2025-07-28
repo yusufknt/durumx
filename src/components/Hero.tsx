@@ -65,10 +65,10 @@ const Hero = () => {
             color: "black"
           }}
         >
-          DürümX'e Hoşgeldiniz
+          DürümX&apos;e Hoşgeldiniz
         </h1>
         <p className="text-xl sm:text-2xl md:text-3xl mb-10 font-semibold text-[#22223b] bg-white/40 md:backdrop-blur-sm border border-white/60 rounded-xl px-6 py-3 shadow-lg inline-block">
-          Otantik lezzetler, modern dokunuşlar. Hatay'dan elinize.
+          Otantik lezzetler, modern dokunuşlar. Hatay&apos;dan elinize.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
           <div className="relative">
