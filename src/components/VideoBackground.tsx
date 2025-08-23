@@ -5,13 +5,11 @@ import Image from "next/image";
 
 interface VideoBackgroundProps {
   videos: string[];
-  interval?: number;
   fallbackImage?: string;
 }
 
 const VideoBackground: React.FC<VideoBackgroundProps> = ({ 
   videos, 
-  interval = 6000,
   fallbackImage = "/durum.png"
 }) => {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);

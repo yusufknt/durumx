@@ -65,7 +65,7 @@ const SubelerimizPage = () => {
           <div className="bg-gradient-to-r from-[#e3f2fd] to-[#bbdefb] rounded-2xl p-8 border border-[#90caf9] text-center">
             <h2 className="text-2xl font-bold mb-4 text-[#1565c0]">Tüm Şubelerimizde Aynı Kalite!</h2>
             <p className="text-lg text-[#1976d2]">
-              Hatay'ın farklı noktalarında hizmet veren şubelerimizde, 
+              Hatay&apos;ın farklı noktalarında hizmet veren şubelerimizde, 
               geleneksel lezzetlerimizi aynı kalitede sunuyoruz.
             </p>
           </div>

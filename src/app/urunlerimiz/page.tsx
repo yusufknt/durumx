@@ -283,7 +283,7 @@ const UrunlerimizPage = () => {
             <div className="text-6xl mb-4">🔍</div>
             <h3 className="text-2xl font-bold text-[#6c757d] mb-2">Ürün Bulunamadı</h3>
             <p className="text-[#6c757d]">
-              "{searchTerm}" araması için sonuç bulunamadı. 
+              &ldquo;{searchTerm}&rdquo; araması için sonuç bulunamadı. 
               Farklı anahtar kelimeler deneyebilir veya filtreleri değiştirebilirsiniz.
             </p>
           </div>
@@ -301,7 +301,7 @@ const UrunlerimizPage = () => {
                 { name: "Dürüm + İçecek", price: "95₺", originalPrice: "110₺", discount: "15₺" },
                 { name: "Burger + Patates + İçecek", price: "115₺", originalPrice: "140₺", discount: "25₺" },
                 { name: "2 Dürüm + 2 İçecek", price: "180₺", originalPrice: "220₺", discount: "40₺" }
-              ].map((combo, index) => (
+              ].map((combo) => (
                 <div key={combo.name} className="bg-white rounded-xl p-6 shadow-lg">
                   <h3 className="font-bold text-[#f57c00] mb-2">{combo.name}</h3>
                   <div className="flex items-center justify-center gap-2 mb-2">

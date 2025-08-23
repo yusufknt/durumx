@@ -26,7 +26,6 @@ const Hero = () => {
       {/* Video Background */}
       <VideoBackground 
         videos={backgroundVideos} 
-        interval={6000} 
         fallbackImage="/durum.png"
       />
       

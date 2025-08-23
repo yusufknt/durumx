@@ -65,7 +65,7 @@ const KurumsalPage = () => {
               { icon: "🤝", title: "Güven", desc: "Müşteri memnuniyeti odaklı hizmet" },
               { icon: "🏛️", title: "Gelenek", desc: "Geleneksel tariflerin korunması" },
               { icon: "💡", title: "İnovasyon", desc: "Modern restoran teknolojileri" }
-            ].map((value, index) => (
+            ].map((value) => (
               <div key={value.title} className="bg-white rounded-xl p-6 shadow-lg border border-[#e9ecef] hover:shadow-xl transition-all duration-200 hover:scale-105">
                 <div className="text-4xl mb-3 text-center">{value.icon}</div>
                 <h3 className="text-xl font-bold mb-2 text-[#e63946] text-center">{value.title}</h3>
@@ -84,7 +84,7 @@ const KurumsalPage = () => {
               { number: "10K+", label: "Mutlu Müşteri" },
               { number: "100%", label: "Taze Malzeme" },
               { number: "24/7", label: "Hizmet Kalitesi" }
-            ].map((stat, index) => (
+            ].map((stat) => (
               <div key={stat.label} className="bg-gradient-to-br from-[#ffb703] to-[#fb8500] rounded-xl p-6 text-center text-white shadow-lg">
                 <div className="text-3xl font-bold mb-2">{stat.number}</div>
                 <div className="text-sm font-medium">{stat.label}</div>
