@@ -1,152 +1,68 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState, useRef } from "react";
-import Image from "next/image";
-
-const YEMEKSEPETI_URL = "https://www.yemeksepeti.com/restaurant/meej/durumx-meej";
-const PHONE_NUMBER = "+905555555555";
+import { useEffect, useState } from "react";
+import VideoBackground from "./VideoBackground";
 
 const Hero = () => {
   const [show, setShow] = useState(false);
-  const [showHeadline, setShowHeadline] = useState(false);
-  const [orderOpen, setOrderOpen] = useState(false);
-  const orderBtnRef = useRef<HTMLButtonElement>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  
-  const handleOrderToggle = () => setOrderOpen((prev) => !prev);
-  const handleOrderKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (e.key === "Enter" || e.key === " ") setOrderOpen((prev) => !prev);
-  };
   
   useEffect(() => {
     setShow(true);
-    const t = setTimeout(() => setShowHeadline(true), 100);
-    return () => clearTimeout(t);
   }, []);
-  
-  useEffect(() => {
-    if (!orderOpen) return;
-    const handleClickOutside = (e: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(e.target as Node) &&
-        orderBtnRef.current &&
-        !orderBtnRef.current.contains(e.target as Node)
-      ) {
-        setOrderOpen(false);
-      }
-    };
-    window.addEventListener("mousedown", handleClickOutside);
-    return () => window.removeEventListener("mousedown", handleClickOutside);
-  }, [orderOpen]);
+
+  // Video array for background
+  const backgroundVideos = [
+    "/videos/doner-preparation.mp4",
+    "/videos/hero-video-2.mp4", 
+    "/videos/hero-video-3.mp4"
+  ];
 
   return (
     <section
-      className="relative w-full h-[75vh] md:h-[90vh] flex items-center justify-center bg-cover bg-center overflow-hidden rounded-b-3xl shadow-xl border-b-4 border-[#e63946]/10"
-      style={{ backgroundImage: 'url("/hero-placeholder.jpg")' }}
+      className="relative w-full h-[75vh] md:h-[90vh] flex flex-col items-center justify-between overflow-hidden rounded-b-3xl shadow-xl border-b-4 border-[#e63946]/10"
       aria-label="DürümX Karşılama Bölümü"
     >
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#ffb3b3]/70 via-[#ffe5ec]/80 to-[#f9fafb]/90 md:backdrop-blur-[2px]" aria-hidden="true" />
+      {/* Video Background */}
+      <VideoBackground 
+        videos={backgroundVideos} 
+        interval={6000} 
+        fallbackImage="/durum.png"
+      />
+      
       {/* Content */}
       <div
-        className={`relative z-10 flex flex-col items-center text-center px-4 transition-all duration-300 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"} max-w-2xl mx-auto`}
+        className={`relative z-20 flex flex-col items-center justify-between h-full py-12 px-4 transition-all duration-300 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"} max-w-2xl mx-auto w-full`}
       >
-        <Image src="/logo.png" alt="DürümX Logo" width={64} height={64} className="h-16 w-auto mb-6 drop-shadow-xl" unoptimized quality={75} />
-        <h1
-          className={`text-5xl sm:text-7xl md:text-8xl font-extrabold mb-8 tracking-tight drop-shadow-2xl leading-[1.15] transition-all duration-300 ease-out font-sans
-            ${showHeadline ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`}
-          style={{
-            background: "linear-gradient(90deg, #ff1a1a 0%, #000 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-            color: "black"
-          }}
-        >
-          DürümX&apos;e Hoşgeldiniz
-        </h1>
-        <p className="text-xl sm:text-2xl md:text-3xl mb-10 font-semibold text-[#22223b] bg-white/40 md:backdrop-blur-sm border border-white/60 rounded-xl px-6 py-3 shadow-lg inline-block">
-          Otantik lezzetler, modern dokunuşlar. Hatay&apos;dan elinize.
-        </p>
+        {/* Spacer for top */}
+        <div></div>
+        
+        {/* Buttons - Bottom */}
         <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
-          <div className="relative">
-            <button
-              ref={orderBtnRef}
-              className="px-10 py-4 rounded-full text-white font-extrabold text-xl shadow-2xl hover:scale-105 hover:brightness-110 hover:shadow-3xl focus:outline-none focus:ring-4 focus:ring-[#ff1a1a]/60 focus:ring-offset-2 transition-all duration-200"
-              style={{ background: 'linear-gradient(90deg, #ff1a1a 0%, #000 100%)' }}
-              aria-label="Şimdi Sipariş Ver"
-              aria-haspopup="true"
-              aria-expanded={orderOpen}
-              onClick={handleOrderToggle}
-              onKeyDown={handleOrderKeyDown}
-              tabIndex={0}
-            >
-              Şimdi Sipariş Ver
-            </button>
-            {orderOpen && (
-              <div
-                ref={dropdownRef}
-                className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-64 bg-white border border-[#ececec] rounded-xl shadow-xl z-50 animate-fade-in"
-                role="menu"
-              >
-                <a
-                  href={`tel:${PHONE_NUMBER}`}
-                  className="block px-5 py-4 text-[#22223b] hover:bg-[#f9fafb] transition-colors rounded-t-xl"
-                  aria-label="Telefonla Sipariş Ver"
-                  tabIndex={0}
-                  onClick={() => setOrderOpen(false)}
-                >
-                  📞 Telefonla Sipariş
-                </a>
-                <a
-                  href={YEMEKSEPETI_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block px-5 py-4 text-[#22223b] hover:bg-[#f9fafb] transition-colors flex items-center gap-2"
-                  aria-label="Yemeksepeti'nden Sipariş Ver"
-                  tabIndex={0}
-                  onClick={() => setOrderOpen(false)}
-                >
-                  <Image src="/logo/yemeksepeti-logo.png" alt="Yemeksepeti" width={24} height={24} className="object-contain" />
-                  Yemeksepeti
-                </a>
-                <a
-                  href="https://getir.com/yemek/restoran/hatay-doneri-durum-x-ipekyolu-halilaga-mah-ipekyolu-van/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block px-5 py-4 text-[#5f259f] hover:bg-[#f9fafb] transition-colors flex items-center gap-2"
-                  aria-label="Getir'den Sipariş Ver"
-                  tabIndex={0}
-                  onClick={() => setOrderOpen(false)}
-                >
-                  <Image src="/logo/getiryemek.png" alt="Getir" width={24} height={24} className="object-contain" />
-                  Getir
-                </a>
-                <a
-                  href="https://tgoyemek.com/restoranlar/127596"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block px-5 py-4 text-[#ff7100] hover:bg-[#f9fafb] transition-colors flex items-center gap-2 rounded-b-xl"
-                  aria-label="Trendyol Yemek'ten Sipariş Ver"
-                  tabIndex={0}
-                  onClick={() => setOrderOpen(false)}
-                >
-                  <Image src="/logo/trendyolyemek.png" alt="Trendyol Yemek" width={24} height={24} className="object-contain" />
-                  Trendyol Yemek
-                </a>
-              </div>
-            )}
-          </div>
           <Link
-            href="/menu"
-            className="px-10 py-4 rounded-full bg-white/90 border-2 border-[#e63946] text-[#e63946] font-extrabold text-xl shadow-2xl hover:bg-[#fff0e6] hover:scale-105 hover:shadow-3xl focus:outline-none focus:ring-4 focus:ring-[#e63946]/60 focus:ring-offset-2 transition-all duration-200"
+            href="/urunlerimiz"
+            className="group relative px-10 py-4 rounded-full text-white font-extrabold text-xl bg-gradient-to-r from-[#ff1a1a] to-[#d62a3a] border-2 border-white/30 backdrop-blur-sm overflow-hidden transition-all duration-500 ease-out hover:shadow-2xl"
+            aria-label="Şimdi Sipariş Ver"
+            tabIndex={0}
+          >
+            <span className="relative z-10 transition-transform duration-500 group-hover:translate-y-[-2px]">
+              Şimdi Sipariş Ver
+            </span>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#e63946] to-[#c1121f] opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out"></div>
+            <div className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-700 ease-out"></div>
+          </Link>
+          <Link
+            href="/urunlerimiz"
+            className="group relative px-10 py-4 rounded-full bg-white/90 backdrop-blur-sm border-2 border-white/80 text-[#e63946] font-extrabold text-xl overflow-hidden transition-all duration-500 ease-out hover:shadow-2xl"
             aria-label="Menüyü Görüntüle"
             tabIndex={0}
-            onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { window.location.href = '/menu'; } }}
+            onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { window.location.href = '/urunlerimiz'; } }}
           >
-            Menüyü Görüntüle
+            <span className="relative z-10 transition-all duration-500 group-hover:text-white">
+              Menüyü Görüntüle
+            </span>
+            <div className="absolute inset-0 bg-[#e63946] transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-700 ease-out"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
           </Link>
         </div>
       </div>
