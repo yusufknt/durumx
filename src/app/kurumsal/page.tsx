@@ -23,7 +23,7 @@ const KurumsalPage = () => {
           <h2 className="text-3xl font-bold mb-6 text-[#22223b] text-center">Hakkımızda</h2>
           <div className="bg-gradient-to-r from-[#f8f9fa] to-[#e9ecef] rounded-2xl p-8 border border-[#dee2e6]">
             <p className="text-lg text-[#495057] leading-relaxed text-center max-w-4xl mx-auto">
-              DürümX olarak, 2020 yılından bu yana Hatay'ın geleneksel lezzetlerini modern restoran anlayışıyla buluşturuyoruz. 
+              DürümX olarak, 2020 yılından bu yana Hatay&apos;ın geleneksel lezzetlerini modern restoran anlayışıyla buluşturuyoruz. 
               Özel baharatlarımız, taze malzemelerimiz ve geleneksel tariflerimizle, müşterilerimize unutulmaz bir gastronomi deneyimi sunuyoruz.
             </p>
           </div>
@@ -50,7 +50,7 @@ const KurumsalPage = () => {
               Vizyonumuz
             </h3>
             <p className="text-lg leading-relaxed">
-              Türkiye'nin önde gelen geleneksel lezzet zincirlerinden biri olmak ve 
+              Türkiye&apos;nin önde gelen geleneksel lezzet zincirlerinden biri olmak ve 
               Hatay mutfağının zengin kültürünü tüm ülkeye yaymak.
             </p>
           </div>
