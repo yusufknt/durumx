@@ -4,7 +4,6 @@ import Hero from "@/components/Hero";
 import Link from "next/link";
 import { useEffect } from "react";
 import Image from "next/image";
-import AOS from "aos";
 import { useModal } from "@/app/layout";
 
 const KATEGORILER = [
@@ -50,40 +49,49 @@ export default function HomePage() {
       setOrderOpen(true);
     }
   };
-  // AOS initialization
+  // AOS initialization (dynamic import, client-only, guarded)
   useEffect(() => {
-    const initAOS = () => {
-      const reduceMotion = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      AOS.init({
-        duration: reduceMotion ? 0 : 800,
-        once: false,
-        offset: 120,
-        easing: 'ease-out-cubic',
-        startEvent: 'load',
-        disable: reduceMotion,
-        delay: 0,
-        anchorPlacement: 'top-bottom',
-        mirror: false
-      });
+    let detachScroll: (() => void) | null = null;
+    let initListener: ((this: Document, ev: Event) => void) | null = null;
+
+    const setup = async () => {
+      try {
+        const mod = await import('aos');
+        const AOS = mod.default;
+        const reduceMotion = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        AOS.init({
+          duration: reduceMotion ? 0 : 800,
+          once: false,
+          offset: 120,
+          easing: 'ease-out-cubic',
+          startEvent: 'load',
+          disable: reduceMotion,
+          delay: 0,
+          anchorPlacement: 'top-bottom',
+          mirror: false,
+        });
+        const handleScroll = () => {
+          try { AOS.refresh(); } catch {}
+        };
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        detachScroll = () => window.removeEventListener('scroll', handleScroll);
+      } catch {
+        // AOS yüklenemese de sayfa çalışmaya devam etsin
+      }
     };
 
-    // DOM yüklendiğinde AOS'ı başlat
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initAOS);
-    } else {
-      initAOS();
+    if (typeof document !== 'undefined') {
+      if (document.readyState === 'loading') {
+        initListener = () => setup();
+        document.addEventListener('DOMContentLoaded', initListener);
+      } else {
+        setup();
+      }
     }
 
-    // Scroll event listener ekle
-    const handleScroll = () => {
-      AOS.refresh();
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      document.removeEventListener('DOMContentLoaded', initAOS);
+      if (detachScroll) detachScroll();
+      if (initListener) document.removeEventListener('DOMContentLoaded', initListener);
     };
   }, []);
 
