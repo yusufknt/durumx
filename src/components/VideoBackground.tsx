@@ -150,7 +150,6 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           playsInline
           preload={index === 0 ? "auto" : "metadata"}
           loop
-          poster={fallbackImage}
           onError={handleVideoError}
           onLoadedData={handleVideoLoad}
           onLoadedMetadata={handleMetadataLoad}
