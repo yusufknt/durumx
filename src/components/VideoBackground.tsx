@@ -146,10 +146,9 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
             index === currentVideoIndex ? "opacity-100" : "opacity-0"
           }`}
           muted
-          autoPlay={index === 0}
+          autoPlay={index === currentVideoIndex}
           playsInline
           preload={index === 0 ? "auto" : "metadata"}
-          loop
           onError={handleVideoError}
           onLoadedData={handleVideoLoad}
           onLoadedMetadata={handleMetadataLoad}
