@@ -313,67 +313,16 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left: Icon + Slogan */}
             <div className="space-y-8" data-aos="fade-right" data-aos-delay="100">
-              {/* Moto Courier Icon (Inline SVG) */}
-              <div className="relative inline-flex items-center justify-center w-24 h-24 rounded-3xl bg-gradient-to-br from-red-600 to-orange-500 shadow-2xl">
-                {/* Icon - DürümX Moto Courier (Clear Scooter Silhouette) */}
-                <svg
-                  viewBox="0 0 120 120"
-                  aria-label="Moto Kurye"
-                  className="w-20 h-20 text-white"
-                  role="img"
-                >
-                  <defs>
-                    <linearGradient id="dx-badge" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#ffffff" stopOpacity="0.25" />
-                      <stop offset="100%" stopColor="#ffffff" stopOpacity="0.05" />
-                    </linearGradient>
-                    <linearGradient id="dx-accent" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#ffeded" />
-                      <stop offset="100%" stopColor="#ffffff" />
-                    </linearGradient>
-                  </defs>
-                  {/* Badge background */}
-                  <circle cx="60" cy="60" r="56" fill="url(#dx-badge)" />
-                  <circle cx="60" cy="60" r="50" fill="none" stroke="url(#dx-accent)" strokeWidth="2" strokeOpacity="0.5" />
-
-                  {/* Speed trails (left) */}
-                  <g stroke="currentColor" strokeOpacity="0.65" strokeLinecap="round">
-                    <path d="M18 78 H44" strokeWidth="3" />
-                    <path d="M16 70 H40" strokeWidth="2" />
-                    <path d="M20 62 H38" strokeWidth="2" />
-                  </g>
-
-                  {/* Scooter and rider - clearer silhouette */}
-                  <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
-                    {/* Wheels */}
-                    <circle cx="44" cy="84" r="9" strokeWidth="3.2" />
-                    <circle cx="82" cy="84" r="9" strokeWidth="3.2" />
-
-                    {/* Ground clearance bar */}
-                    <path d="M35 84h10" strokeWidth="3" />
-                    <path d="M73 84h18" strokeWidth="3" />
-
-                    {/* Floorboard and frame */}
-                    <path d="M40 78h18c4 0 7-3 9-6l4-6h11" strokeWidth="3.2" />
-
-                    {/* Front fork and handlebar */}
-                    <path d="M78 52l6 10" strokeWidth="3.2" />
-                    <path d="M76 48h10" strokeWidth="3" />
-
-                    {/* Body panel */}
-                    <path d="M50 54h16c4 0 7 3 7 7v9H58l-8-16z" strokeWidth="3" />
-
-                    {/* Delivery box with strap */}
-                    <rect x="86" y="48" width="16" height="12" rx="2" strokeWidth="3" />
-                    <path d="M86 54h16" strokeWidth="2" />
-
-                    {/* Rider with helmet */}
-                    <circle cx="62" cy="42" r="5" fill="currentColor" stroke="none" />
-                    <path d="M58 42h8" strokeWidth="2" />
-                    <path d="M61 47l-7 9" strokeWidth="3" />
-                    <path d="M74 60l6 9" strokeWidth="3" />
-                  </g>
-                </svg>
+              {/* Moto Courier Logo (Image) */}
+              <div className="relative inline-flex items-center justify-center w-32 h-32 md:w-36 md:h-36 rounded-3xl bg-gradient-to-br from-white to-red-100 shadow-2xl border border-white/70">
+                <Image
+                  src="/logo/kurye-logo.png"
+                  alt="Kurye Logo"
+                  width={120}
+                  height={120}
+                  className="w-full h-full object-contain"
+                  priority
+                />
               </div>
 
               <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1] bg-gradient-to-r from-white via-red-200 to-white bg-clip-text text-transparent">
