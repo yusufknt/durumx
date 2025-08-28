@@ -49,12 +49,11 @@ export default function HomePage() {
       setOrderOpen(true);
     }
   };
-  // AOS initialization (dynamic import, client-only, guarded)
+  // AOS initialization (robust for client navigation)
   useEffect(() => {
     let detachScroll: (() => void) | null = null;
-    let initListener: ((this: Document, ev: Event) => void) | null = null;
-
-    const setup = async () => {
+    let mounted = true;
+    (async () => {
       try {
         const mod = await import('aos');
         const AOS = mod.default;
@@ -64,35 +63,20 @@ export default function HomePage() {
           once: false,
           offset: 120,
           easing: 'ease-out-cubic',
-          startEvent: 'load',
           disable: reduceMotion,
           delay: 0,
           anchorPlacement: 'top-bottom',
           mirror: false,
         });
-        const handleScroll = () => {
-          try { AOS.refresh(); } catch {}
-        };
+        // Force refresh immediately and after a tick for CSR navigations
+        try { AOS.refreshHard(); } catch {}
+        setTimeout(() => { try { if (mounted) AOS.refreshHard(); } catch {} }, 0);
+        const handleScroll = () => { try { AOS.refresh(); } catch {} };
         window.addEventListener('scroll', handleScroll, { passive: true });
         detachScroll = () => window.removeEventListener('scroll', handleScroll);
-      } catch {
-        // AOS yüklenemese de sayfa çalışmaya devam etsin
-      }
-    };
-
-    if (typeof document !== 'undefined') {
-      if (document.readyState === 'loading') {
-        initListener = () => setup();
-        document.addEventListener('DOMContentLoaded', initListener);
-      } else {
-        setup();
-      }
-    }
-
-    return () => {
-      if (detachScroll) detachScroll();
-      if (initListener) document.removeEventListener('DOMContentLoaded', initListener);
-    };
+      } catch {}
+    })();
+    return () => { mounted = false; if (detachScroll) detachScroll(); };
   }, []);
 
   return (
@@ -452,7 +436,7 @@ export default function HomePage() {
                       className="group flex items-center justify-center rounded-2xl bg-white/95 p-8 md:p-10 border border-white/60 shadow hover:shadow-lg transition-all h-28 md:h-32"
                       aria-label="Getir Yemek ile sipariş ver"
                     >
-                      <Image src="/logo/getiryemek.png" alt="Getir Yemek" width={200} height={60} className="h-12 md:h-16 w-auto object-contain" />
+                      <Image src="/logo/getiryemek.png" alt="Getir Yemek" width={200} height={60} className="h-12 md:h-16 w-auto object-contain" unoptimized priority/>
                     </a>
                     <a
                       href="https://www.yemeksepeti.com/restaurant/meej/durumx-meej"
@@ -461,7 +445,7 @@ export default function HomePage() {
                       className="group flex items-center justify-center rounded-2xl bg-white/95 p-8 md:p-10 border border-white/60 shadow hover:shadow-lg transition-all h-28 md:h-32"
                       aria-label="Yemeksepeti ile sipariş ver"
                     >
-                      <Image src="/logo/yemeksepeti-logo.png" alt="Yemeksepeti" width={200} height={60} className="h-12 md:h-16 w-auto object-contain" />
+                      <Image src="/logo/yemeksepeti-logo.png" alt="Yemeksepeti" width={200} height={60} className="h-12 md:h-16 w-auto object-contain" unoptimized priority/>
                     </a>
                     <a
                       href="https://tgoyemek.com/restoranlar/127596"
@@ -470,7 +454,7 @@ export default function HomePage() {
                       className="group flex items-center justify-center rounded-2xl bg-white/95 p-8 md:p-10 border border-white/60 shadow hover:shadow-lg transition-all h-28 md:h-32"
                       aria-label="Trendyol Yemek ile sipariş ver"
                     >
-                      <Image src="/logo/trendyolyemek.png" alt="Trendyol Yemek" width={200} height={60} className="h-12 md:h-16 w-auto object-contain" />
+                      <Image src="/logo/trendyolyemek.png" alt="Trendyol Yemek" width={200} height={60} className="h-12 md:h-16 w-auto object-contain" unoptimized priority/>
                     </a>
                   </div>
 

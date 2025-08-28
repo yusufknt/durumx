@@ -120,12 +120,12 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
     );
   }
 
-  // Loading state
+  // Loading state: show a lightweight spinner overlay (no poster image)
   if (isLoading) {
     return (
-      <div className="absolute inset-0 w-full h-full overflow-hidden bg-gradient-to-br from-red-900 via-gray-900 to-black flex items-center justify-center">
+      <div className="absolute inset-0 w-full h-full overflow-hidden bg-black/30 flex items-center justify-center">
         <div className="text-white text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-white mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-16 w-16 border-4 border-white/30 border-t-white mx-auto mb-4"></div>
           <p className="text-lg font-semibold">Video hazırlanıyor...</p>
         </div>
       </div>

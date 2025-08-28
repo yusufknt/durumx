@@ -84,6 +84,7 @@ const Navbar = () => {
               height={48} 
               className="h-12 w-auto object-contain relative z-10" 
               unoptimized 
+              priority
               quality={75} 
             />
             
