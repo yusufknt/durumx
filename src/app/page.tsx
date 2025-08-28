@@ -129,18 +129,17 @@ export default function HomePage() {
               >
                 {/* Card Container */}
                 <div className="category-card relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100/50 min-w-[280px] hover:-translate-y-1 hover:scale-[1.01]">
-                  {/* Background Image Container */}
-                  <div className="relative h-96 w-full overflow-hidden">
+                  {/* Background Image Container (solid red background for transparent PNGs) */}
+                  <div className="relative h-96 w-full overflow-hidden bg-red-600">
                     <div
-                      className="category-image h-full w-full bg-cover bg-center transition-transform duration-700"
+                      className="category-image h-full w-full bg-contain bg-no-repeat bg-center transition-transform duration-700 ease-out will-change-transform group-hover:scale-105"
                       style={{ backgroundImage: `url(${kat.bgImage})` }}
                     />
 
-                    {/* Gradient Overlay for Text Readability */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                    {/* No overlay: keep image colors intact; red background shows through transparency */}
 
                     {/* Category Name - Positioned over image */}
-                    <div className="category-text-overlay absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                    <div className="category-text-overlay absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700 ease-out will-change-transform">
                       <h3 className="text-2xl font-black mb-3 leading-tight tracking-wide">
                         {kat.name}
                       </h3>
