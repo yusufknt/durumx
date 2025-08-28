@@ -433,28 +433,28 @@ export default function HomePage() {
                       href="https://getir.com/yemek/restoran/hatay-doneri-durum-x-ipekyolu-halilaga-mah-ipekyolu-van/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex items-center justify-center rounded-2xl bg-white/95 p-8 md:p-10 border border-white/60 shadow hover:shadow-lg transition-all h-28 md:h-32"
+                      className="group flex items-center justify-center rounded-2xl bg-white/95 p-0 border border-white/60 shadow hover:shadow-lg transition-all h-28 md:h-32"
                       aria-label="Getir Yemek ile sipariş ver"
                     >
-                      <Image src="/logo/getiryemek.png" alt="Getir Yemek" width={200} height={60} className="h-12 md:h-16 w-auto object-contain" unoptimized priority/>
+                      <Image src="/logo/getiryemek.png" alt="Getir Yemek" width={200} height={60} className="h-16 md:h-24 w-auto object-contain" unoptimized priority/>
                     </a>
                     <a
                       href="https://www.yemeksepeti.com/restaurant/meej/durumx-meej"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex items-center justify-center rounded-2xl bg-white/95 p-8 md:p-10 border border-white/60 shadow hover:shadow-lg transition-all h-28 md:h-32"
+                      className="group flex items-center justify-center rounded-2xl bg-white/95 p-0 border border-white/60 shadow hover:shadow-lg transition-all h-28 md:h-32"
                       aria-label="Yemeksepeti ile sipariş ver"
                     >
-                      <Image src="/logo/yemeksepeti-logo.png" alt="Yemeksepeti" width={200} height={60} className="h-12 md:h-16 w-auto object-contain" unoptimized priority/>
+                      <Image src="/logo/yemeksepeti-logo.png" alt="Yemeksepeti" width={200} height={60} className="h-16 md:h-24 w-auto object-contain" unoptimized priority/>
                     </a>
                     <a
                       href="https://tgoyemek.com/restoranlar/127596"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex items-center justify-center rounded-2xl bg-white/95 p-8 md:p-10 border border-white/60 shadow hover:shadow-lg transition-all h-28 md:h-32"
+                      className="group flex items-center justify-center rounded-2xl bg-white/95 p-0 border border-white/60 shadow hover:shadow-lg transition-all h-28 md:h-32"
                       aria-label="Trendyol Yemek ile sipariş ver"
                     >
-                      <Image src="/logo/trendyolyemek.png" alt="Trendyol Yemek" width={200} height={60} className="h-12 md:h-16 w-auto object-contain" unoptimized priority/>
+                      <Image src="/logo/trendyolyemek.png" alt="Trendyol Yemek" width={200} height={60} className="h-16 md:h-24 w-auto object-contain" unoptimized priority/>
                     </a>
                   </div>
 
