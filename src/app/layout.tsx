@@ -60,6 +60,28 @@ export default function RootLayout({
         <title>DürümX - Gerçek Hatay Dürümü</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="Gerçek Hatay dürümü, burger ve daha fazlası şimdi DürümX'te!" />
+        <link
+          rel="preload"
+          as="video"
+          href="/videos/doner-preparation.mp4"
+          type="video/mp4"
+          crossOrigin="anonymous"
+          fetchPriority="high"
+        />
+        <link
+          rel="preload"
+          as="video"
+          href="/videos/hero-video-2.mp4"
+          type="video/mp4"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          as="video"
+          href="/videos/hero-video-3.mp4"
+          type="video/mp4"
+          crossOrigin="anonymous"
+        />
         <style>{`
           .cards {
             display: flex;
@@ -109,11 +131,16 @@ export default function RootLayout({
           .cards .card:hover {
             transform: scale(1.05, 1.05);
           }
-          
-          .cards .card:hover ~ .card,
-          .cards .card:hover + .card {
+
+          /* Hover edilen kart dışındaki TÜM kartları bulanıklaştır ve küçült */
+          .cards:has(.card:hover) .card {
             filter: blur(3px);
             transform: scale(0.95, 0.95);
+          }
+          /* Hover edilen kart net ve büyük kalsın */
+          .cards:has(.card:hover) .card:hover {
+            filter: none;
+            transform: scale(1.05, 1.05);
           }
         `}</style>
       </head>

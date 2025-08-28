@@ -2,10 +2,10 @@
 
 import Hero from "@/components/Hero";
 import Link from "next/link";
-import { FaStar } from "react-icons/fa";
 import { useEffect } from "react";
 import Image from "next/image";
 import AOS from "aos";
+import { useModal } from "@/app/layout";
 
 const KATEGORILER = [
   {
@@ -40,45 +40,31 @@ const KATEGORILER = [
   },
 ];
 
-const YORUMLAR = [
-  {
-    name: "Ayşe K.",
-    comment: "Gerçekten Hatay'daki gibi! Dürümler harika ve çok hızlı geldi.",
-    stars: 5,
-    avatar: "/vercel.svg",
-  },
-  {
-    name: "Mehmet T.",
-    comment: "Burger menüsü de şahane, patatesler çıtır çıtırdı.",
-    stars: 5,
-    avatar: "/vercel.svg",
-  },
-  {
-    name: "Elif B.",
-    comment: "Lezzet, sunum ve servis mükemmel. Tekrar sipariş vereceğim!",
-    stars: 5,
-    avatar: "/vercel.svg",
-  },
-];
 
 export default function HomePage() {
+  const { setOrderOpen } = useModal();
+  const handleOpenOrder = () => setOrderOpen(true);
+  const handleOpenOrderKeyDown: React.KeyboardEventHandler<HTMLButtonElement> = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      setOrderOpen(true);
+    }
+  };
   // AOS initialization
   useEffect(() => {
-    // Sayfa yüklendiğinde AOS'ı başlat
     const initAOS = () => {
-      console.log('AOS initializing...');
-    AOS.init({ 
-        duration: 800, 
+      const reduceMotion = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      AOS.init({
+        duration: reduceMotion ? 0 : 800,
         once: false,
         offset: 120,
         easing: 'ease-out-cubic',
         startEvent: 'load',
-        disable: false,
+        disable: reduceMotion,
         delay: 0,
         anchorPlacement: 'top-bottom',
         mirror: false
       });
-      console.log('AOS initialized successfully');
     };
 
     // DOM yüklendiğinde AOS'ı başlat
@@ -103,6 +89,11 @@ export default function HomePage() {
 
   return (
     <>
+      {/* Global soft background accents */}
+      <div className="pointer-events-none fixed inset-0 -z-10">
+        <div className="absolute -top-32 -left-24 w-72 h-72 bg-gradient-to-br from-red-200/25 to-orange-200/20 rounded-full blur-3xl" />
+        <div className="absolute -bottom-32 -right-24 w-80 h-80 bg-gradient-to-br from-yellow-200/20 to-red-200/20 rounded-full blur-3xl" />
+      </div>
       <div data-aos="fade-up" data-aos-duration="300" data-aos-delay="0" data-aos-once="false">
         <Hero />
       </div>
@@ -125,7 +116,7 @@ export default function HomePage() {
               <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
             </div>
 
-            <h2 className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-gray-800 via-red-600 to-gray-800 bg-clip-text text-transparent leading-tight" data-aos="fade-up" data-aos-delay="200">
+            <h2 className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-gray-800 via-red-600 to-gray-800 bg-clip-text text-transparent leading-tight tracking-tight" data-aos="fade-up" data-aos-delay="200">
               Menü Kategorilerimiz
             </h2>
 
@@ -145,7 +136,7 @@ export default function HomePage() {
                 data-aos-duration="800"
               >
                 {/* Card Container */}
-                <div className="category-card relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100/50 min-w-[280px]">
+                <div className="category-card relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100/50 min-w-[280px] hover:-translate-y-1 hover:scale-[1.01]">
                   {/* Background Image Container */}
                   <div className="relative h-96 w-full overflow-hidden">
                     <div
@@ -203,6 +194,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Soft divider between light and dark sections */}
+      <div className="h-10 w-full bg-gradient-to-b from-transparent to-gray-900/80" />
+
       {/* Modern Dürümx Geçmişi Bölümü */}
       <section className="relative py-24 bg-gradient-to-br from-gray-900 via-red-900 to-gray-900 overflow-hidden">
         {/* Animated Background Elements */}
@@ -221,7 +215,7 @@ export default function HomePage() {
               <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
             </div>
 
-            <h2 className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-white via-red-200 to-white bg-clip-text text-transparent leading-tight" data-aos="fade-up" data-aos-delay="200">
+            <h2 className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-white via-red-200 to-white bg-clip-text text-transparent leading-tight tracking-tight" data-aos="fade-up" data-aos-delay="200">
               Dürümx Geçmişi
             </h2>
 
@@ -314,48 +308,186 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Modern Müşteri Yorumları */}
-      <section className="max-w-7xl mx-auto py-20 px-6 bg-gradient-to-br from-gray-50 to-white">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-[#22223b] mb-6" data-aos="fade-up">
-            Müşteri Yorumları
-          </h2>
-          <p className="text-xl text-[#666] max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-            Müşterilerimizin deneyimleri bizim için çok değerli
-          </p>
+      {/* Fast & Hot Courier + Partner Logos (Yeni Bölüm) */}
+      <section className="relative pt-24 pb-28 bg-gradient-to-br from-gray-900 via-[#0f0f10] to-gray-900 overflow-hidden">
+        {/* Background accents */}
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-32 -right-24 w-72 h-72 bg-red-500/20 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-40 -left-24 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[36rem] h-[36rem] bg-white/5 rounded-full blur-3xl"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {YORUMLAR.map((y, index) => (
-            <div
-              key={y.name}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-200 border border-gray-100"
-              data-aos="fade-up"
-              data-aos-delay={200 + index * 150}
-              data-aos-duration="800"
-            >
-              <div className="flex items-center mb-6">
-                <Image
-                  src={y.avatar}
-                  alt={y.name}
-                  width={60}
-                  height={60}
-                  className="w-15 h-15 object-cover rounded-full border-3 border-[#ff1a1a] shadow-md"
-                  loading="lazy"
-                />
-                <div className="ml-4">
-                  <h4 className="font-bold text-[#22223b] text-lg">{y.name}</h4>
-                  <div className="flex gap-1">
-                    {[...Array(y.stars)].map((_, i) => (
-                      <FaStar key={i} className="text-[#ffb703] w-4 h-4" />
-                    ))}
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left: Icon + Slogan */}
+            <div className="space-y-8" data-aos="fade-right" data-aos-delay="100">
+              {/* Moto Courier Icon (Inline SVG) */}
+              <div className="relative inline-flex items-center justify-center w-24 h-24 rounded-3xl bg-gradient-to-br from-red-600 to-orange-500 shadow-2xl">
+                {/* Icon - DürümX Moto Courier (Clear Scooter Silhouette) */}
+                <svg
+                  viewBox="0 0 120 120"
+                  aria-label="Moto Kurye"
+                  className="w-20 h-20 text-white"
+                  role="img"
+                >
+                  <defs>
+                    <linearGradient id="dx-badge" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#ffffff" stopOpacity="0.25" />
+                      <stop offset="100%" stopColor="#ffffff" stopOpacity="0.05" />
+                    </linearGradient>
+                    <linearGradient id="dx-accent" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#ffeded" />
+                      <stop offset="100%" stopColor="#ffffff" />
+                    </linearGradient>
+                  </defs>
+                  {/* Badge background */}
+                  <circle cx="60" cy="60" r="56" fill="url(#dx-badge)" />
+                  <circle cx="60" cy="60" r="50" fill="none" stroke="url(#dx-accent)" strokeWidth="2" strokeOpacity="0.5" />
+
+                  {/* Speed trails (left) */}
+                  <g stroke="currentColor" strokeOpacity="0.65" strokeLinecap="round">
+                    <path d="M18 78 H44" strokeWidth="3" />
+                    <path d="M16 70 H40" strokeWidth="2" />
+                    <path d="M20 62 H38" strokeWidth="2" />
+                  </g>
+
+                  {/* Scooter and rider - clearer silhouette */}
+                  <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
+                    {/* Wheels */}
+                    <circle cx="44" cy="84" r="9" strokeWidth="3.2" />
+                    <circle cx="82" cy="84" r="9" strokeWidth="3.2" />
+
+                    {/* Ground clearance bar */}
+                    <path d="M35 84h10" strokeWidth="3" />
+                    <path d="M73 84h18" strokeWidth="3" />
+
+                    {/* Floorboard and frame */}
+                    <path d="M40 78h18c4 0 7-3 9-6l4-6h11" strokeWidth="3.2" />
+
+                    {/* Front fork and handlebar */}
+                    <path d="M78 52l6 10" strokeWidth="3.2" />
+                    <path d="M76 48h10" strokeWidth="3" />
+
+                    {/* Body panel */}
+                    <path d="M50 54h16c4 0 7 3 7 7v9H58l-8-16z" strokeWidth="3" />
+
+                    {/* Delivery box with strap */}
+                    <rect x="86" y="48" width="16" height="12" rx="2" strokeWidth="3" />
+                    <path d="M86 54h16" strokeWidth="2" />
+
+                    {/* Rider with helmet */}
+                    <circle cx="62" cy="42" r="5" fill="currentColor" stroke="none" />
+                    <path d="M58 42h8" strokeWidth="2" />
+                    <path d="M61 47l-7 9" strokeWidth="3" />
+                    <path d="M74 60l6 9" strokeWidth="3" />
+                  </g>
+                </svg>
+              </div>
+
+              <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1] bg-gradient-to-r from-white via-red-200 to-white bg-clip-text text-transparent">
+                Fast and Hot
+                <br /> DürümX
+              </h2>
+              <p className="text-gray-300 text-lg leading-relaxed max-w-xl">
+                Sıcaklığını ve tazeliğini kaybetmeden, moto kuryelerimizle ışık hızında kapınızda. Güvenli paketleme, hijyen ve üstün kalite standartlarıyla.
+              </p>
+
+              {/* Trust Indicators */}
+              <div className="flex flex-wrap gap-3" aria-label="Güven unsurları">
+                <span className="px-4 py-2 rounded-full text-sm font-semibold bg-white/10 text-white border border-white/20">
+                  Hijyenik paketleme
+                </span>
+                <span className="px-4 py-2 rounded-full text-sm font-semibold bg-white/10 text-white border border-white/20">
+                  Hızlı teslimat
+                </span>
+                <span className="px-4 py-2 rounded-full text-sm font-semibold bg-white/10 text-white border border-white/20">
+                  Sıcak servis
+                </span>
+              </div>
+
+              {/* CTA */}
+              <div className="pt-2">
+                <button
+                  type="button"
+                  onClick={handleOpenOrder}
+                  onKeyDown={handleOpenOrderKeyDown}
+                  className="group inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-white font-bold bg-gradient-to-r from-red-600 to-orange-500 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-white/50"
+                  aria-label="Hemen Sipariş Ver"
+                  tabIndex={0}
+                >
+                  Hemen Sipariş Ver
+                  <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* Right: Partner Logos Card */}
+            <div className="relative" data-aos="fade-left" data-aos-delay="150">
+              <div className="relative rounded-3xl p-10 md:p-12 bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl overflow-hidden">
+                {/* Decorative */}
+                <div className="absolute -top-10 -right-10 w-48 h-48 bg-gradient-to-br from-red-400/20 to-orange-300/20 rounded-full blur-2xl" />
+                <div className="absolute -bottom-16 -left-16 w-56 h-56 bg-gradient-to-br from-white/10 to-white/5 rounded-full blur-2xl" />
+
+                <div className="relative z-10">
+                  <p className="text-white/80 text-sm font-semibold tracking-widest uppercase mb-4">Ortaklarımız</p>
+                  <h3 className="text-white text-2xl md:text-3xl font-extrabold mb-10">
+                    En sevdiğiniz platformlarda DürümX
+                  </h3>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8">
+                    <a
+                      href="https://getir.com/yemek/restoran/hatay-doneri-durum-x-ipekyolu-halilaga-mah-ipekyolu-van/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center justify-center rounded-2xl bg-white/95 p-8 md:p-10 border border-white/60 shadow hover:shadow-lg transition-all h-28 md:h-32"
+                      aria-label="Getir Yemek ile sipariş ver"
+                    >
+                      <Image src="/logo/getiryemek.png" alt="Getir Yemek" width={200} height={60} className="h-12 md:h-16 w-auto object-contain" />
+                    </a>
+                    <a
+                      href="https://www.yemeksepeti.com/restaurant/meej/durumx-meej"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center justify-center rounded-2xl bg-white/95 p-8 md:p-10 border border-white/60 shadow hover:shadow-lg transition-all h-28 md:h-32"
+                      aria-label="Yemeksepeti ile sipariş ver"
+                    >
+                      <Image src="/logo/yemeksepeti-logo.png" alt="Yemeksepeti" width={200} height={60} className="h-12 md:h-16 w-auto object-contain" />
+                    </a>
+                    <a
+                      href="https://tgoyemek.com/restoranlar/127596"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center justify-center rounded-2xl bg-white/95 p-8 md:p-10 border border-white/60 shadow hover:shadow-lg transition-all h-28 md:h-32"
+                      aria-label="Trendyol Yemek ile sipariş ver"
+                    >
+                      <Image src="/logo/trendyolyemek.png" alt="Trendyol Yemek" width={200} height={60} className="h-12 md:h-16 w-auto object-contain" />
+                    </a>
+                  </div>
+
+                  {/* Safety/Assurance Row */}
+                  <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4" aria-label="Güvenlik ve kalite güvenceleri">
+                    <div className="flex items-center gap-3 rounded-xl bg-white/10 border border-white/20 px-4 py-3 text-white/90">
+                      <span className="inline-flex h-2 w-2 rounded-full bg-green-400 animate-pulse" />
+                      <span className="text-sm font-semibold">Canlı sıcaklık kontrolü</span>
+                    </div>
+                    <div className="flex items-center gap-3 rounded-xl bg-white/10 border border-white/20 px-4 py-3 text-white/90">
+                      <span className="inline-flex h-2 w-2 rounded-full bg-blue-400 animate-pulse" />
+                      <span className="text-sm font-semibold">Hijyenik teslimat</span>
+                    </div>
+                    <div className="flex items-center gap-3 rounded-xl bg-white/10 border border-white/20 px-4 py-3 text-white/90">
+                      <span className="inline-flex h-2 w-2 rounded-full bg-yellow-300 animate-pulse" />
+                      <span className="text-sm font-semibold">Güvenli paketleme</span>
+                    </div>
                   </div>
                 </div>
               </div>
-              <p className="text-[#666] leading-relaxed italic">&ldquo;{y.comment}&rdquo;</p>
             </div>
-          ))}
+          </div>
         </div>
+        {/* bottom soft fade to footer */}
+        <div className="pointer-events-none absolute -bottom-10 left-0 right-0 h-10 bg-gradient-to-t from-[#0b0b0c]/90 to-transparent" />
       </section>
     </>
   );

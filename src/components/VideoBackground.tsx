@@ -18,16 +18,22 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   useEffect(() => {
-    // 1 saniye sonra loading'i kapat ve video oynatmaya başla
-    const loadingTimer = setTimeout(() => {
-      setIsLoading(false);
-      // İlk video'yu oynatmaya çalış
-      if (videoRefs.current[0]) {
-        videoRefs.current[0].play().catch(console.log);
-      }
-    }, 1000);
+    // İlk video hazır olur olmaz oynatmayı dene (preload sayesinde daha hızlı başlar)
+    const tryAutoplay = () => {
+      const first = videoRefs.current[0];
+      if (!first) return;
+      first.play().catch(() => {
+        // Bazı tarayıcılarda hazır olmadan play çağrısı reddedilebilir
+      });
+    };
+    tryAutoplay();
 
-    return () => clearTimeout(loadingTimer);
+    // Güvenlik amaçlı: en geç 1.5s sonra loading'i kaldır
+    const safety = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+
+    return () => clearTimeout(safety);
   }, []);
 
   // Handle video end event to move to next video
@@ -59,7 +65,16 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   };
 
   const handleVideoLoad = () => {
-    console.log('Video başarıyla yüklendi');
+    setIsLoading(false);
+    // Yüklendiği anda oynatmayı garantiye al
+    const current = videoRefs.current[currentVideoIndex];
+    if (current) {
+      current.play().catch(() => {});
+    }
+  };
+
+  const handleMetadataLoad = () => {
+    // Metadata yüklendiğinde de loading'i bitir
     setIsLoading(false);
   };
 
@@ -107,9 +122,10 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           muted
           autoPlay={index === 0}
           playsInline
-          preload="metadata"
+          preload={index === 0 ? "auto" : "metadata"}
           onError={handleVideoError}
           onLoadedData={handleVideoLoad}
+          onLoadedMetadata={handleMetadataLoad}
           onEnded={handleVideoEnded}
         >
           <source src={videoSrc} type="video/mp4" />
