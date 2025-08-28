@@ -16,17 +16,24 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   const [hasVideoError, setHasVideoError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const triedAutoplayRef = useRef<boolean>(false);
 
   useEffect(() => {
-    // İlk video hazır olur olmaz oynatmayı dene (preload sayesinde daha hızlı başlar)
-    const tryAutoplay = () => {
-      const first = videoRefs.current[0];
-      if (!first) return;
-      first.play().catch(() => {
-        // Bazı tarayıcılarda hazır olmadan play çağrısı reddedilebilir
-      });
-    };
-    tryAutoplay();
+    const first = videoRefs.current[0];
+    if (first && !triedAutoplayRef.current) {
+      triedAutoplayRef.current = true;
+      try {
+        // Autoplay için güvenli öntanımlar
+        first.muted = true;
+        first.playsInline = true;
+        first.setAttribute("muted", "");
+        first.setAttribute("playsinline", "");
+        first.play().catch(() => {
+          // Bazı tarayıcılarda metadata gelene kadar play reddedilebilir
+          setTimeout(() => first.play().catch(() => {}), 400);
+        });
+      } catch {}
+    }
 
     // Güvenlik amaçlı: en geç 1.5s sonra loading'i kaldır
     const safety = setTimeout(() => {
@@ -66,9 +73,10 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
 
   const handleVideoLoad = () => {
     setIsLoading(false);
-    // Yüklendiği anda oynatmayı garantiye al
     const current = videoRefs.current[currentVideoIndex];
     if (current) {
+      current.muted = true;
+      current.setAttribute("muted", "");
       current.play().catch(() => {});
     }
   };
@@ -76,6 +84,24 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   const handleMetadataLoad = () => {
     // Metadata yüklendiğinde de loading'i bitir
     setIsLoading(false);
+  };
+
+  const handleCanPlay = () => {
+    setIsLoading(false);
+    const current = videoRefs.current[currentVideoIndex];
+    if (current) {
+      current.muted = true;
+      current.setAttribute("muted", "");
+      current.play().catch(() => {});
+    }
+  };
+
+  const handleWaiting = () => {
+    // Buffer beklerken oynatmayı yeniden dene
+    const current = videoRefs.current[currentVideoIndex];
+    if (current) {
+      setTimeout(() => current.play().catch(() => {}), 300);
+    }
   };
 
   // Video hatası varsa fallback image göster
@@ -123,9 +149,13 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           autoPlay={index === 0}
           playsInline
           preload={index === 0 ? "auto" : "metadata"}
+          loop
+          poster={fallbackImage}
           onError={handleVideoError}
           onLoadedData={handleVideoLoad}
           onLoadedMetadata={handleMetadataLoad}
+          onCanPlay={handleCanPlay}
+          onWaiting={handleWaiting}
           onEnded={handleVideoEnded}
         >
           <source src={videoSrc} type="video/mp4" />
