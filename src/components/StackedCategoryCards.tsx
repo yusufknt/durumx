@@ -13,7 +13,7 @@ type StackedCategoryCardsProps = {
 };
 
 const CardGlass = ({ item, r }: { item: Item; r: number }) => {
-  const styleVars = { ["--r" as any]: `${r}` } as React.CSSProperties;
+  const styleVars = { ["--r" as string]: `${r}` } as React.CSSProperties;
 
   return (
     <Link
