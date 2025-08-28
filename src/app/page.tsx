@@ -1,6 +1,7 @@
 "use client";
 
 import Hero from "@/components/Hero";
+import StackedCategoryCards from "@/components/StackedCategoryCards";
 import Link from "next/link";
 import { useEffect } from "react";
 import Image from "next/image";
@@ -10,7 +11,7 @@ const KATEGORILER = [
   {
     name: "Dönerler",
     href: "/urunlerimiz?kategori=donerler",
-    bgImage: "/categories/kategoriler/et-durum.webp",
+    bgImage: "/categories/kategoriler/et-durum.png",
     description: "Geleneksel Hatay lezzeti"
   },
   {
@@ -22,19 +23,19 @@ const KATEGORILER = [
   {
     name: "Burgerler",
     href: "/urunlerimiz?kategori=burgerler",
-    bgImage: "/menu-cheeseburger.jpg",
+    bgImage: "/categories/kategoriler/burger.png",
     description: "Ev yapımı burgerler"
   },
   {
     name: "İçecekler",
     href: "/urunlerimiz?kategori=icecekler",
-    bgImage: "/menu-kola.jpg",
+    bgImage: "/categories/kategoriler/icecekler.png",
     description: "Serinletici içecekler"
   },
   {
     name: "Atıştırmalıklar",
     href: "/urunlerimiz?kategori=atistirmaliklar",
-    bgImage: "/menu-ayran.jpg",
+    bgImage: "/categories/kategoriler/atistirmaliklar.png",
     description: "Çıtır çıtır lezzetler"
   },
 ];
@@ -117,57 +118,9 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Categories Grid - Modern Photo-First Design */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-            {KATEGORILER.map((kat, index) => (
-              <div
-                key={kat.name}
-                className="group relative"
-                data-aos="fade-up"
-                data-aos-delay={100 + index * 100}
-                data-aos-duration="800"
-              >
-                {/* Card Container */}
-                <div className="category-card relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100/50 min-w-[280px] hover:-translate-y-1 hover:scale-[1.01]">
-                  {/* Background Image Container */}
-                  <div className="relative h-96 w-full overflow-hidden">
-                    <div
-                      className="category-image h-full w-full bg-cover bg-center transition-transform duration-700"
-                      style={{ backgroundImage: `url(${kat.bgImage})` }}
-                    />
-                    {/* Gradient Overlay for Text Readability */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
-
-                    {/* Category Name - Positioned over image */}
-                    <div className="category-text-overlay absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                      <h3 className="text-2xl font-black mb-3 leading-tight tracking-wide">
-                        {kat.name}
-                      </h3>
-                      
-                      {/* Subtle Description */}
-                      <p className="text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 leading-relaxed">
-                        {kat.description}
-                      </p>
-                    </div>
-
-                    {/* Hover Effect Indicator */}
-                    <div className="absolute top-4 right-4 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 scale-0 group-hover:scale-100">
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
-
-                    {/* Shine Effect */}
-                    <div className="shine-effect"></div>
-                  </div>
-
-                  {/* Bottom Action Bar - Removed for cleaner design */}
-                </div>
-
-                {/* Link Wrapper */}
-                <Link href={kat.href} className="absolute inset-0 z-10" aria-label={`${kat.name} kategorisini keşfet`} />
-              </div>
-            ))}
+          {/* Categories Special Stack - "birbirinin içinden çıkma" etkileşimi */}
+          <div className="mb-10" data-aos="zoom-in" data-aos-delay="100">
+            <StackedCategoryCards items={KATEGORILER.slice(0, 5)} />
           </div>
 
           {/* Bottom CTA */}
@@ -268,7 +221,67 @@ export default function HomePage() {
                 
                 {/* Content */}
                 <div className="relative z-10 text-center">
-                  <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">{feature.icon}</div>
+                  <div className="mb-4 h-16 md:h-20 flex items-center justify-center">
+                    {feature.title === "Hijyenik Üretim" ? (
+                      <Image
+                        src="/logo/hijyenik.png"
+                        alt="Hijyenik Üretim"
+                        width={96}
+                        height={96}
+                        className="h-full w-auto object-contain mx-auto transform scale-[1.7] group-hover:scale-[1.9] transition-transform duration-300"
+                        unoptimized
+                      />
+                    ) : feature.title === "Helal Kesim" ? (
+                      <div className="h-full flex items-center justify-center overflow-hidden">
+                        <Image
+                          src="/logo/helal-logo.png"
+                          alt="Helal Kesim"
+                          width={96}
+                          height={96}
+                          className="h-full w-auto object-contain mx-auto transform scale-[1.7] group-hover:scale-[1.9] transition-transform duration-300"
+                          unoptimized
+                        />
+                      </div>
+                    ) : feature.title === "Kaliteli Malzemeler" ? (
+                      <Image
+                        src="/logo/kalite-logo.png"
+                        alt="Kaliteli Malzemeler"
+                        width={96}
+                        height={96}
+                        className="h-full w-auto object-contain mx-auto transform scale-[1.7] group-hover:scale-[1.9] transition-transform duration-300"
+                        unoptimized
+                      />
+                    ) : feature.title === "Mutlu Müşteri" ? (
+                      <Image
+                        src="/logo/mutlu-musteri.png"
+                        alt="Mutlu Müşteri"
+                        width={96}
+                        height={96}
+                        className="h-full w-auto object-contain mx-auto transform scale-[1.7] group-hover:scale-[1.9] transition-transform duration-300"
+                        unoptimized
+                      />
+                    ) : feature.title === "Özel Soslar" ? (
+                      <Image
+                        src="/logo/ozel-soslar.png"
+                        alt="Özel Soslar"
+                        width={96}
+                        height={96}
+                        className="h-full w-auto object-contain mx-auto transform scale-[1.7] group-hover:scale-[1.9] transition-transform duration-300"
+                        unoptimized
+                      />
+                    ) : feature.title === "Mutlu Personeller" ? (
+                      <Image
+                        src="/logo/mutlu-personeller.png"
+                        alt="Mutlu Personeller"
+                        width={96}
+                        height={96}
+                        className="h-full w-auto object-contain mx-auto transform scale-[1.7] group-hover:scale-[1.9] transition-transform duration-300"
+                        unoptimized
+                      />
+                    ) : (
+                      <div className="text-5xl leading-none group-hover:scale-110 transition-transform duration-300">{feature.icon}</div>
+                    )}
+                  </div>
                   <h3 className={`text-xl font-bold ${feature.textColor} group-hover:text-white transition-colors duration-300`}>
                     {feature.title}
                   </h3>
