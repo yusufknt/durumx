@@ -17,7 +17,7 @@ const KATEGORILER = [
   {
     name: "Servisler",
     href: "/urunlerimiz?kategori=servisler",
-    bgImage: "/categories/kategoriler/servis-doner.webp",
+    bgImage: "/categories/kategoriler/et-servis.png",
     description: "Aile boyu menüler"
   },
   {

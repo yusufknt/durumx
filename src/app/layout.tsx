@@ -3,6 +3,7 @@
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { createContext, useContext, useState, useEffect } from 'react';
+import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { FaTimes, FaPhone } from 'react-icons/fa';
@@ -204,16 +205,18 @@ export default function RootLayout({
                 <div className="relative z-10 px-8 pb-8">
                   <div className="cards flex flex-col gap-3 items-center">
                     
-                    {/* Phone Order */}
+                    {/* Branches Page Redirect */}
                     <div className="card red">
-                      <a
-                        href="tel:+905555555555"
+                      <Link
+                        href="/subelerimiz"
                         className="flex items-center justify-center flex-col text-center h-24 w-64 rounded-xl text-white cursor-pointer transition-all duration-400"
+                        onClick={() => setOrderOpen(false)}
+                        aria-label="Şubelerimiz sayfasına git"
                       >
                         <FaPhone size={32} className="mb-1" />
-                        <p className="tip text-base font-bold">Telefonla Sipariş</p>
-                        <p className="second-text text-xs opacity-90">+90 555 555 55 55</p>
-                      </a>
+                        <p className="tip text-base font-bold">Şubelerimiz</p>
+                        <p className="second-text text-xs opacity-90">Tüm şubeleri görüntüle</p>
+                      </Link>
                     </div>
 
                     {/* Yemeksepeti */}

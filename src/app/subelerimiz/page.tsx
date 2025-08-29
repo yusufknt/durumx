@@ -1,5 +1,15 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
+import dynamic from "next/dynamic";
+import "leaflet/dist/leaflet.css";
+import { useMap } from "react-leaflet";
+import type * as Leaflet from "leaflet";
+
+// React-Leaflet bileşenleri SSR devre dışı dinamik import
+const MapContainer = dynamic(() => import("react-leaflet").then(m => m.MapContainer), { ssr: false });
+const TileLayer = dynamic(() => import("react-leaflet").then(m => m.TileLayer), { ssr: false });
+const Marker = dynamic(() => import("react-leaflet").then(m => m.Marker), { ssr: false });
+const Popup = dynamic(() => import("react-leaflet").then(m => m.Popup), { ssr: false });
 
 const useRevealOnScroll = () => {
   const [revealed, setRevealed] = useState<Record<string, boolean>>({});
@@ -43,6 +53,8 @@ type Branch = {
   services: Array<"paket" | "gel-al" | "masa">;
   hours: string;
   mapsUrl: string;
+  lat: number;
+  lng: number;
 };
 
 const ShinyButton: React.FC<{ href: string; label: string; ariaLabel: string }> = ({ href, label, ariaLabel }) => (
@@ -111,6 +123,148 @@ const BranchCard: React.FC<{ branch: Branch }> = ({ branch }) => {
   );
 };
 
+// Harita: şubeleri logo ikonuyla gösteren interaktif bileşen
+const InteractiveBranchesMap: React.FC<{ branches: Branch[]; activeCity?: string }> = ({ branches, activeCity }) => {
+  const [leaflet, setLeaflet] = useState<null | typeof Leaflet>(null);
+
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      const mod = await import("leaflet");
+      if (!mounted) return;
+      setLeaflet(mod.default ?? mod);
+    })();
+    return () => {
+      mounted = false;
+    };
+  }, []);
+  // Modern, soft görünümlü özel DivIcon
+  const modernIcon = useMemo<Leaflet.DivIcon | null>(() => {
+    if (!leaflet) return null;
+    const size = 40; // dış daire boyutu
+    const pointerHeight = 10;
+    const anchorX = size / 2;
+    const anchorY = size + pointerHeight; // alt noktayı hedeflesin
+
+    const html = `
+      <div
+        style="
+          position: relative;
+          width: ${size}px;
+          height: ${size + pointerHeight}px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15));
+        "
+        aria-label="DürümX şube işaretçisi"
+      >
+        <div
+          style="
+            width: ${size}px;
+            height: ${size}px;
+            border-radius: 9999px;
+            background: white;
+            border: 1px solid rgba(0,0,0,0.06);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        >
+          <div
+            style="
+              width: 22px;
+              height: 22px;
+              border-radius: 9999px;
+              background: linear-gradient(135deg, #ef4444, #dc2626);
+              box-shadow: 0 2px 6px rgba(220,38,38,0.35);
+            "
+          ></div>
+        </div>
+        <div
+          style="
+            position: absolute;
+            bottom: 0px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: ${pointerHeight}px solid rgba(255,255,255,1);
+            filter: drop-shadow(0 -1px 0 rgba(0,0,0,0.06));
+          "
+        ></div>
+      </div>
+    `;
+    return leaflet.divIcon({
+      html,
+      className: "",
+      iconSize: [size, size + pointerHeight],
+      iconAnchor: [anchorX, anchorY],
+      popupAnchor: [0, -size + 6],
+    });
+  }, [leaflet]);
+
+  // Map'i bounds'a oturtan yardımcı bileşen
+  const FitToBounds: React.FC<{ branches: Branch[]; activeCity?: string }> = ({ branches, activeCity }) => {
+    const map = useMap();
+    useEffect(() => {
+      if (!leaflet) return;
+      if (branches.length === 0) {
+        map.setView([39.0, 35.0], 6);
+        return;
+      }
+
+      // Varsayılan: şehir filtresi boşsa Van'a odaklan
+      if (!activeCity) {
+        const vanBranches = branches.filter((b) => b.city === "Van");
+        if (vanBranches.length > 0) {
+          const vanBounds = leaflet.latLngBounds(vanBranches.map((b) => [b.lat, b.lng]) as [number, number][]);
+          map.fitBounds(vanBounds, { padding: [24, 24], maxZoom: 13 });
+          return;
+        }
+      }
+
+      // Aksi halde mevcut branch listesine sığdır
+      const latLngs = branches.map((b) => [b.lat, b.lng]) as [number, number][];
+      const nextBounds = leaflet.latLngBounds(latLngs);
+      map.fitBounds(nextBounds, { padding: [24, 24], maxZoom: 14 });
+    }, [map, branches, activeCity]);
+    return null;
+  };
+
+  return (
+    <div role="region" aria-label="DürümX şubeler haritası" className="h-full w-full">
+      <MapContainer
+        className="h-full w-full"
+        center={[38.495, 43.38]}
+        zoom={12}
+        scrollWheelZoom
+        attributionControl
+      >
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        />
+        {leaflet && <FitToBounds branches={branches} activeCity={activeCity} />}
+        {leaflet && modernIcon && branches.map((b) => (
+          <Marker key={b.id} position={[b.lat, b.lng]} icon={modernIcon as Leaflet.DivIcon} zIndexOffset={1000}>
+            <Popup>
+              <div className="space-y-1">
+                <div className="font-bold text-sm">{b.name}</div>
+                <div className="text-xs text-zinc-700">{b.address}</div>
+                <a href={`tel:${b.phone}`} className="text-xs text-red-600 font-semibold">Ara: {b.phone}</a>
+              </div>
+            </Popup>
+          </Marker>
+        ))}
+      </MapContainer>
+    </div>
+  );
+};
+
 const SubelerimizPage = () => {
   const { revealed, register } = useRevealOnScroll();
 
@@ -126,6 +280,8 @@ const SubelerimizPage = () => {
         services: ["paket", "gel-al", "masa"],
         hours: "10:00 - 01:00",
         mapsUrl: "https://maps.google.com",
+        lat: 40.9902,
+        lng: 29.0271,
       },
       {
         id: "dx-uskudar",
@@ -137,6 +293,8 @@ const SubelerimizPage = () => {
         services: ["paket", "gel-al"],
         hours: "10:00 - 00:00",
         mapsUrl: "https://maps.google.com",
+        lat: 41.0227,
+        lng: 29.023,
       },
       {
         id: "dx-ankara-cankaya",
@@ -148,6 +306,8 @@ const SubelerimizPage = () => {
         services: ["paket", "masa"],
         hours: "10:00 - 00:00",
         mapsUrl: "https://maps.google.com",
+        lat: 39.9099,
+        lng: 32.853,
       },
       {
         id: "dx-izmir-karsiyaka",
@@ -159,6 +319,47 @@ const SubelerimizPage = () => {
         services: ["gel-al", "masa"],
         hours: "11:00 - 00:00",
         mapsUrl: "https://maps.google.com",
+        lat: 38.455,
+        lng: 27.1097,
+      },
+      {
+        id: "dx-van-merkez-1",
+        name: "DürümX Van Merkez - İskele Cd.",
+        city: "Van",
+        district: "İpekyolu",
+        address: "İskele Cd. No:25 İpekyolu / Van",
+        phone: "+904322001001",
+        services: ["paket", "gel-al", "masa"],
+        hours: "10:00 - 00:00",
+        mapsUrl: "https://maps.google.com",
+        lat: 38.4965,
+        lng: 43.3835,
+      },
+      {
+        id: "dx-van-merkez-2",
+        name: "DürümX Van Merkez - Cumhuriyet Cd.",
+        city: "Van",
+        district: "İpekyolu",
+        address: "Cumhuriyet Cd. No:66 İpekyolu / Van",
+        phone: "+904322001002",
+        services: ["paket", "gel-al"],
+        hours: "10:00 - 00:00",
+        mapsUrl: "https://maps.google.com",
+        lat: 38.4942,
+        lng: 43.378,
+      },
+      {
+        id: "dx-van-edremit",
+        name: "DürümX Van Edremit",
+        city: "Van",
+        district: "Edremit",
+        address: "Yeni Mah. Sahil Yolu No:5 Edremit / Van",
+        phone: "+904322001003",
+        services: ["paket", "masa"],
+        hours: "11:00 - 23:30",
+        mapsUrl: "https://maps.google.com",
+        lat: 38.4525,
+        lng: 43.33,
       },
     ],
     []
@@ -283,18 +484,10 @@ const SubelerimizPage = () => {
       </section>
 
       <section ref={register("map")} data-reveal-id="map" className={`transition-all duration-700 ease-out ${revealed["map"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-        <div className="max-w-4xl mx-auto px-6 py-4">
+        <div className="max-w-5xl mx-auto px-6 py-4">
           <div className="rounded-3xl overflow-hidden border border-gray-100 shadow-xl bg-white">
             <div className="aspect-[1/1] md:aspect-[4/3] lg:aspect-[16/9] w-full">
-              <iframe
-                title="DürümX Şubeler Haritası"
-                aria-label="Google Haritalar üzerinde şubeler"
-                tabIndex={0}
-                className="h-full w-full"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12035.229393902677!2d29.0205366!3d41.0223531!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cac8b1b6d0d52f%3A0xa27e!2sKad%C4%B1k%C3%B6y%2C%20%C4%B0stanbul!5e0!3m2!1str!2str!4v1700000000000"
-              />
+              <InteractiveBranchesMap branches={filtered} activeCity={city} />
             </div>
           </div>
         </div>

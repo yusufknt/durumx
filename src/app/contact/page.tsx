@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { FaInstagram, FaTiktok, FaWhatsapp, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
-import Image from "next/image";
+ 
 
 const ContactPage = () => {
   const [show, setShow] = useState(false);
@@ -86,49 +86,59 @@ const ContactPage = () => {
   };
 
   return (
-    <section className="w-full min-h-[80vh] bg-gradient-to-br from-[#fff0e6] via-[#ffe5ec] to-[#f7f7fa] py-16 px-4 flex items-center justify-center">
-      <div className={`max-w-5xl w-full mx-auto bg-white/70 backdrop-blur-md rounded-3xl shadow-2xl border border-[#ececec] flex flex-col md:flex-row gap-10 p-8 md:p-14 transition-all duration-300 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+    <section className="relative w-full min-h-[80vh] bg-gradient-to-br from-rose-50 via-white to-rose-100 py-16 px-4 flex items-center justify-center overflow-hidden">
+      <div className={`max-w-6xl w-full mx-auto bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl ring-1 ring-black/5 flex flex-col md:flex-row gap-10 p-6 md:p-10 transition-all duration-300 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
         {/* Sol: Bilgi ve Sosyal */}
         <div className={`flex-1 flex flex-col gap-6 justify-center transition-all duration-300 ease-out ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`} style={{ transitionDelay: '75ms' }}>
-          <Image src="/logo.png" alt="DürümX Logo" width={56} height={56} className="h-14 w-auto mx-auto mb-4 drop-shadow-xl" unoptimized quality={75} />
-          <h2 className="text-4xl font-extrabold mb-2 text-[#e63946] tracking-tight">Bize Ulaşın</h2>
-          <p className="text-base text-[#22223b] mb-4">Her türlü soru, öneri ve sipariş için bize ulaşabilirsiniz.</p>
-          <div className="flex items-center gap-3 text-[#e63946] font-bold text-lg">
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-2 text-slate-900 tracking-tight">Bize Ulaşın</h2>
+          <p className="text-base md:text-lg text-slate-600 mb-4">Her türlü soru, öneri ve sipariş için bize ulaşabilirsiniz.</p>
+          <div className="flex items-center gap-3 text-rose-600 font-semibold text-base">
             <FaMapMarkerAlt />
             <span>{location.address}</span>
           </div>
-          <a href="tel:+904322151555" className="flex items-center gap-3 text-[#e63946] font-bold text-lg hover:underline">
-            <FaPhoneAlt />
-            <span>(0432) 215 15 55</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <a href="tel:+904322151555" aria-label="Telefon ile ara" tabIndex={0} className="group flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm transition-all hover:shadow-md focus:outline-none focus:ring-2 focus:ring-rose-500">
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-rose-500 text-white shadow-sm"><FaPhoneAlt /></span>
+              <div className="flex flex-col">
+                <span className="text-slate-500 text-xs">Telefon</span>
+                <span className="font-semibold text-slate-900">(0432) 215 15 55</span>
+              </div>
+            </a>
+            <a href="mailto:info@durumx.com" aria-label="E-posta gönder" tabIndex={0} className="group flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm transition-all hover:shadow-md focus:outline-none focus:ring-2 focus:ring-rose-500">
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-slate-900 text-white shadow-sm"><FaEnvelope /></span>
+              <div className="flex flex-col">
+                <span className="text-slate-500 text-xs">E-posta</span>
+                <span className="font-semibold text-slate-900">info@durumx.com</span>
+              </div>
+            </a>
+          </div>
+          <a href="https://wa.me/904322151555" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp ile yaz" tabIndex={0} className="group flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm transition-all hover:shadow-md focus:outline-none focus:ring-2 focus:ring-emerald-500 w-fit">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500 text-white shadow-sm"><FaWhatsapp /></span>
+            <div className="flex flex-col">
+              <span className="text-slate-500 text-xs">WhatsApp</span>
+              <span className="font-semibold text-slate-900">Hızlı mesaj</span>
+            </div>
           </a>
-          <a href="mailto:info@durumx.com" className="flex items-center gap-3 text-[#e63946] font-bold text-lg hover:underline">
-            <FaEnvelope />
-            <span>info@durumx.com</span>
-          </a>
-          <a href="https://wa.me/904322151555" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-[#38b000] font-bold text-lg hover:underline">
-            <FaWhatsapp />
-            <span>WhatsApp</span>
-          </a>
-          <div className="flex gap-4 mt-2">
+          <div className="flex gap-4 mt-2" role="group" aria-label="Sosyal medya bağlantıları">
             {["instagram", "tiktok", "whatsapp"].map((type, i) => {
               const iconProps = {
                 instagram: {
                   href: "https://instagram.com",
-                  className: "group relative text-[#22223b] hover:text-[#e1306c] rounded-full p-1 transition-colors duration-200 shadow-sm",
+                  className: "group relative text-slate-600 hover:text-[#e1306c] rounded-full p-2 transition-all duration-200 shadow-sm hover:shadow",
                   icon: <FaInstagram size={26} />,
                   tooltip: "Instagram",
                   tooltipClass: "bg-[#e1306c]"
                 },
                 tiktok: {
                   href: "https://tiktok.com",
-                  className: "group relative text-[#22223b] hover:text-black rounded-full p-1 transition-colors duration-200 shadow-sm",
+                  className: "group relative text-slate-600 hover:text-black rounded-full p-2 transition-all duration-200 shadow-sm hover:shadow",
                   icon: <FaTiktok size={26} />,
                   tooltip: "TikTok",
                   tooltipClass: "bg-black"
                 },
                 whatsapp: {
                   href: "https://wa.me/904322151555",
-                  className: "group relative text-[#22223b] hover:text-[#38b000] rounded-full p-1 transition-colors duration-200 shadow-sm",
+                  className: "group relative text-slate-600 hover:text-[#38b000] rounded-full p-2 transition-all duration-200 shadow-sm hover:shadow",
                   icon: <FaWhatsapp size={26} />,
                   tooltip: "WhatsApp",
                   tooltipClass: "bg-[#38b000]"
@@ -152,7 +162,7 @@ const ContactPage = () => {
               );
             })}
           </div>
-          <div className={`mt-6 bg-white/90 rounded-xl shadow border border-[#ececec] p-3 transition-all duration-300 ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`} style={{ transitionDelay: '175ms' }}>
+          <div className={`mt-6 bg-white/90 rounded-xl shadow border border-slate-200 p-3 transition-all duration-300 ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`} style={{ transitionDelay: '175ms' }}>
             <div className="relative">
               {/* OpenStreetMap iframe */}
               <iframe
@@ -160,7 +170,7 @@ const ContactPage = () => {
                 src={`https://www.openstreetmap.org/export/embed.html?bbox=${location.lng-0.01}%2C${location.lat-0.01}%2C${location.lng+0.01}%2C${location.lat+0.01}&layer=mapnik&marker=${location.lat}%2C${location.lng}`}
                 width="100%"
                 height="200"
-                className="rounded-lg border border-[#ffb703] shadow-md"
+                className="rounded-xl border border-rose-200 shadow-md"
                 loading="lazy"
                 style={{ border: 0 }}
               />
@@ -176,14 +186,14 @@ const ContactPage = () => {
               <div className="absolute top-2 right-2 flex gap-1">
                 <button
                   onClick={handleMapClick}
-                  className="bg-white/90 hover:bg-white rounded-lg px-2 py-1 text-xs text-gray-600 shadow-sm transition-colors duration-200"
+                  className="bg-white/90 hover:bg-white rounded-lg px-2 py-1 text-xs text-slate-600 shadow-sm transition-colors duration-200"
                   title="Google Maps'te aç"
                 >
                   Google
                 </button>
                 <button
                   onClick={handleOpenStreetMapClick}
-                  className="bg-white/90 hover:bg-white rounded-lg px-2 py-1 text-xs text-gray-600 shadow-sm transition-colors duration-200"
+                  className="bg-white/90 hover:bg-white rounded-lg px-2 py-1 text-xs text-slate-600 shadow-sm transition-colors duration-200"
                   title="OpenStreetMap'te aç"
                 >
                   OSM
@@ -191,8 +201,8 @@ const ContactPage = () => {
               </div>
               
               {/* Konum bilgisi */}
-              <div className="absolute bottom-2 left-2 bg-white/90 rounded-lg px-2 py-1 text-xs text-gray-600 shadow-sm max-w-[calc(100%-4rem)]">
-                <div className="font-semibold text-[#e63946]">DürümX</div>
+              <div className="absolute bottom-2 left-2 bg-white/90 rounded-lg px-2 py-1 text-xs text-slate-600 shadow-sm max-w-[calc(100%-4rem)]">
+                <div className="font-semibold text-rose-600">DürümX</div>
                 <div className="truncate">{location.address}</div>
               </div>
             </div>
@@ -200,57 +210,64 @@ const ContactPage = () => {
         </div>
         {/* Sağ: Form */}
         <div className={`flex-1 flex flex-col justify-center transition-all duration-300 ease-out ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`} style={{ transitionDelay: '125ms' }}>
-          <form onSubmit={handleSubmit} className="bg-white/90 rounded-2xl shadow-lg border border-[#ececec] p-7 flex flex-col gap-5 w-full max-w-md mx-auto">
-            <h3 className="text-2xl font-bold text-[#e63946] mb-2">İletişim Formu</h3>
+          <form onSubmit={handleSubmit} className="bg-white/90 rounded-2xl shadow-lg border border-slate-200 p-7 flex flex-col gap-5 w-full max-w-md mx-auto" aria-label="İletişim formu">
+            <h3 className="text-2xl font-bold text-slate-900 mb-1">İletişim Formu</h3>
+            <p className="text-slate-600 text-sm -mt-2">Size en kısa sürede geri dönüş yapacağız.</p>
             
             {/* Ad Alanı */}
-            <label className={`font-semibold text-base transition-all duration-200 ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`} style={{ transitionDelay: '175ms' }}>
+            <label className={`font-medium text-sm text-slate-700 transition-all duration-200 ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`} style={{ transitionDelay: '175ms' }} htmlFor="name">
               Adınız
-              <input 
-                type="text" 
-                value={formData.name}
-                onChange={(e) => handleInputChange('name', e.target.value)}
-                className="mt-1 p-3 border border-[#ececec] rounded w-full focus:border-[#e63946] focus:ring-2 focus:ring-[#e63946]/30 transition-all" 
-                placeholder="Adınızı girin"
-                required
-              />
             </label>
+            <input 
+              id="name"
+              type="text" 
+              value={formData.name}
+              onChange={(e) => handleInputChange('name', e.target.value)}
+              className="mt-1 p-3 border border-slate-200 rounded-lg w-full focus:border-rose-500 focus:ring-2 focus:ring-rose-500/20 transition-all outline-none" 
+              placeholder="Adınızı girin"
+              aria-required="true"
+              required
+            />
 
             {/* E-posta Alanı */}
-            <label className={`font-semibold text-base transition-all duration-200 ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`} style={{ transitionDelay: '225ms' }}>
+            <label className={`font-medium text-sm text-slate-700 transition-all duration-200 ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`} style={{ transitionDelay: '225ms' }} htmlFor="email">
               E-posta
-              <input 
-                type="email" 
-                value={formData.email}
-                onChange={(e) => handleInputChange('email', e.target.value)}
-                className="mt-1 p-3 border border-[#ececec] rounded w-full focus:border-[#e63946] focus:ring-2 focus:ring-[#e63946]/30 transition-all" 
-                placeholder="E-posta adresiniz"
-                required
-              />
             </label>
+            <input 
+              id="email"
+              type="email" 
+              value={formData.email}
+              onChange={(e) => handleInputChange('email', e.target.value)}
+              className="mt-1 p-3 border border-slate-200 rounded-lg w-full focus:border-rose-500 focus:ring-2 focus:ring-rose-500/20 transition-all outline-none" 
+              placeholder="E-posta adresiniz"
+              aria-required="true"
+              required
+            />
 
             {/* Mesaj Alanı */}
-            <label className={`font-semibold text-base transition-all duration-200 ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`} style={{ transitionDelay: '275ms' }}>
+            <label className={`font-medium text-sm text-slate-700 transition-all duration-200 ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`} style={{ transitionDelay: '275ms' }} htmlFor="message">
               Mesajınız
-              <textarea 
-                value={formData.message}
-                onChange={(e) => handleInputChange('message', e.target.value)}
-                className="mt-1 p-3 border border-[#ececec] rounded w-full focus:border-[#e63946] focus:ring-2 focus:ring-[#e63946]/30 transition-all" 
-                rows={4} 
-                placeholder="Mesajınızı yazın"
-                required
-              />
             </label>
+            <textarea 
+              id="message"
+              value={formData.message}
+              onChange={(e) => handleInputChange('message', e.target.value)}
+              className="mt-1 p-3 border border-slate-200 rounded-lg w-full focus:border-rose-500 focus:ring-2 focus:ring-rose-500/20 transition-all outline-none" 
+              rows={5} 
+              placeholder="Mesajınızı yazın"
+              aria-required="true"
+              required
+            />
 
             {/* Durum Mesajları */}
             {submitStatus === 'success' && (
-              <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded transition-all duration-200">
+              <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg transition-all duration-200" role="status">
                 ✅ Mesajınız başarıyla gönderildi!
               </div>
             )}
             
             {submitStatus === 'error' && (
-              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded transition-all duration-200">
+              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg transition-all duration-200" role="alert">
                 ❌ Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.
               </div>
             )}
@@ -258,8 +275,8 @@ const ContactPage = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`px-10 py-4 rounded-full text-white font-extrabold text-xl shadow-2xl hover:scale-105 hover:brightness-110 hover:shadow-3xl focus:outline-none focus:ring-4 focus:ring-[#ff1a1a]/60 focus:ring-offset-2 transition-all duration-200 w-full block mt-2 ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"} ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
-              style={{ background: 'linear-gradient(90deg, #ff1a1a 0%, #000 100%)', transitionDelay: '325ms' }}
+              className={`px-6 py-3 rounded-xl text-white font-semibold text-base shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-rose-500/40 focus:ring-offset-2 transition-all duration-200 w-full block mt-2 ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"} ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+              style={{ background: 'linear-gradient(90deg, #ef4444 0%, #0f172a 100%)', transitionDelay: '325ms' }}
             >
               {isSubmitting ? (
                 <div className="flex items-center justify-center gap-2">

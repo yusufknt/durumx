@@ -19,7 +19,6 @@ interface FranchiseForm {
 
 const FranchisePage = () => {
   const [show, setShow] = useState(false);
-  const [startLoop, setStartLoop] = useState(false);
   const [formData, setFormData] = useState<FranchiseForm>({
     firstName: "",
     lastName: "",
@@ -37,10 +36,8 @@ const FranchisePage = () => {
 
   useEffect(() => {
     const t = setTimeout(() => setShow(true), 100);
-    const loopTimer = setTimeout(() => setStartLoop(true), 3000); // 3 saniye sonra loop başlasın
     return () => {
       clearTimeout(t);
-      clearTimeout(loopTimer);
     };
   }, []);
 
@@ -99,26 +96,8 @@ const FranchisePage = () => {
         className="max-w-6xl w-full mx-auto py-12 px-6 bg-white/80 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/40"
       >
         <div className="flex flex-col items-center text-center mb-12">
-          <h1 className="text-6xl font-black text-rose-600 drop-shadow-lg">
-            {Array.from("Franchise").map((letter, index) => (
-              <motion.span
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={show ? { 
-                  opacity: startLoop ? [0, 1, 1, 0] : 1, 
-                  y: startLoop ? [20, 0, 0, -20] : 0
-                } : { opacity: 1, y: 0 }}
-                transition={{
-                  duration: 3,
-                  delay: startLoop ? index * 0.2 : 0,
-                  repeat: startLoop ? Infinity : 0,
-                  ease: "easeInOut"
-                }}
-                className="inline-block"
-              >
-                {letter}
-              </motion.span>
-            ))}
+          <h1 className="text-6xl font-black drop-shadow-lg focus-in-expand bg-gradient-to-r from-rose-600 via-pink-600 to-amber-500 bg-clip-text text-transparent">
+            Franchise
           </h1>
         </div>
 
@@ -400,7 +379,7 @@ const FranchisePage = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={show ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="bg-gradient-to-r from-pink-50 to-rose-100 rounded-2xl p-8 border border-pink-200 text-center"
+          className="mt-12 bg-gradient-to-r from-pink-50 to-rose-100 rounded-2xl p-8 border border-pink-200 text-center"
         >
           <h2 className="text-2xl font-bold mb-4 text-pink-800">
             Franchise Hakkında Daha Fazla Bilgi
