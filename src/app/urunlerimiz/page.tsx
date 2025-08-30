@@ -266,37 +266,62 @@ const UrunlerimizPage = () => {
   });
 
   return (
-    <div className="min-h-[90vh] w-full bg-gradient-to-br from-[#f8dfe3] via-[#f2f3f5] to-[#fdecef] flex items-center justify-center py-10">
-      <section className={`max-w-7xl w-full mx-auto py-12 px-4 transition-all duration-300 ease-out bg-white/90 rounded-3xl shadow-xl border border-[#f3f3f3] ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-        <h1 className={`text-4xl font-extrabold mb-12 text-center text-[#e63946] tracking-tight transition-all duration-300 ease-out ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`}>
-          Ürünlerimiz
-        </h1>
+    <div className="min-h-screen w-full bg-gradient-to-br from-gray-950 via-gray-900 to-black antialiased relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-red-600/10 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-red-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-red-400/5 rounded-full blur-3xl" />
+      </div>
+
+      <section className={`max-w-7xl w-full mx-auto py-12 px-4 transition-all duration-300 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+        {/* Hero Section */}
+        <div className="text-center mb-16">
+          <div className="relative mb-8">
+            <h1 className="text-5xl md:text-7xl font-black tracking-tight bg-gradient-to-r from-white via-red-100 to-red-300 bg-clip-text text-transparent">
+              Ürünlerimiz
+            </h1>
+            <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 to-transparent blur-3xl" />
+          </div>
+          
+          <p className="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-gray-300 leading-relaxed">
+            DürümX&apos;in lezzetli menüsünü keşfedin
+          </p>
+        </div>
 
         {/* Kategori Filtreleri */}
         <div className={`mb-12 transition-all duration-300 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ transitionDelay: "100ms" }}>
-          <div className="bg-gradient-to-r from-[#f8f9fa] to-[#e9ecef] rounded-2xl p-6 border border-[#dee2e6]">
-            <div className="flex flex-wrap gap-3 justify-center">
-              {CATEGORIES.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                    selectedCategory === category
-                      ? 'bg-gradient-to-r from-[#e63946] to-[#ff6b6b] text-white shadow-lg shadow-[#e63946]/30'
-                      : 'bg-white text-[#495057] border border-[#ced4da] hover:bg-[#f8f9fa] hover:border-[#e63946]/50 hover:text-[#e63946]'
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
+          <div className="relative rounded-3xl bg-gradient-to-br from-gray-900/90 to-gray-800/80 backdrop-blur-xl p-6 border border-gray-700/50 shadow-2xl overflow-hidden">
+            {/* Background pattern */}
+            <div className="absolute inset-0 opacity-20">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(220,38,38,0.3),transparent_50%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(220,38,38,0.2),transparent_50%)]" />
+            </div>
+            
+            <div className="relative z-10">
+              <div className="flex flex-wrap gap-3 justify-center">
+                {CATEGORIES.map((category) => (
+                  <button
+                    key={category}
+                    onClick={() => setSelectedCategory(category)}
+                    className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                      selectedCategory === category
+                        ? 'bg-gradient-to-r from-red-600 to-red-500 text-white shadow-lg shadow-red-500/30'
+                        : 'bg-gray-800/50 text-gray-300 border border-gray-600 hover:bg-gray-700/50 hover:border-red-500/50 hover:text-red-400 backdrop-blur-sm'
+                    }`}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
 
         {/* Ürün Sayısı */}
         <div className={`mb-8 transition-all duration-300 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ transitionDelay: "150ms" }}>
-          <p className="text-center text-[#6c757d]">
-            <span className="font-semibold text-[#e63946]">{filteredItems.length}</span> ürün bulundu
+          <p className="text-center text-gray-400">
+            <span className="font-semibold text-red-400">{filteredItems.length}</span> ürün bulundu
             {selectedCategory !== "Tümü" && ` - ${selectedCategory} kategorisinde`}
           </p>
         </div>
@@ -307,7 +332,7 @@ const UrunlerimizPage = () => {
             item.variant === "styled" ? (
               <div
                 key={item.id}
-                className={`group relative rounded-2xl shadow-2xl border border-[#ececec] bg-white transition-transform duration-300 overflow-hidden ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`}
+                className={`group relative rounded-2xl shadow-2xl border border-gray-700/50 bg-gradient-to-br from-gray-900/90 to-gray-800/80 backdrop-blur-xl transition-all duration-300 overflow-hidden hover:shadow-red-500/20 ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`}
                 style={{ transitionDelay: `${250 + i * 50}ms` }}
                 onClick={() => handleImgClick(item.img)}
                 tabIndex={0}
@@ -333,10 +358,10 @@ const UrunlerimizPage = () => {
 
                 {/* Single Glass Bottom Bar */}
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[3]">
-                  <div className="m-3 rounded-xl bg-white/55 backdrop-blur-md ring-1 ring-white/40 shadow overflow-hidden transition-colors duration-300 group-hover:bg-white/65">
+                  <div className="m-3 rounded-xl bg-gray-900/80 backdrop-blur-md ring-1 ring-gray-600/40 shadow overflow-hidden transition-colors duration-300 group-hover:bg-gray-800/90">
                     <div className="px-3 py-2 flex items-center justify-between gap-2">
-                      <span className="max-w-[70%] truncate text-[13px] font-semibold text-[#111827]">{item.name}</span>
-                      <span className="text-[13px] font-bold text-[#b91c1c]">{item.price}</span>
+                      <span className="max-w-[70%] truncate text-[13px] font-semibold text-white">{item.name}</span>
+                      <span className="text-[13px] font-bold text-red-400">{item.price}</span>
                     </div>
                   </div>
                 </div>
@@ -344,7 +369,7 @@ const UrunlerimizPage = () => {
             ) : (
               <div
                 key={item.id}
-                className={`group bg-white rounded-3xl shadow-2xl border border-[#ececec] transition-all duration-500 relative overflow-hidden ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`}
+                className={`group bg-gradient-to-br from-gray-900/90 to-gray-800/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-700/50 transition-all duration-500 relative overflow-hidden hover:shadow-red-500/20 ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`}
                 style={{ transitionDelay: `${250 + i * 50}ms` }}
                 onClick={() => handleImgClick(item.img)}
                 tabIndex={0}
@@ -372,9 +397,9 @@ const UrunlerimizPage = () => {
                 </div>
                 {/* Name & Price unified bar over photo */}
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 p-3 z-[3]">
-                  <div className="w-full rounded-xl bg-white/55 backdrop-blur-md ring-1 ring-white/40 shadow px-4 py-3 flex items-center justify-between gap-3">
-                    <span className="truncate text-[14px] sm:text-[15px] font-semibold text-[#111827]">{item.name}</span>
-                    <span className="text-[14px] sm:text-[15px] font-bold text-[#b91c1c]">{item.price}</span>
+                  <div className="w-full rounded-xl bg-gray-900/80 backdrop-blur-md ring-1 ring-gray-600/40 shadow px-4 py-3 flex items-center justify-between gap-3">
+                    <span className="truncate text-[14px] sm:text-[15px] font-semibold text-white">{item.name}</span>
+                    <span className="text-[14px] sm:text-[15px] font-bold text-red-400">{item.price}</span>
                   </div>
                 </div>
               </div>
@@ -386,28 +411,26 @@ const UrunlerimizPage = () => {
         {filteredItems.length === 0 && (
           <div className={`text-center py-16 transition-all duration-300 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ transitionDelay: "300ms" }}>
             <div className="text-6xl mb-4">🔍</div>
-            <h3 className="text-2xl font-bold text-[#6c757d] mb-2">Ürün Bulunamadı</h3>
-            <p className="text-[#6c757d]">
+            <h3 className="text-2xl font-bold text-gray-400 mb-2">Ürün Bulunamadı</h3>
+            <p className="text-gray-500">
               Seçilen kategoride ürün bulunamadı. 
               Farklı bir kategori seçebilirsiniz.
             </p>
           </div>
         )}
 
-        
-
         {/* Modal (Portal to body for true viewport centering) */}
         {isMounted && modalImg && createPortal(
-          <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/70" onClick={handleClose} role="dialog" aria-modal="true" aria-label="Büyük görsel görüntüleme">
+          <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/80 backdrop-blur-sm" onClick={handleClose} role="dialog" aria-modal="true" aria-label="Büyük görsel görüntüleme">
             <div className="relative w-full max-w-4xl max-h-[85vh] mx-4 sm:mx-6 md:mx-8" onClick={e => e.stopPropagation()}>
               <button
                 onClick={handleClose}
                 aria-label="Kapat"
-                className="absolute -top-3 -right-3 sm:top-2 sm:right-2 bg-white/90 hover:bg-white text-[#e63946] rounded-full p-2 shadow focus:outline-none transition-colors duration-200 z-10"
+                className="absolute -top-3 -right-3 sm:top-2 sm:right-2 bg-gray-900/90 hover:bg-gray-800 text-red-400 rounded-full p-2 shadow-lg focus:outline-none transition-colors duration-200 z-10 border border-gray-700/50"
               >
                 <span className="text-2xl font-bold">&times;</span>
               </button>
-              <div className="relative w-full h-[60vh] sm:h-[70vh] md:h-[75vh] bg-white rounded-2xl overflow-hidden shadow-2xl border border-[#f3f3f3]">
+              <div className="relative w-full h-[60vh] sm:h-[70vh] md:h-[75vh] bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden shadow-2xl border border-gray-700/50">
                 <Image
                   src={modalImg || ""}
                   alt="Büyük ürün görseli"

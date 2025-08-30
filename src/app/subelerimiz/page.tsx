@@ -62,18 +62,15 @@ const ShinyButton: React.FC<{ href: string; label: string; ariaLabel: string }> 
     href={href}
     aria-label={ariaLabel}
     tabIndex={0}
-    className="group relative inline-flex items-center justify-center gap-2 rounded-full border-4 border-red-300/50 px-5 py-2 text-white text-sm font-bold shadow-lg outline-none transition-transform duration-300 hover:scale-105 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-600"
-    style={{ backgroundColor: "#dc2626" }}
+    className="group relative inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-red-600 via-red-500 to-red-600 px-6 py-3 text-white text-sm font-bold shadow-2xl outline-none transition-all duration-300 hover:scale-105 hover:shadow-red-500/25 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-400 focus-visible:ring-offset-gray-900 overflow-hidden"
   >
-    <span className="relative z-[1]">{label}</span>
-    <svg fill="currentColor" viewBox="0 0 24 24" className="relative z-[1] h-5 w-5 transition-transform duration-300 group-hover:translate-x-1">
+    <span className="relative z-10">{label}</span>
+    <svg fill="currentColor" viewBox="0 0 24 24" className="relative z-10 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1">
       <path clipRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z" fillRule="evenodd" />
     </svg>
-    <span className="pointer-events-none absolute inset-y-0 -left-24 w-24 bg-gradient-to-r from-transparent via-white/70 to-transparent opacity-60 transition-transform duration-[1400ms] group-hover:translate-x-[220%]" />
+    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
   </a>
 );
-
-//
 
 const BranchCard: React.FC<{ branch: Branch }> = ({ branch }) => {
   return (
@@ -81,23 +78,23 @@ const BranchCard: React.FC<{ branch: Branch }> = ({ branch }) => {
       role="article"
       aria-label={`${branch.name} şubesi kartı`}
       tabIndex={0}
-      className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-5 shadow-lg transition-transform duration-200 hover:-translate-y-1 focus-within:ring-2 focus-within:ring-red-600"
+      className="group relative bg-gradient-to-br from-gray-900/90 to-gray-800/80 border border-gray-700/50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-200 hover:border-gray-600/50"
     >
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <h3 className="text-lg font-bold text-zinc-900">{branch.name}</h3>
-        </div>
-        <span className="rounded-md bg-red-50 px-2 py-1 text-xs font-bold text-red-700">Açık</span>
+      <div className="flex items-start justify-between gap-3 mb-4">
+        <h3 className="text-xl font-bold text-white">{branch.name}</h3>
+        <span className="rounded-full bg-green-600 px-3 py-1 text-xs font-bold text-white">Açık</span>
       </div>
-      <p className="mt-3 text-sm text-zinc-700">{branch.address}</p>
-      <div className="mt-4 flex flex-wrap gap-3">
+      
+      <p className="text-gray-300 mb-4 leading-relaxed">{branch.address}</p>
+      
+      <div className="flex flex-wrap gap-3">
         <a
           href={branch.mapsUrl}
           aria-label={`${branch.name} haritada aç`}
           tabIndex={0}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-zinc-800 hover:bg-red-50"
+          className="inline-flex items-center justify-center rounded-full border border-gray-600 bg-gray-800 px-4 py-2 text-sm font-semibold text-gray-200 hover:bg-gray-700 hover:text-white transition-colors duration-200"
         >
           Haritada Gör
         </a>
@@ -105,7 +102,7 @@ const BranchCard: React.FC<{ branch: Branch }> = ({ branch }) => {
           href={`tel:${branch.phone}`}
           aria-label={`${branch.name} paket servis için ara`}
           tabIndex={0}
-          className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-red-600 to-red-500 px-5 py-2 text-white text-sm font-bold shadow-md transform-gpu transition-colors transition-transform duration-200 ease-out hover:from-red-700 hover:to-red-600 hover:scale-[1.02] active:scale-95 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+          className="inline-flex items-center gap-2 rounded-full bg-red-600 px-5 py-2 text-white text-sm font-bold shadow-md hover:bg-red-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-900"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -126,136 +123,127 @@ const BranchCard: React.FC<{ branch: Branch }> = ({ branch }) => {
 // Harita: şubeleri logo ikonuyla gösteren interaktif bileşen
 const InteractiveBranchesMap: React.FC<{ branches: Branch[]; activeCity?: string }> = ({ branches, activeCity }) => {
   const [leaflet, setLeaflet] = useState<null | typeof Leaflet>(null);
+  const [mapKey, setMapKey] = useState(0);
 
   useEffect(() => {
     let mounted = true;
     (async () => {
-      const mod = await import("leaflet");
-      if (!mounted) return;
-      setLeaflet(mod.default ?? mod);
+      try {
+        const mod = await import("leaflet");
+        if (!mounted) return;
+        setLeaflet(mod.default ?? mod);
+      } catch (error) {
+        console.error("Leaflet yüklenirken hata:", error);
+      }
     })();
     return () => {
       mounted = false;
     };
   }, []);
-  // Modern, soft görünümlü özel DivIcon
-  const modernIcon = useMemo<Leaflet.DivIcon | null>(() => {
-    if (!leaflet) return null;
-    const size = 40; // dış daire boyutu
-    const pointerHeight = 10;
-    const anchorX = size / 2;
-    const anchorY = size + pointerHeight; // alt noktayı hedeflesin
 
-    const html = `
-      <div
-        style="
-          position: relative;
-          width: ${size}px;
-          height: ${size + pointerHeight}px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15));
-        "
-        aria-label="DürümX şube işaretçisi"
-      >
-        <div
-          style="
-            width: ${size}px;
-            height: ${size}px;
-            border-radius: 9999px;
-            background: white;
-            border: 1px solid rgba(0,0,0,0.06);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          "
-        >
-          <div
-            style="
-              width: 22px;
-              height: 22px;
-              border-radius: 9999px;
-              background: linear-gradient(135deg, #ef4444, #dc2626);
-              box-shadow: 0 2px 6px rgba(220,38,38,0.35);
-            "
-          ></div>
-        </div>
-        <div
-          style="
-            position: absolute;
-            bottom: 0px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 6px solid transparent;
-            border-right: 6px solid transparent;
-            border-top: ${pointerHeight}px solid rgba(255,255,255,1);
-            filter: drop-shadow(0 -1px 0 rgba(0,0,0,0.06));
-          "
-        ></div>
-      </div>
-    `;
-    return leaflet.divIcon({
-      html,
-      className: "",
-      iconSize: [size, size + pointerHeight],
-      iconAnchor: [anchorX, anchorY],
-      popupAnchor: [0, -size + 6],
+  // Map container'ı yeniden oluşturmak için key değiştir
+  useEffect(() => {
+    setMapKey(prev => prev + 1);
+  }, [branches.length]);
+
+  // Basit icon kullan (DivIcon yerine)
+  const simpleIcon = useMemo(() => {
+    if (!leaflet) return null;
+    return leaflet.icon({
+      iconUrl: 'data:image/svg+xml;base64,' + btoa(`
+        <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="18" fill="white" stroke="#dc2626" stroke-width="2"/>
+          <circle cx="20" cy="20" r="12" fill="#dc2626"/>
+        </svg>
+      `),
+      iconSize: [40, 40],
+      iconAnchor: [20, 40],
+      popupAnchor: [0, -40],
     });
   }, [leaflet]);
 
   // Map'i bounds'a oturtan yardımcı bileşen
   const FitToBounds: React.FC<{ branches: Branch[]; activeCity?: string }> = ({ branches, activeCity }) => {
     const map = useMap();
+    
     useEffect(() => {
-      if (!leaflet) return;
-      if (branches.length === 0) {
-        map.setView([39.0, 35.0], 6);
-        return;
-      }
-
-      // Varsayılan: şehir filtresi boşsa Van'a odaklan
-      if (!activeCity) {
-        const vanBranches = branches.filter((b) => b.city === "Van");
-        if (vanBranches.length > 0) {
-          const vanBounds = leaflet.latLngBounds(vanBranches.map((b) => [b.lat, b.lng]) as [number, number][]);
-          map.fitBounds(vanBounds, { padding: [24, 24], maxZoom: 13 });
+      if (!leaflet || !map) return;
+      
+      try {
+        if (branches.length === 0) {
+          map.setView([39.0, 35.0], 6);
           return;
         }
-      }
 
-      // Aksi halde mevcut branch listesine sığdır
-      const latLngs = branches.map((b) => [b.lat, b.lng]) as [number, number][];
-      const nextBounds = leaflet.latLngBounds(latLngs);
-      map.fitBounds(nextBounds, { padding: [24, 24], maxZoom: 14 });
-    }, [map, branches, activeCity]);
+        // Varsayılan: şehir filtresi boşsa Van'a odaklan
+        if (!activeCity) {
+          const vanBranches = branches.filter((b) => b.city === "Van");
+          if (vanBranches.length > 0) {
+            const vanBounds = leaflet.latLngBounds(vanBranches.map((b) => [b.lat, b.lng]) as [number, number][]);
+            map.fitBounds(vanBounds, { padding: [24, 24], maxZoom: 13 });
+            return;
+          }
+        }
+
+        // Aksi halde mevcut branch listesine sığdır
+        const latLngs = branches.map((b) => [b.lat, b.lng]) as [number, number][];
+        const nextBounds = leaflet.latLngBounds(latLngs);
+        map.fitBounds(nextBounds, { padding: [24, 24], maxZoom: 14 });
+      } catch (error) {
+        console.error("Map bounds ayarlanırken hata:", error);
+        // Fallback: merkez koordinatları
+        map.setView([38.495, 43.38], 12);
+      }
+    }, [map, branches, activeCity, leaflet]);
+    
     return null;
   };
+
+  // Harita yüklenemezse fallback göster
+  if (!leaflet) {
+    return (
+      <div className="h-full w-full flex items-center justify-center bg-gray-800 rounded-lg">
+        <div className="text-center text-gray-300">
+          <div className="text-lg font-semibold mb-2">Harita Yükleniyor...</div>
+          <div className="text-sm">Lütfen bekleyin</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div role="region" aria-label="DürümX şubeler haritası" className="h-full w-full">
       <MapContainer
+        key={mapKey}
         className="h-full w-full"
         center={[38.495, 43.38]}
         zoom={12}
-        scrollWheelZoom
-        attributionControl
+        scrollWheelZoom={false}
+        attributionControl={false}
+        zoomControl={true}
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         />
-        {leaflet && <FitToBounds branches={branches} activeCity={activeCity} />}
-        {leaflet && modernIcon && branches.map((b) => (
-          <Marker key={b.id} position={[b.lat, b.lng]} icon={modernIcon as Leaflet.DivIcon} zIndexOffset={1000}>
+        <FitToBounds branches={branches} activeCity={activeCity} />
+        
+        {simpleIcon && branches.map((b) => (
+          <Marker 
+            key={`${b.id}-${mapKey}`} 
+            position={[b.lat, b.lng]} 
+            icon={simpleIcon}
+          >
             <Popup>
-              <div className="space-y-1">
-                <div className="font-bold text-sm">{b.name}</div>
-                <div className="text-xs text-zinc-700">{b.address}</div>
-                <a href={`tel:${b.phone}`} className="text-xs text-red-600 font-semibold">Ara: {b.phone}</a>
+              <div className="space-y-1 p-2">
+                <div className="font-bold text-sm text-gray-900">{b.name}</div>
+                <div className="text-xs text-gray-600">{b.address}</div>
+                <a 
+                  href={`tel:${b.phone}`} 
+                  className="text-xs text-red-600 font-semibold hover:text-red-700 transition-colors"
+                >
+                  Ara: {b.phone}
+                </a>
               </div>
             </Popup>
           </Marker>
@@ -395,75 +383,122 @@ const SubelerimizPage = () => {
   }, [allBranches, search, city, district, service]);
 
   return (
-    <div className="min-h-[90vh] w-full bg-gradient-to-b from-red-50 via-red-100 to-red-50 antialiased">
-      <section className="relative" aria-label="DürümX Şubelerimiz">
-        <div className="relative max-w-6xl mx-auto px-6 pt-10 pb-8">
+    <div className="min-h-screen w-full bg-gradient-to-br from-gray-950 via-gray-900 to-black antialiased relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-red-600/10 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-red-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-red-400/5 rounded-full blur-3xl" />
+      </div>
+
+      {/* Hero Section */}
+      <section className="relative pt-20 pb-16">
+        <div className="relative max-w-6xl mx-auto px-6">
           <div className="flex flex-col items-center text-center">
-            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#1f2937]">Şubelerimiz</h1>
+            <div className="relative mb-8">
+              <h1 className="text-5xl md:text-7xl font-black tracking-tight bg-gradient-to-r from-white via-red-100 to-red-300 bg-clip-text text-transparent">
+                Şubelerimiz
+              </h1>
+              <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 to-transparent blur-3xl" />
+            </div>
+            
+            <p className="mt-6 max-w-3xl text-lg md:text-xl text-gray-300 leading-relaxed">
+              Türkiye&apos;nin dört bir yanında hizmet veren DürümX şubelerimizi keşfedin
+            </p>
           </div>
         </div>
       </section>
 
-      <section ref={register("filters")} data-reveal-id="filters" className={`transition-all duration-700 ease-out ${revealed["filters"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-        <div className="max-w-6xl mx-auto px-6 pb-6">
-          <div className="rounded-3xl border border-gray-100 bg-white p-5 shadow-xl">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <label className="flex flex-col">
-                <span className="mb-1 text-sm font-semibold text-zinc-700">Arama</span>
-                <input
-                  type="text"
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  placeholder="Şube adı, adres..."
-                  aria-label="Şube arama"
-                  className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-red-600"
-                />
-              </label>
-              <label className="flex flex-col">
-                <span className="mb-1 text-sm font-semibold text-zinc-700">Şehir</span>
-                <select
-                  value={city}
-                  onChange={(e) => {
-                    setCity(e.target.value);
-                    setDistrict("");
-                  }}
-                  aria-label="Şehir seç"
-                  className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-red-600 bg-white"
-                >
-                  <option value="">Tümü</option>
-                  {cities.map((c) => (
-                    <option key={c} value={c}>{c}</option>
-                  ))}
-                </select>
-              </label>
-              <label className="flex flex-col">
-                <span className="mb-1 text-sm font-semibold text-zinc-700">İlçe</span>
-                <select
-                  value={district}
-                  onChange={(e) => setDistrict(e.target.value)}
-                  aria-label="İlçe seç"
-                  className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-red-600 bg-white"
-                >
-                  <option value="">Tümü</option>
-                  {(districtsByCity.get(city || cities[0]) ?? []).map((d) => (
-                    <option key={d} value={d}>{d}</option>
-                  ))}
-                </select>
-              </label>
+      {/* Filters Section */}
+      <section 
+        ref={register("filters")} 
+        data-reveal-id="filters" 
+        className={`transition-all duration-1000 ease-out ${
+          revealed["filters"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+        }`}
+      >
+        <div className="max-w-6xl mx-auto px-6 pb-8">
+          <div className="relative rounded-3xl bg-gradient-to-br from-gray-900/90 to-gray-800/80 backdrop-blur-xl border border-gray-700/50 p-6 md:p-8 shadow-2xl overflow-hidden">
+            {/* Background pattern */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(220,38,38,0.3),transparent_50%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(220,38,38,0.2),transparent_50%)]" />
+            </div>
+            
+            <div className="relative z-10">
+              <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 bg-gradient-to-r from-white to-red-200 bg-clip-text text-transparent">
+                Şube Arama ve Filtreleme
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <label className="flex flex-col">
+                  <span className="mb-2 text-sm font-semibold text-gray-300">Arama</span>
+                  <input
+                    type="text"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    placeholder="Şube adı, adres..."
+                    aria-label="Şube arama"
+                    className="w-full rounded-xl border border-gray-600 bg-gray-800/50 px-4 py-3 text-gray-200 placeholder-gray-400 outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-300 backdrop-blur-sm"
+                  />
+                </label>
+                
+                <label className="flex flex-col">
+                  <span className="mb-2 text-sm font-semibold text-gray-300">Şehir</span>
+                  <select
+                    value={city}
+                    onChange={(e) => {
+                      setCity(e.target.value);
+                      setDistrict("");
+                    }}
+                    aria-label="Şehir seç"
+                    className="w-full rounded-xl border border-gray-600 bg-gray-800/50 px-4 py-3 text-gray-200 outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-300 backdrop-blur-sm"
+                  >
+                    <option value="">Tümü</option>
+                    {cities.map((c) => (
+                      <option key={c} value={c}>{c}</option>
+                    ))}
+                  </select>
+                </label>
+                
+                <label className="flex flex-col">
+                  <span className="mb-2 text-sm font-semibold text-gray-300">İlçe</span>
+                  <select
+                    value={district}
+                    onChange={(e) => setDistrict(e.target.value)}
+                    aria-label="İlçe seç"
+                    className="w-full rounded-xl border border-gray-600 bg-gray-800/50 px-4 py-3 text-gray-200 outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-300 backdrop-blur-sm"
+                  >
+                    <option value="">Tümü</option>
+                    {(districtsByCity.get(city || cities[0]) ?? []).map((d) => (
+                      <option key={d} value={d}>{d}</option>
+                    ))}
+                  </select>
+                </label>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section ref={register("grid")} data-reveal-id="grid" className={`transition-all duration-700 ease-out ${revealed["grid"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-        <div className="max-w-6xl mx-auto px-6 py-6">
-          <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-2xl font-bold text-zinc-900">{filtered.length} Şube</h2>
+      {/* Results Section */}
+      <section 
+        ref={register("grid")} 
+        data-reveal-id="grid" 
+        className={`transition-all duration-1000 ease-out ${
+          revealed["grid"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+        }`}
+      >
+        <div className="max-w-6xl mx-auto px-6 py-8">
+          <div className="mb-6 flex items-center justify-between">
+            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-white to-red-200 bg-clip-text text-transparent">
+              {filtered.length} Şube Bulundu
+            </h2>
             {(city || district || service || search) && (
               <button
                 type="button"
                 aria-label="Filtreleri temizle"
-                className="text-sm font-semibold text-red-700 hover:underline"
+                className="text-sm font-semibold text-red-400 hover:text-red-300 transition-colors duration-300"
                 onClick={() => {
                   setSearch("");
                   setCity("");
@@ -475,6 +510,7 @@ const SubelerimizPage = () => {
               </button>
             )}
           </div>
+          
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((b) => (
               <BranchCard key={b.id} branch={b} />
@@ -483,9 +519,25 @@ const SubelerimizPage = () => {
         </div>
       </section>
 
-      <section ref={register("map")} data-reveal-id="map" className={`transition-all duration-700 ease-out ${revealed["map"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-        <div className="max-w-5xl mx-auto px-6 py-4">
-          <div className="rounded-3xl overflow-hidden border border-gray-100 shadow-xl bg-white">
+      {/* Map Section */}
+      <section 
+        ref={register("map")} 
+        data-reveal-id="map" 
+        className={`transition-all duration-1000 ease-out ${
+          revealed["map"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+        }`}
+      >
+        <div className="max-w-6xl mx-auto px-6 py-8">
+          <div className="text-center mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-white to-red-200 bg-clip-text text-transparent mb-4">
+              İnteraktif Harita
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              Şubelerimizin konumlarını haritada görüntüleyin
+            </p>
+          </div>
+          
+          <div className="relative rounded-3xl overflow-hidden border border-gray-700/50 shadow-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/80 backdrop-blur-xl">
             <div className="aspect-[1/1] md:aspect-[4/3] lg:aspect-[16/9] w-full">
               <InteractiveBranchesMap branches={filtered} activeCity={city} />
             </div>
@@ -493,14 +545,34 @@ const SubelerimizPage = () => {
         </div>
       </section>
 
-      <section ref={register("cta")} data-reveal-id="cta" className={`transition-all duration-700 ease-out ${revealed["cta"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-        <div className="max-w-6xl mx-auto px-6 pb-16">
-          <div className="flex flex-col items-center justify-center rounded-3xl border border-gray-100 bg-white p-8 shadow-xl">
-            <h3 className="text-2xl md:text-3xl font-bold text-[#1f2937] text-center">Yeni Şube Öneriniz Var mı?</h3>
-            <p className="mt-3 max-w-3xl text-center text-[#4b5563]">Bulunduğunuz bölgede DürümX görmek ister misiniz? Bize yazın, değerlendirelim.</p>
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-              <ShinyButton href="/contact" label="Önerini Paylaş" ariaLabel="İletişim sayfasına git" />
-              <ShinyButton href="/franchise" label="Franchise Bilgisi" ariaLabel="Franchise bilgi sayfasına git" />
+      {/* CTA Section */}
+      <section 
+        ref={register("cta")} 
+        data-reveal-id="cta" 
+        className={`transition-all duration-1000 ease-out ${
+          revealed["cta"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+        }`}
+      >
+        <div className="max-w-6xl mx-auto px-6 py-16">
+          <div className="relative rounded-3xl bg-gradient-to-br from-gray-900/90 to-gray-800/80 backdrop-blur-xl border border-gray-700/50 p-8 md:p-12 shadow-2xl overflow-hidden">
+            {/* Background effects */}
+            <div className="absolute inset-0 opacity-20">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(220,38,38,0.4),transparent_50%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(220,38,38,0.3),transparent_50%)]" />
+            </div>
+            
+            <div className="relative z-10 text-center">
+              <h3 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-white to-red-200 bg-clip-text text-transparent">
+                Yeni Şube Öneriniz Var mı?
+              </h3>
+              <p className="mt-4 max-w-3xl mx-auto text-lg text-gray-300 leading-relaxed">
+                Bulunduğunuz bölgede DürümX görmek ister misiniz? Bize yazın, değerlendirelim.
+              </p>
+              
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+                <ShinyButton href="/contact" label="Önerini Paylaş" ariaLabel="İletişim sayfasına git" />
+                <ShinyButton href="/franchise" label="Franchise Bilgisi" ariaLabel="Franchise bilgi sayfasına git" />
+              </div>
             </div>
           </div>
         </div>

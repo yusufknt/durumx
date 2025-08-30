@@ -550,7 +550,7 @@ video {
 @keyframes modal-slide-in {
   from {
     opacity: 0;
-    transform: scale(0.95) translateY(20px);
+    transform: scale(0.98) translateY(10px);
   }
   to {
     opacity: 1;
@@ -561,20 +561,22 @@ video {
 @keyframes backdrop-fade {
   from {
     opacity: 0;
+    backdrop-filter: blur(0px);
   }
   to {
     opacity: 1;
+    backdrop-filter: blur(8px);
   }
 }
 
 .animate-modal-slide-in {
-  animation: modal-slide-in 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation: modal-slide-in 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
 }
 
 .animate-backdrop-fade {
-  animation: backdrop-fade 0.2s ease-out;
-  will-change: opacity;
+  animation: backdrop-fade 0.3s ease-out;
+  will-change: opacity, backdrop-filter;
 }
 
 /* Enhanced hover effects for modal cards */

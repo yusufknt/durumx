@@ -156,17 +156,17 @@ export default function RootLayout({
           {/* Global Order Modal - Now accessible from any page */}
           {orderOpen && (
             <div
-              className="fixed inset-0 z-[9999] bg-black/10 backdrop-blur-sm flex items-center justify-center p-4 animate-backdrop-fade"
+              className="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-md flex items-center justify-center p-4 animate-backdrop-fade"
               onClick={() => setOrderOpen(false)}
             >
               {/* Main Modal Container */}
               <div
-                className="relative bg-gradient-to-br from-white/95 via-gray-50/95 to-white/95 backdrop-blur-xl rounded-3xl w-full max-w-6xl shadow-2xl border border-white/30 overflow-hidden animate-modal-slide-in"
+                className="relative bg-gradient-to-br from-gray-900/95 via-gray-800/95 to-gray-900/95 backdrop-blur-xl rounded-3xl w-full max-w-4xl shadow-2xl border border-gray-700/50 overflow-hidden animate-modal-slide-in"
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Close Button */}
                 <button
-                  className="absolute top-6 right-6 p-3 rounded-full bg-white/90 backdrop-blur-sm hover:bg-red-50 transition-all duration-300 group z-50 shadow-lg hover:shadow-xl hover:scale-110"
+                  className="absolute top-6 right-6 p-3 rounded-full bg-gray-800/90 backdrop-blur-sm hover:bg-red-900/50 transition-all duration-300 group z-50 shadow-lg hover:shadow-xl hover:scale-110 border border-gray-600/50"
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
@@ -175,14 +175,14 @@ export default function RootLayout({
                   }}
                   aria-label="Kapat"
                 >
-                  <FaTimes size={18} className="text-gray-600 group-hover:text-red-500 transition-colors" />
+                  <FaTimes size={18} className="text-gray-300 group-hover:text-red-400 transition-colors" />
                 </button>
 
                 {/* Header Section */}
-                <div className="relative z-10 text-center py-6 px-8">
-                  <div className="flex justify-center mb-3">
+                <div className="relative z-10 text-center py-8 px-8">
+                  <div className="flex justify-center mb-4">
                     <div className="relative">
-                      <div className="bg-white/90 backdrop-blur-sm rounded-full p-3 shadow-lg border border-white/50">
+                      <div className="bg-white backdrop-blur-sm rounded-full p-3 shadow-lg border border-white/50">
                         <Image
                           src="/logo.png"
                           alt="DürümX Logo"
@@ -196,14 +196,17 @@ export default function RootLayout({
                     </div>
                   </div>
                   
-                  <h2 className="text-3xl font-black bg-gradient-to-r from-gray-800 via-red-600 via-orange-600 to-gray-800 bg-clip-text text-transparent mb-4">
+                  <h2 className="text-4xl font-black bg-gradient-to-r from-white via-red-400 to-orange-400 bg-clip-text text-transparent mb-2">
                     Sipariş Ver
                   </h2>
+                  <p className="text-gray-400 text-lg font-medium">
+                    Size en uygun sipariş yöntemini seçin
+                  </p>
                 </div>
 
                 {/* Order Options Grid */}
                 <div className="relative z-10 px-8 pb-8">
-                  <div className="cards flex flex-col gap-3 items-center">
+                  <div className="cards flex flex-col gap-4 items-center">
                     
                     {/* Branches Page Redirect */}
                     <div className="card red">
@@ -282,8 +285,8 @@ export default function RootLayout({
                 </div>
 
                 {/* Footer */}
-                <div className="relative z-10 text-center py-6 border-t border-gray-200/30 bg-gradient-to-r from-gray-50/50 via-white/50 to-gray-50/50">
-                  <p className="text-gray-600 text-base font-medium">
+                <div className="relative z-10 text-center py-6 border-t border-gray-700/50 bg-gradient-to-r from-gray-800/50 via-gray-700/50 to-gray-800/50">
+                  <p className="text-gray-300 text-base font-medium">
                     Tüm siparişleriniz için teşekkür ederiz! 🍔
                   </p>
                 </div>
