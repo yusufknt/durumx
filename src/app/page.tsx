@@ -165,7 +165,7 @@ export default function HomePage() {
 
             <div className="inline-flex items-center gap-4 px-6 py-3 bg-gradient-to-r from-red-500/20 to-orange-500/20 rounded-full border border-red-400/30 backdrop-blur-sm" data-aos="fade-up" data-aos-delay="300">
               <div className="w-3 h-3 bg-red-400 rounded-full animate-bounce"></div>
-              <span className="text-red-300 font-bold text-lg">2010&apos;dan Bugüne</span>
+              <span className="text-red-300 font-bold text-lg">2008&apos;dan Bugüne</span>
               <div className="w-3 h-3 bg-orange-400 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></div>
             </div>
           </div>

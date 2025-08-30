@@ -88,7 +88,7 @@ const FranchisePage = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-gray-950 via-gray-900 to-black antialiased relative overflow-hidden">
+    <div className="min-h-screen w-full bg-gradient-to-br from-gray-50 via-white to-gray-100 antialiased relative overflow-hidden">
       {/* Background Effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-red-600/5 rounded-full blur-2xl" />
@@ -104,13 +104,13 @@ const FranchisePage = () => {
         {/* Hero Section */}
         <div className="flex flex-col items-center text-center mb-16">
                       <div className="relative mb-8">
-              <h1 className="text-5xl md:text-7xl font-black tracking-tight bg-gradient-to-r from-white via-red-100 to-red-300 bg-clip-text text-transparent">
+              <h1 className="text-5xl md:text-7xl font-black tracking-tight bg-gradient-to-r from-gray-800 via-red-600 to-red-500 bg-clip-text text-transparent">
                 Franchise
               </h1>
               <div className="absolute inset-0 bg-gradient-to-r from-red-600/10 to-transparent blur-2xl" />
             </div>
           
-          <p className="mt-6 max-w-3xl text-lg md:text-xl text-gray-300 leading-relaxed">
+          <p className="mt-6 max-w-3xl text-lg md:text-xl text-gray-600 leading-relaxed">
             DürümX franchise programı ile kendi işinizi kurun ve başarı hikayenizi yazın
           </p>
         </div>
@@ -123,30 +123,30 @@ const FranchisePage = () => {
           className="mb-16 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center"
         >
           {/* Left: Headline, copy, CTAs, stats */}
-          <div className="relative p-8 rounded-3xl bg-gradient-to-br from-gray-900/90 to-gray-800/80 backdrop-blur-sm border border-gray-700/50 shadow-xl overflow-hidden">
+          <div className="relative p-8 rounded-3xl bg-gradient-to-br from-white/90 to-gray-50/80 backdrop-blur-sm border border-gray-200/60 shadow-xl overflow-hidden">
             {/* Background pattern */}
             <div className="absolute inset-0 opacity-10">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(220,38,38,0.2),transparent_50%)]" />
             </div>
             
             <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 rounded-full border border-red-500/30 bg-red-500/10 px-3 py-1 text-red-400 text-xs font-semibold backdrop-blur-sm">
+              <div className="inline-flex items-center gap-2 rounded-full border border-red-500/30 bg-red-500/10 px-3 py-1 text-red-600 text-xs font-semibold backdrop-blur-sm">
                 <span className="h-2 w-2 rounded-full bg-red-500" />
                 DÜRÜMX FRANCHISE
               </div>
               
-              <h3 className="mt-4 text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+              <h3 className="mt-4 text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-800">
                 Lezzeti Markaya Dönüştürün
-                <span className="block bg-gradient-to-r from-red-400 to-red-300 bg-clip-text text-transparent">Güçlü Franchise Ekosistemi</span>
+                <span className="block bg-gradient-to-r from-red-600 to-red-500 bg-clip-text text-transparent">Güçlü Franchise Ekosistemi</span>
               </h3>
               
-              <p className="mt-4 text-gray-300 leading-relaxed">
+              <p className="mt-4 text-gray-600 leading-relaxed">
                 DürümX; standartlaştırılmış lezzet, güçlü operasyon ve modern pazarlama ile
                 girişimcilere kârlı ve sürdürülebilir bir iş modeli sunar. Bugün adım atın,
                 birlikte büyüyelim.
               </p>
 
-              <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-gray-300">
+              <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-gray-600">
                 <li className="flex items-start gap-2">
                   <span className="mt-1 h-1.5 w-1.5 rounded-full bg-red-500" />
                   Güçlü ve tanınan marka
@@ -166,17 +166,17 @@ const FranchisePage = () => {
               </ul>
 
               <div className="mt-6 grid grid-cols-3 gap-4 text-center">
-                <div className="rounded-xl bg-gray-800/50 border border-gray-700/50 p-3 backdrop-blur-sm">
-                  <div className="text-2xl font-extrabold text-red-400">50K+</div>
-                  <div className="text-xs text-gray-400">Aylık Ziyaret</div>
+                <div className="rounded-xl bg-gray-100/80 border border-gray-200/60 p-3 backdrop-blur-sm">
+                  <div className="text-2xl font-extrabold text-red-600">50K+</div>
+                  <div className="text-xs text-gray-500">Aylık Ziyaret</div>
                 </div>
-                <div className="rounded-xl bg-gray-800/50 border border-gray-700/50 p-3 backdrop-blur-sm">
-                  <div className="text-2xl font-extrabold text-red-400">%98</div>
-                  <div className="text-xs text-gray-400">Memnuniyet</div>
+                <div className="rounded-xl bg-gray-100/80 border border-gray-200/60 p-3 backdrop-blur-sm">
+                  <div className="text-2xl font-extrabold text-red-600">%98</div>
+                  <div className="text-xs text-gray-500">Memnuniyet</div>
                 </div>
-                <div className="rounded-xl bg-gray-800/50 border border-gray-700/50 p-3 backdrop-blur-sm">
-                  <div className="text-2xl font-extrabold text-red-400">7/24</div>
-                  <div className="text-xs text-gray-400">Operasyon Desteği</div>
+                <div className="rounded-xl bg-gray-100/80 border border-gray-200/60 p-3 backdrop-blur-sm">
+                  <div className="text-2xl font-extrabold text-red-600">7/24</div>
+                  <div className="text-xs text-gray-500">Operasyon Desteği</div>
                 </div>
               </div>
             </div>
@@ -186,7 +186,7 @@ const FranchisePage = () => {
           <div className="relative h-full">
             <div className="absolute -top-6 -right-6 h-40 w-40 sm:h-56 sm:w-56 rounded-full bg-gradient-to-tr from-red-600/10 via-red-500/10 to-red-400/10 blur-2xl opacity-40" aria-hidden="true" />
             
-            <div className="relative mx-auto w-full max-w-md rounded-3xl border border-gray-700/50 bg-gray-900/80 backdrop-blur-sm shadow-xl overflow-hidden">
+            <div className="relative mx-auto w-full max-w-md rounded-3xl border border-gray-200/60 bg-white/80 backdrop-blur-sm shadow-xl overflow-hidden">
               <Image
                 src="/logo/franchise-gorsel.jpg"
                 alt="DürümX franchise vitrini"
@@ -195,20 +195,20 @@ const FranchisePage = () => {
                 className="h-auto w-full object-cover"
                 priority
               />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-900/60 via-transparent to-gray-900/10" aria-hidden="true" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-white/10" aria-hidden="true" />
             </div>
 
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={show ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="mt-4 w-full max-w-md mx-auto rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/80 backdrop-blur-sm border border-gray-700/50 shadow-lg p-4"
+              className="mt-4 w-full max-w-md mx-auto rounded-2xl bg-gradient-to-br from-white/90 to-gray-50/80 backdrop-blur-sm border border-gray-200/60 shadow-lg p-4"
             >
               <div className="flex items-center gap-3">
                 <div className="h-10 w-10 rounded-full bg-red-600 flex items-center justify-center text-white text-sm font-bold" aria-hidden="true">DX</div>
                 <div className="flex-1">
-                  <p className="text-sm font-semibold text-white">Açılış Öncesi Eğitim</p>
-                  <p className="text-xs text-gray-400">Operasyon, servis ve pazarlama destekleri.</p>
+                  <p className="text-sm font-semibold text-gray-800">Açılış Öncesi Eğitim</p>
+                  <p className="text-xs text-gray-500">Operasyon, servis ve pazarlama destekleri.</p>
                 </div>
               </div>
             </motion.div>
@@ -221,7 +221,7 @@ const FranchisePage = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={show ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="relative rounded-3xl bg-gradient-to-br from-gray-900/90 to-gray-800/80 backdrop-blur-sm shadow-xl border border-gray-700/50 p-8 overflow-hidden"
+          className="relative rounded-3xl bg-gradient-to-br from-white/90 to-gray-50/80 backdrop-blur-sm shadow-xl border border-gray-200/60 p-8 overflow-hidden"
         >
           {/* Background pattern */}
           <div className="absolute inset-0 opacity-10">
@@ -229,17 +229,17 @@ const FranchisePage = () => {
           </div>
           
           <div className="relative z-10">
-            <h2 className="text-3xl font-bold mb-8 text-center bg-gradient-to-r from-white to-red-200 bg-clip-text text-transparent">
+            <h2 className="text-3xl font-bold mb-8 text-center bg-gradient-to-r from-gray-800 to-red-600 bg-clip-text text-transparent">
               Franchise Başvuru Formu
             </h2>
 
             {submitSuccess ? (
               <div className="text-center py-12">
                 <div className="text-6xl mb-4">🎉</div>
-                <h3 className="text-2xl font-bold text-green-400 mb-2">
+                <h3 className="text-2xl font-bold text-green-600 mb-2">
                   Başvurunuz Alındı!
                 </h3>
-                <p className="text-gray-300">
+                <p className="text-gray-600">
                   En kısa sürede sizinle iletişime geçeceğiz.
                 </p>
               </div>
@@ -344,7 +344,7 @@ const FranchisePage = () => {
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-sm font-medium text-gray-300 mb-3"
+                    className="block text-sm font-medium text-gray-600 mb-3"
                   >
                     Ek Bilgiler
                   </label>
@@ -354,7 +354,7 @@ const FranchisePage = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={4}
-                    className="w-full px-4 py-3 border border-gray-600 bg-gray-800/50 text-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors resize-none placeholder-gray-400"
+                    className="w-full px-4 py-3 border border-gray-300 bg-white/80 text-gray-700 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors resize-none placeholder-gray-500"
                     placeholder="Kendiniz ve projeniz hakkında bilgi verebilirsiniz..."
                   />
                 </div>
@@ -367,11 +367,11 @@ const FranchisePage = () => {
                     name="agreement"
                     checked={formData.agreement}
                     onChange={handleInputChange}
-                    className="mt-1 w-5 h-5 text-red-500 border-gray-600 rounded focus:ring-red-500/60 bg-gray-800"
+                    className="mt-1 w-5 h-5 text-red-500 border-gray-300 rounded focus:ring-red-500/60 bg-white"
                     required
                   />
-                  <label htmlFor="agreement" className="text-sm text-gray-300">
-                    <a href="#" className="text-red-400 hover:text-red-300 transition-colors">
+                  <label htmlFor="agreement" className="text-sm text-gray-600">
+                    <a href="#" className="text-red-600 hover:text-red-700 transition-colors">
                       Franchise sözleşmesi
                     </a>{" "}
                     şartlarını kabul ediyorum. *
@@ -385,7 +385,7 @@ const FranchisePage = () => {
                   className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 ${
                     isFormValid() && !isSubmitting
                       ? "bg-gradient-to-r from-red-600 to-red-500 text-white hover:from-red-700 hover:to-red-600 hover:shadow-xl hover:shadow-red-500/25"
-                      : "bg-gray-700 text-gray-400 cursor-not-allowed"
+                      : "bg-gray-300 text-gray-500 cursor-not-allowed"
                   }`}
                 >
                   {isSubmitting ? (
@@ -408,7 +408,7 @@ const FranchisePage = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={show ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="mt-16 relative rounded-3xl bg-gradient-to-br from-gray-900/90 to-gray-800/80 backdrop-blur-sm p-8 border border-gray-700/50 text-center overflow-hidden"
+          className="mt-16 relative rounded-3xl bg-gradient-to-br from-white/90 to-gray-50/80 backdrop-blur-sm p-8 border border-gray-200/60 text-center overflow-hidden"
         >
           {/* Background effects */}
           <div className="absolute inset-0 opacity-10">
@@ -416,10 +416,10 @@ const FranchisePage = () => {
           </div>
           
           <div className="relative z-10">
-            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-white to-red-200 bg-clip-text text-transparent">
+            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-gray-800 to-red-600 bg-clip-text text-transparent">
               Franchise Hakkında Daha Fazla Bilgi
             </h2>
-            <p className="text-lg text-gray-300 mb-8">
+            <p className="text-lg text-gray-600 mb-8">
               Franchise programımız hakkında detaylı bilgi almak için bizimle
               iletişime geçin.
             </p>
@@ -463,12 +463,12 @@ const InputField = ({
   <div>
     <label
       htmlFor={id}
-      className="block text-sm font-medium text-gray-300 mb-3"
+      className="block text-sm font-medium text-gray-600 mb-3"
     >
       {label}
     </label>
     <div className="relative">
-      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">
         {icon}
       </span>
       <input
@@ -477,7 +477,7 @@ const InputField = ({
         name={name}
         value={value}
         onChange={onChange}
-        className="w-full pl-10 pr-4 py-3 border border-gray-600 bg-gray-800/50 text-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors placeholder-gray-400"
+        className="w-full pl-10 pr-4 py-3 border border-gray-300 bg-white/80 text-gray-700 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors placeholder-gray-500"
         required
       />
     </div>
@@ -507,12 +507,12 @@ const SelectField = ({
   <div>
     <label
       htmlFor={id}
-      className="block text-sm font-medium text-gray-300 mb-3"
+      className="block text-sm font-medium text-gray-600 mb-3"
     >
       {label}
     </label>
     <div className="relative">
-      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">
         {icon}
       </span>
       <select
@@ -520,7 +520,7 @@ const SelectField = ({
         name={name}
         value={value}
         onChange={onChange}
-        className="w-full pl-10 pr-4 py-3 border border-gray-600 bg-gray-800/50 text-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors"
+        className="w-full pl-10 pr-4 py-3 border border-gray-300 bg-white/80 text-gray-700 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors"
         required
       >
         <option value="">Seçiniz</option>

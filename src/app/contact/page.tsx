@@ -86,7 +86,7 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-gray-950 via-gray-900 to-black antialiased relative overflow-hidden">
+    <div className="min-h-screen w-full bg-gradient-to-br from-gray-50 via-white to-gray-100 antialiased relative overflow-hidden">
       {/* Background Effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-red-600/10 rounded-full blur-3xl" />
@@ -99,13 +99,13 @@ const ContactPage = () => {
           {/* Hero Section */}
           <div className="text-center mb-16">
             <div className="relative mb-8">
-              <h1 className="text-5xl md:text-7xl font-black tracking-tight bg-gradient-to-r from-white via-red-100 to-red-300 bg-clip-text text-transparent">
+              <h1 className="text-5xl md:text-7xl font-black tracking-tight bg-gradient-to-r from-gray-800 via-red-600 to-red-500 bg-clip-text text-transparent">
                 Bize Ulaşın
               </h1>
               <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 to-transparent blur-3xl" />
             </div>
             
-            <p className="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-gray-300 leading-relaxed">
+            <p className="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-gray-600 leading-relaxed">
               Her türlü soru, öneri ve sipariş için bize ulaşabilirsiniz.
             </p>
           </div>
@@ -114,7 +114,7 @@ const ContactPage = () => {
           <div className="flex flex-col lg:flex-row gap-10">
             {/* Sol: Bilgi ve Sosyal */}
             <div className={`flex-1 flex flex-col gap-6 justify-center transition-all duration-300 ease-out ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`} style={{ transitionDelay: '75ms' }}>
-              <div className="relative rounded-3xl bg-gradient-to-br from-gray-900/90 to-gray-800/80 backdrop-blur-xl p-8 border border-gray-700/50 shadow-2xl overflow-hidden">
+              <div className="relative rounded-3xl bg-gradient-to-br from-white/90 to-gray-50/80 backdrop-blur-xl p-8 border border-gray-200/60 shadow-xl overflow-hidden">
                 {/* Background pattern */}
                 <div className="absolute inset-0 opacity-20">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(220,38,38,0.3),transparent_50%)]" />
@@ -122,36 +122,36 @@ const ContactPage = () => {
                 </div>
                 
                 <div className="relative z-10">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">İletişim Bilgileri</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">İletişim Bilgileri</h2>
                   
-                  <div className="flex items-center gap-3 text-red-400 font-semibold text-base mb-6">
+                  <div className="flex items-center gap-3 text-red-600 font-semibold text-base mb-6">
                     <FaMapMarkerAlt />
-                    <span className="text-gray-300">{location.address}</span>
+                    <span className="text-gray-600">{location.address}</span>
                   </div>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                    <a href="tel:+904322151555" aria-label="Telefon ile ara" tabIndex={0} className="group flex items-center gap-3 rounded-xl border border-gray-600 bg-gray-800/50 px-4 py-3 shadow-lg transition-all hover:shadow-xl hover:bg-gray-700/50 focus:outline-none focus:ring-2 focus:ring-red-500 backdrop-blur-sm">
+                    <a href="tel:+904322151555" aria-label="Telefon ile ara" tabIndex={0} className="group flex items-center gap-3 rounded-xl border border-gray-300 bg-gray-100/80 px-4 py-3 shadow-lg transition-all hover:shadow-xl hover:bg-gray-200/80 focus:outline-none focus:ring-2 focus:ring-red-500 backdrop-blur-sm">
                       <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-red-600 text-white shadow-lg"><FaPhoneAlt /></span>
                       <div className="flex flex-col">
-                        <span className="text-gray-400 text-xs">Telefon</span>
-                        <span className="font-semibold text-white">(0432) 215 15 55</span>
+                        <span className="text-gray-500 text-xs">Telefon</span>
+                        <span className="font-semibold text-gray-800">(0432) 215 15 55</span>
                       </div>
                     </a>
                     
-                    <a href="mailto:info@durumx.com" aria-label="E-posta gönder" tabIndex={0} className="group flex items-center gap-3 rounded-xl border border-gray-600 bg-gray-800/50 px-4 py-3 shadow-lg transition-all hover:shadow-xl hover:bg-gray-700/50 focus:outline-none focus:ring-2 focus:ring-red-500 backdrop-blur-sm">
-                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-gray-700 text-white shadow-lg"><FaEnvelope /></span>
+                    <a href="mailto:info@durumx.com" aria-label="E-posta gönder" tabIndex={0} className="group flex items-center gap-3 rounded-xl border border-gray-300 bg-gray-100/80 px-4 py-3 shadow-lg transition-all hover:shadow-xl hover:bg-gray-200/80 focus:outline-none focus:ring-2 focus:ring-red-500 backdrop-blur-sm">
+                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-gray-600 text-white shadow-lg"><FaEnvelope /></span>
                       <div className="flex flex-col">
-                        <span className="text-gray-400 text-xs">E-posta</span>
-                        <span className="font-semibold text-white">info@durumx.com</span>
+                        <span className="text-gray-500 text-xs">E-posta</span>
+                        <span className="font-semibold text-gray-800">info@durumx.com</span>
                       </div>
                     </a>
                   </div>
                   
-                  <a href="https://wa.me/904322151555" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp ile yaz" tabIndex={0} className="group flex items-center gap-3 rounded-xl border border-gray-600 bg-gray-800/50 px-4 py-3 shadow-lg transition-all hover:shadow-xl hover:bg-gray-700/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 w-fit backdrop-blur-sm mb-6">
+                  <a href="https://wa.me/904322151555" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp ile yaz" tabIndex={0} className="group flex items-center gap-3 rounded-xl border border-gray-300 bg-gray-100/80 px-4 py-3 shadow-lg transition-all hover:shadow-xl hover:bg-gray-200/80 focus:outline-none focus:ring-2 focus:ring-emerald-500 w-fit backdrop-blur-sm mb-6">
                     <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-600 text-white shadow-lg"><FaWhatsapp /></span>
                     <div className="flex flex-col">
-                      <span className="text-gray-400 text-xs">WhatsApp</span>
-                      <span className="font-semibold text-white">Hızlı mesaj</span>
+                      <span className="text-gray-500 text-xs">WhatsApp</span>
+                      <span className="font-semibold text-gray-800">Hızlı mesaj</span>
                     </div>
                   </a>
                   
@@ -160,21 +160,21 @@ const ContactPage = () => {
                       const iconProps = {
                         instagram: {
                           href: "https://instagram.com",
-                          className: "group relative text-gray-400 hover:text-[#e1306c] rounded-full p-3 transition-all duration-200 shadow-lg hover:shadow-xl bg-gray-800/50 hover:bg-gray-700/50 backdrop-blur-sm",
+                          className: "group relative text-gray-500 hover:text-[#e1306c] rounded-full p-3 transition-all duration-200 shadow-lg hover:shadow-xl bg-gray-100/80 hover:bg-gray-200/80 backdrop-blur-sm",
                           icon: <FaInstagram size={24} />,
                           tooltip: "Instagram",
                           tooltipClass: "bg-[#e1306c]"
                         },
                         tiktok: {
                           href: "https://tiktok.com",
-                          className: "group relative text-gray-400 hover:text-white rounded-full p-3 transition-all duration-200 shadow-lg hover:shadow-xl bg-gray-800/50 hover:bg-gray-700/50 backdrop-blur-sm",
+                          className: "group relative text-gray-500 hover:text-gray-800 rounded-full p-3 transition-all duration-200 shadow-lg hover:shadow-xl bg-gray-100/80 hover:bg-gray-200/80 backdrop-blur-sm",
                           icon: <FaTiktok size={24} />,
                           tooltip: "TikTok",
-                          tooltipClass: "bg-gray-800"
+                          tooltipClass: "bg-gray-600"
                         },
                         whatsapp: {
                           href: "https://wa.me/904322151555",
-                          className: "group relative text-gray-400 hover:text-[#38b000] rounded-full p-3 transition-all duration-200 shadow-lg hover:shadow-xl bg-gray-800/50 hover:bg-gray-700/50 backdrop-blur-sm",
+                          className: "group relative text-gray-500 hover:text-[#38b000] rounded-full p-3 transition-all duration-200 shadow-lg hover:shadow-xl bg-gray-100/80 hover:bg-gray-200/80 backdrop-blur-sm",
                           icon: <FaWhatsapp size={24} />,
                           tooltip: "WhatsApp",
                           tooltipClass: "bg-[#38b000]"
@@ -202,7 +202,7 @@ const ContactPage = () => {
               </div>
 
               {/* Harita */}
-              <div className={`relative rounded-3xl bg-gradient-to-br from-gray-900/90 to-gray-800/80 backdrop-blur-xl p-6 border border-gray-700/50 shadow-2xl overflow-hidden transition-all duration-300 ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`} style={{ transitionDelay: '175ms' }}>
+              <div className={`relative rounded-3xl bg-gradient-to-br from-white/90 to-gray-50/80 backdrop-blur-xl p-6 border border-gray-200/60 shadow-xl overflow-hidden transition-all duration-300 ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`} style={{ transitionDelay: '175ms' }}>
                 <div className="relative">
                   {/* OpenStreetMap iframe */}
                   <iframe
@@ -210,7 +210,7 @@ const ContactPage = () => {
                     src={`https://www.openstreetmap.org/export/embed.html?bbox=${location.lng-0.01}%2C${location.lat-0.01}%2C${location.lng+0.01}%2C${location.lat+0.01}&layer=mapnik&marker=${location.lat}%2C${location.lng}`}
                     width="100%"
                     height="200"
-                    className="rounded-xl border border-gray-600 shadow-lg"
+                    className="rounded-xl border border-gray-300 shadow-lg"
                     loading="lazy"
                     style={{ border: 0 }}
                   />
@@ -226,14 +226,14 @@ const ContactPage = () => {
                   <div className="absolute top-2 right-2 flex gap-1">
                     <button
                       onClick={handleMapClick}
-                      className="bg-gray-900/90 hover:bg-gray-800 rounded-lg px-2 py-1 text-xs text-gray-300 shadow-lg transition-colors duration-200 backdrop-blur-sm border border-gray-600"
+                      className="bg-white/90 hover:bg-gray-100 rounded-lg px-2 py-1 text-xs text-gray-600 shadow-lg transition-colors duration-200 backdrop-blur-sm border border-gray-300"
                       title="Google Maps'te aç"
                     >
                       Google
                     </button>
                     <button
                       onClick={handleOpenStreetMapClick}
-                      className="bg-gray-900/90 hover:bg-gray-800 rounded-lg px-2 py-1 text-xs text-gray-300 shadow-lg transition-colors duration-200 backdrop-blur-sm border border-gray-600"
+                      className="bg-white/90 hover:bg-gray-100 rounded-lg px-2 py-1 text-xs text-gray-600 shadow-lg transition-colors duration-200 backdrop-blur-sm border border-gray-300"
                       title="OpenStreetMap'te aç"
                     >
                       OSM
@@ -241,8 +241,8 @@ const ContactPage = () => {
                   </div>
                   
                   {/* Konum bilgisi */}
-                  <div className="absolute bottom-2 left-2 bg-gray-900/90 rounded-lg px-2 py-1 text-xs text-gray-300 shadow-lg max-w-[calc(100%-4rem)] backdrop-blur-sm border border-gray-600">
-                    <div className="font-semibold text-red-400">DürümX</div>
+                  <div className="absolute bottom-2 left-2 bg-white/90 rounded-lg px-2 py-1 text-xs text-gray-600 shadow-lg max-w-[calc(100%-4rem)] backdrop-blur-sm border border-gray-300">
+                    <div className="font-semibold text-red-600">DürümX</div>
                     <div className="truncate">{location.address}</div>
                   </div>
                 </div>
@@ -251,7 +251,7 @@ const ContactPage = () => {
 
             {/* Sağ: Form */}
             <div className={`flex-1 flex flex-col justify-center transition-all duration-300 ease-out ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`} style={{ transitionDelay: '125ms' }}>
-              <div className="relative rounded-3xl bg-gradient-to-br from-gray-900/90 to-gray-800/80 backdrop-blur-xl p-8 border border-gray-700/50 shadow-2xl overflow-hidden">
+              <div className="relative rounded-3xl bg-gradient-to-br from-white/90 to-gray-50/80 backdrop-blur-xl p-8 border border-gray-200/60 shadow-xl overflow-hidden">
                 {/* Background pattern */}
                 <div className="absolute inset-0 opacity-20">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(220,38,38,0.4),transparent_50%)]" />
@@ -259,12 +259,12 @@ const ContactPage = () => {
                 </div>
                 
                 <div className="relative z-10">
-                  <h3 className="text-2xl font-bold text-white mb-2">İletişim Formu</h3>
-                  <p className="text-gray-400 text-sm mb-6">Size en kısa sürede geri dönüş yapacağız.</p>
+                  <h3 className="text-2xl font-bold text-gray-800 mb-2">İletişim Formu</h3>
+                  <p className="text-gray-500 text-sm mb-6">Size en kısa sürede geri dönüş yapacağız.</p>
                   
                   <form onSubmit={handleSubmit} className="flex flex-col gap-5" aria-label="İletişim formu">
                     {/* Ad Alanı */}
-                    <label className={`font-medium text-sm text-gray-300 transition-all duration-200 ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`} style={{ transitionDelay: '175ms' }} htmlFor="name">
+                    <label className={`font-medium text-sm text-gray-600 transition-all duration-200 ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`} style={{ transitionDelay: '175ms' }} htmlFor="name">
                       Adınız
                     </label>
                     <input 
@@ -272,14 +272,14 @@ const ContactPage = () => {
                       type="text" 
                       value={formData.name}
                       onChange={(e) => handleInputChange('name', e.target.value)}
-                      className="mt-1 p-3 border border-gray-600 bg-gray-800/50 text-gray-200 rounded-xl w-full focus:border-red-500 focus:ring-2 focus:ring-red-500/20 transition-all outline-none placeholder-gray-400 backdrop-blur-sm" 
+                      className="mt-1 p-3 border border-gray-300 bg-white/80 text-gray-700 rounded-xl w-full focus:border-red-500 focus:ring-2 focus:ring-red-500/20 transition-all outline-none placeholder-gray-500 backdrop-blur-sm" 
                       placeholder="Adınızı girin"
                       aria-required="true"
                       required
                     />
 
                     {/* E-posta Alanı */}
-                    <label className={`font-medium text-sm text-gray-300 transition-all duration-200 ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`} style={{ transitionDelay: '225ms' }} htmlFor="email">
+                    <label className={`font-medium text-sm text-gray-600 transition-all duration-200 ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`} style={{ transitionDelay: '225ms' }} htmlFor="email">
                       E-posta
                     </label>
                     <input 
@@ -287,21 +287,21 @@ const ContactPage = () => {
                       type="email" 
                       value={formData.email}
                       onChange={(e) => handleInputChange('email', e.target.value)}
-                      className="mt-1 p-3 border border-gray-600 bg-gray-800/50 text-gray-200 rounded-xl w-full focus:border-red-500 focus:ring-2 focus:ring-red-500/20 transition-all outline-none placeholder-gray-400 backdrop-blur-sm" 
+                      className="mt-1 p-3 border border-gray-300 bg-white/80 text-gray-700 rounded-xl w-full focus:border-red-500 focus:ring-2 focus:ring-red-500/20 transition-all outline-none placeholder-gray-500 backdrop-blur-sm" 
                       placeholder="E-posta adresiniz"
                       aria-required="true"
                       required
                     />
 
                     {/* Mesaj Alanı */}
-                    <label className={`font-medium text-sm text-gray-300 transition-all duration-200 ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`} style={{ transitionDelay: '275ms' }} htmlFor="message">
+                    <label className={`font-medium text-sm text-gray-600 transition-all duration-200 ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`} style={{ transitionDelay: '275ms' }} htmlFor="message">
                       Mesajınız
                     </label>
                     <textarea 
                       id="message"
                       value={formData.message}
                       onChange={(e) => handleInputChange('message', e.target.value)}
-                      className="mt-1 p-3 border border-gray-600 bg-gray-800/50 text-gray-200 rounded-xl w-full focus:border-red-500 focus:ring-2 focus:ring-red-500/20 transition-all outline-none placeholder-gray-400 backdrop-blur-sm" 
+                      className="mt-1 p-3 border border-gray-300 bg-white/80 text-gray-700 rounded-xl w-full focus:border-red-500 focus:ring-2 focus:ring-red-500/20 transition-all outline-none placeholder-gray-500 backdrop-blur-sm" 
                       rows={5} 
                       placeholder="Mesajınızı yazın"
                       aria-required="true"
@@ -310,13 +310,13 @@ const ContactPage = () => {
 
                     {/* Durum Mesajları */}
                     {submitStatus === 'success' && (
-                      <div className="bg-green-900/50 border border-green-600/50 text-green-300 px-4 py-3 rounded-xl transition-all duration-200 backdrop-blur-sm" role="status">
+                      <div className="bg-green-100/80 border border-green-300/60 text-green-700 px-4 py-3 rounded-xl transition-all duration-200 backdrop-blur-sm" role="status">
                         ✅ Mesajınız başarıyla gönderildi!
                       </div>
                     )}
                     
                     {submitStatus === 'error' && (
-                      <div className="bg-red-900/50 border border-red-600/50 text-red-300 px-4 py-3 rounded-xl transition-all duration-200 backdrop-blur-sm" role="alert">
+                      <div className="bg-red-100/80 border border-red-300/60 text-red-700 px-4 py-3 rounded-xl transition-all duration-200 backdrop-blur-sm" role="alert">
                         ❌ Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.
                       </div>
                     )}
@@ -324,7 +324,7 @@ const ContactPage = () => {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className={`px-6 py-3 rounded-xl text-white font-semibold text-base shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-red-500/40 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-200 w-full block mt-2 ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"} ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''} bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600`}
+                      className={`px-6 py-3 rounded-xl text-white font-semibold text-base shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-red-500/40 focus:ring-offset-2 focus:ring-offset-white transition-all duration-200 w-full block mt-2 ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"} ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''} bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600`}
                       style={{ transitionDelay: '325ms' }}
                     >
                       {isSubmitting ? (

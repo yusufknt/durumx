@@ -287,7 +287,7 @@ export default function RootLayout({
                 {/* Footer */}
                 <div className="relative z-10 text-center py-6 border-t border-gray-700/50 bg-gradient-to-r from-gray-800/50 via-gray-700/50 to-gray-800/50">
                   <p className="text-gray-300 text-base font-medium">
-                    Tüm siparişleriniz için teşekkür ederiz! 🍔
+                    Tüm siparişleriniz için teşekkür ederiz! 
                   </p>
                 </div>
               </div>

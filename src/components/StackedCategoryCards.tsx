@@ -19,11 +19,11 @@ const CardGlass = ({ item, r }: { item: Item; r: number }) => {
     <Link
       href={item.href}
       aria-label={`${item.name} kategorisini keşfet`}
-      className="group relative w-[180px] h-[200px] flex items-center justify-center rounded-[10px] border border-white/10 shadow-[0_25px_25px_rgba(0,0,0,0.25)] bg-white/5 backdrop-blur-md transition-all duration-500 mx-[-45px] overflow-hidden [transform:rotate(calc(var(--r)*1deg))] group-hover:[transform:rotate(0deg)] group-hover:mx-[10px]"
+      className="group relative w-[180px] h-[200px] flex items-center justify-center rounded-[10px] border border-white/10 shadow-[0_25px_25px_rgba(0,0,0,0.25)] bg-white/5 backdrop-blur-md transition-all duration-500 mx-[10px] overflow-hidden [transform:rotate(0deg)]"
       style={styleVars}
     >
-      {/* Soft red overlay on hover (behind PNG) */}
-      <div className="pointer-events-none absolute inset-0 z-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-br from-red-500/20 via-red-400/15 to-transparent" />
+      {/* Soft red overlay always visible */}
+      <div className="pointer-events-none absolute inset-0 z-0 opacity-100 transition-opacity duration-300 bg-gradient-to-br from-red-500/20 via-red-400/15 to-transparent" />
 
       {item.bgImage ? (
         <div
