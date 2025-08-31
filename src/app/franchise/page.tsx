@@ -95,33 +95,33 @@ const FranchisePage = () => {
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-red-500/5 rounded-full blur-2xl" />
       </div>
 
+      {/* Hero Section - Animasyonsuz */}
+      <div className="relative max-w-6xl w-full mx-auto px-6">
+        <div className="relative pt-20 pb-16">
+          <div className="flex flex-col items-center text-center">
+            <div className="relative mb-8">
+              <h1 className="text-5xl md:text-7xl font-black tracking-tight bg-gradient-to-r from-gray-800 via-red-600 to-red-500 bg-clip-text text-transparent">
+                Franchise
+              </h1>
+              <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 to-transparent blur-3xl" />
+            </div>
+            
+            <p className="mt-6 max-w-3xl text-lg md:text-xl text-gray-600 leading-relaxed">
+              DürümX franchise programı ile kendi işinizi kurun ve başarı hikayenizi yazın
+            </p>
+          </div>
+        </div>
+      </div>
+
       <motion.section
         initial={{ opacity: 0, y: 30 }}
         animate={show ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
-        className="relative max-w-6xl w-full mx-auto py-12 px-6"
+        className="relative max-w-6xl w-full mx-auto px-6"
       >
-        {/* Hero Section */}
-        <div className="flex flex-col items-center text-center mb-16">
-                      <div className="relative mb-8">
-              <h1 className="text-5xl md:text-7xl font-black tracking-tight bg-gradient-to-r from-gray-800 via-red-600 to-red-500 bg-clip-text text-transparent">
-                Franchise
-              </h1>
-              <div className="absolute inset-0 bg-gradient-to-r from-red-600/10 to-transparent blur-2xl" />
-            </div>
-          
-          <p className="mt-6 max-w-3xl text-lg md:text-xl text-gray-600 leading-relaxed">
-            DürümX franchise programı ile kendi işinizi kurun ve başarı hikayenizi yazın
-          </p>
-        </div>
 
         {/* DÜRÜMX FRANCHISE – Modern Split Hero */}
-        <motion.section
-          initial={{ opacity: 0, y: 15 }}
-          animate={show ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.4 }}
-          className="mb-16 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center"
-        >
+        <section className="mb-16 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           {/* Left: Headline, copy, CTAs, stats */}
           <div className="relative p-8 rounded-3xl bg-gradient-to-br from-white/90 to-gray-50/80 backdrop-blur-sm border border-gray-200/60 shadow-xl overflow-hidden">
             {/* Background pattern */}
@@ -198,12 +198,7 @@ const FranchisePage = () => {
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-white/10" aria-hidden="true" />
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={show ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="mt-4 w-full max-w-md mx-auto rounded-2xl bg-gradient-to-br from-white/90 to-gray-50/80 backdrop-blur-sm border border-gray-200/60 shadow-lg p-4"
-            >
+            <div className="mt-4 w-full max-w-md mx-auto rounded-2xl bg-gradient-to-br from-white/90 to-gray-50/80 backdrop-blur-sm border border-gray-200/60 shadow-lg p-4">
               <div className="flex items-center gap-3">
                 <div className="h-10 w-10 rounded-full bg-red-600 flex items-center justify-center text-white text-sm font-bold" aria-hidden="true">DX</div>
                 <div className="flex-1">
@@ -211,16 +206,13 @@ const FranchisePage = () => {
                   <p className="text-xs text-gray-500">Operasyon, servis ve pazarlama destekleri.</p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* Başvuru Formu - Altta Tek Parça */}
-        <motion.div
+        <div
           id="form"
-          initial={{ opacity: 0, y: 20 }}
-          animate={show ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
           className="relative rounded-3xl bg-gradient-to-br from-white/90 to-gray-50/80 backdrop-blur-sm shadow-xl border border-gray-200/60 p-8 overflow-hidden"
         >
           {/* Background pattern */}
@@ -400,14 +392,11 @@ const FranchisePage = () => {
               </form>
             )}
           </div>
-        </motion.div>
+        </div>
 
         {/* İletişim Bilgileri */}
-        <motion.div
+        <div
           id="contact-info"
-          initial={{ opacity: 0, y: 20 }}
-          animate={show ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.1 }}
           className="mt-16 relative rounded-3xl bg-gradient-to-br from-white/90 to-gray-50/80 backdrop-blur-sm p-8 border border-gray-200/60 text-center overflow-hidden"
         >
           {/* Background effects */}
@@ -432,7 +421,7 @@ const FranchisePage = () => {
               </a>
             </div>
           </div>
-        </motion.div>
+                </div>
       </motion.section>
     </div>
   );

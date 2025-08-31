@@ -1,7 +1,6 @@
 "use client";
 
 import Hero from "@/components/Hero";
-import StackedCategoryCards from "@/components/StackedCategoryCards";
 import Link from "next/link";
 import { useEffect } from "react";
 import Image from "next/image";
@@ -118,9 +117,53 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Categories Special Stack - "birbirinin içinden çıkma" etkileşimi */}
-          <div className="mb-10" data-aos="zoom-in" data-aos-delay="100">
-            <StackedCategoryCards items={KATEGORILER.slice(0, 5)} />
+          {/* Sade ve Şık Kategori Kartları */}
+          <div className="flex flex-wrap justify-center gap-4 mb-16">
+            {KATEGORILER.map((category, index) => (
+              <Link
+                key={category.name}
+                href={category.href}
+                className="group relative w-52 bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105"
+                data-aos="fade-up"
+                data-aos-delay={index * 100}
+                data-aos-duration="600"
+              >
+                {/* Card Content */}
+                <div className="p-5">
+                  {/* Image Container */}
+                  <div className="relative mb-3 overflow-hidden rounded-xl bg-gray-50">
+                    <div className="aspect-square relative overflow-hidden">
+                      <Image
+                        src={category.bgImage}
+                        alt={category.name}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        unoptimized
+                      />
+                    </div>
+                  </div>
+
+                  {/* Text Content */}
+                  <div className="text-center space-y-2">
+                    <h3 className="text-lg font-semibold text-gray-800 group-hover:text-red-600 transition-colors duration-300">
+                      {category.name}
+                    </h3>
+                    <p className="text-xs text-gray-600 leading-relaxed">
+                      {category.description}
+                    </p>
+                    
+                    {/* Simple Arrow */}
+                    <div className="flex justify-center pt-1">
+                      <div className="w-6 h-6 rounded-full bg-gray-100 group-hover:bg-red-50 flex items-center justify-center transition-colors duration-300">
+                        <svg className="w-3 h-3 text-gray-400 group-hover:text-red-500 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
 
           {/* Bottom CTA */}

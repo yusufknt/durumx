@@ -94,21 +94,23 @@ const ContactPage = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-red-400/5 rounded-full blur-3xl" />
       </div>
 
-      <section className="relative w-full py-16 px-4 flex items-center justify-center overflow-hidden">
+      <section className="relative w-full px-4 flex items-center justify-center overflow-hidden">
         <div className={`max-w-6xl w-full mx-auto transition-all duration-300 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
           {/* Hero Section */}
-          <div className="text-center mb-16">
-            <div className="relative mb-8">
-              <h1 className="text-5xl md:text-7xl font-black tracking-tight bg-gradient-to-r from-gray-800 via-red-600 to-red-500 bg-clip-text text-transparent">
-                Bize Ulaşın
-              </h1>
-              <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 to-transparent blur-3xl" />
+          <section className="relative pt-20 pb-16">
+            <div className="text-center">
+              <div className="relative mb-8">
+                <h1 className="text-5xl md:text-7xl font-black tracking-tight bg-gradient-to-r from-gray-800 via-red-600 to-red-500 bg-clip-text text-transparent">
+                  Bize Ulaşın
+                </h1>
+                <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 to-transparent blur-3xl" />
+              </div>
+              
+              <p className="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-gray-600 leading-relaxed">
+                Her türlü soru, öneri ve sipariş için bize ulaşabilirsiniz.
+              </p>
             </div>
-            
-            <p className="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-gray-600 leading-relaxed">
-              Her türlü soru, öneri ve sipariş için bize ulaşabilirsiniz.
-            </p>
-          </div>
+          </section>
 
           {/* Main Content */}
           <div className="flex flex-col lg:flex-row gap-10">

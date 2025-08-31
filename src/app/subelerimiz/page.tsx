@@ -11,9 +11,38 @@ const TileLayer = dynamic(() => import("react-leaflet").then(m => m.TileLayer), 
 const Marker = dynamic(() => import("react-leaflet").then(m => m.Marker), { ssr: false });
 const Popup = dynamic(() => import("react-leaflet").then(m => m.Popup), { ssr: false });
 
+interface RevealState {
+  [key: string]: boolean;
+}
+
+interface RefMap {
+  [key: string]: HTMLElement | null;
+}
+
+interface ShinyButtonProps {
+  href: string;
+  label: string;
+  ariaLabel: string;
+}
+
+interface Branch {
+  id: string;
+  name: string;
+  city: string;
+  district: string;
+  address: string;
+  phone: string;
+  phone2?: string;
+  services: Array<"paket" | "gel-al" | "masa">;
+  hours: string;
+  mapsUrl: string;
+  lat: number;
+  lng: number;
+}
+
 const useRevealOnScroll = () => {
-  const [revealed, setRevealed] = useState<Record<string, boolean>>({});
-  const refs = useRef<Record<string, HTMLElement | null>>({});
+  const [revealed, setRevealed] = useState<RevealState>({});
+  const refs = useRef<RefMap>({});
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -43,33 +72,18 @@ const useRevealOnScroll = () => {
   return { revealed, register } as const;
 };
 
-type Branch = {
-  id: string;
-  name: string;
-  city: string;
-  district: string;
-  address: string;
-  phone: string;
-  phone2?: string;
-  services: Array<"paket" | "gel-al" | "masa">;
-  hours: string;
-  mapsUrl: string;
-  lat: number;
-  lng: number;
-};
-
 const ShinyButton: React.FC<{ href: string; label: string; ariaLabel: string }> = ({ href, label, ariaLabel }) => (
   <a
     href={href}
     aria-label={ariaLabel}
     tabIndex={0}
-    className="group relative inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-red-600 via-red-500 to-red-600 px-6 py-3 text-white text-sm font-bold shadow-2xl outline-none transition-all duration-300 hover:scale-105 hover:shadow-red-500/25 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-400 focus-visible:ring-offset-white overflow-hidden"
+    className="group relative inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-red-600 via-red-500 to-red-600 px-6 py-3 text-white text-sm font-bold shadow-lg outline-none transition-all duration-200 hover:scale-105 hover:shadow-xl hover:shadow-red-500/25 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-400 focus-visible:ring-offset-white overflow-hidden"
   >
     <span className="relative z-10">{label}</span>
-    <svg fill="currentColor" viewBox="0 0 24 24" className="relative z-10 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1">
+    <svg fill="currentColor" viewBox="0 0 24 24" className="relative z-10 h-5 w-5 transition-transform duration-200 group-hover:translate-x-1">
       <path clipRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z" fillRule="evenodd" />
     </svg>
-    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500" />
   </a>
 );
 
@@ -79,7 +93,7 @@ const BranchCard: React.FC<{ branch: Branch }> = ({ branch }) => {
       role="article"
       aria-label={`${branch.name} şubesi kartı`}
       tabIndex={0}
-      className="group relative bg-gradient-to-br from-white/90 to-gray-50/80 border border-gray-200/60 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-200 hover:border-gray-300/60"
+      className="group relative bg-gradient-to-br from-white/95 to-gray-50/90 border border-gray-200/40 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-200 hover:border-gray-300/60"
     >
       <div className="flex items-start justify-between gap-3 mb-4">
         <h3 className="text-xl font-bold text-gray-800">{branch.name}</h3>
@@ -196,11 +210,10 @@ const InteractiveBranchesMap: React.FC<{ branches: Branch[] }> = ({ branches }) 
           return;
         }
 
-        // Varsayılan: Van'a odaklan
-        const vanBranches = branches.filter((b) => b.city === "Van");
-        if (vanBranches.length > 0) {
-          const vanBounds = leaflet.latLngBounds(vanBranches.map((b) => [b.lat, b.lng]) as [number, number][]);
-          map.fitBounds(vanBounds, { padding: [24, 24], maxZoom: 13 });
+        // Varsayılan: Tüm şubelere odaklan
+        if (branches.length > 0) {
+          const allBounds = leaflet.latLngBounds(branches.map((b) => [b.lat, b.lng]) as [number, number][]);
+          map.fitBounds(allBounds, { padding: [24, 24], maxZoom: 12 });
           return;
         }
 
@@ -210,8 +223,8 @@ const InteractiveBranchesMap: React.FC<{ branches: Branch[] }> = ({ branches }) 
         map.fitBounds(nextBounds, { padding: [24, 24], maxZoom: 14 });
       } catch (error) {
         console.error("Map bounds ayarlanırken hata:", error);
-        // Fallback: merkez koordinatları
-        map.setView([38.495, 43.38], 12);
+        // Fallback: merkez koordinatları (Van-Bitlis arası)
+        map.setView([38.45, 42.8], 10);
       }
     }, [map, branches]);
     
@@ -232,10 +245,17 @@ const InteractiveBranchesMap: React.FC<{ branches: Branch[] }> = ({ branches }) 
 
   if (!leaflet) {
     return (
-      <div className="h-full w-full flex items-center justify-center bg-gray-100 rounded-lg">
+      <div className="h-full w-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg">
         <div className="text-center text-gray-600">
-          <div className="text-lg font-semibold mb-2">Harita Yükleniyor...</div>
-          <div className="text-sm">Lütfen bekleyin</div>
+          <div className="animate-pulse">
+            <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center">
+              <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+              </svg>
+            </div>
+          </div>
+          <div className="text-lg font-semibold mb-2 text-gray-700">Harita Yükleniyor...</div>
+          <div className="text-sm text-gray-500">Şubelerimiz haritaya yerleştiriliyor</div>
         </div>
       </div>
     );
@@ -246,8 +266,8 @@ const InteractiveBranchesMap: React.FC<{ branches: Branch[] }> = ({ branches }) 
       <MapContainer
         key={mapKey}
         className="h-full w-full"
-        center={[38.495, 43.38]}
-        zoom={12}
+        center={[38.45, 42.8]}
+        zoom={10}
         scrollWheelZoom={false}
         attributionControl={false}
         zoomControl={true}
@@ -265,15 +285,31 @@ const InteractiveBranchesMap: React.FC<{ branches: Branch[] }> = ({ branches }) 
             icon={simpleIcon}
           >
             <Popup>
-              <div className="space-y-1 p-2">
-                <div className="font-bold text-sm text-gray-900">{b.name}</div>
-                <div className="text-xs text-gray-600">{b.address}</div>
-                <a 
-                  href={`tel:${b.phone}`} 
-                  className="text-xs text-red-600 font-semibold hover:text-red-700 transition-colors"
-                >
-                  Ara: {b.phone}
-                </a>
+              <div className="space-y-2 p-3 min-w-[200px]">
+                <div className="font-bold text-sm text-gray-900 border-b border-gray-200 pb-2">{b.name}</div>
+                <div className="text-xs text-gray-600 mb-2">{b.address}</div>
+                <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
+                  <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                  </svg>
+                  {b.hours}
+                </div>
+                <div className="flex gap-2">
+                  <a 
+                    href={`tel:${b.phone}`} 
+                    className="text-xs text-red-600 font-semibold hover:text-red-700 transition-colors bg-red-50 px-2 py-1 rounded"
+                  >
+                    📞 {b.phone}
+                  </a>
+                  <a 
+                    href={b.mapsUrl} 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-blue-600 font-semibold hover:text-blue-700 transition-colors bg-blue-50 px-2 py-1 rounded"
+                  >
+                    🗺️ Harita
+                  </a>
+                </div>
               </div>
             </Popup>
           </Marker>
@@ -298,9 +334,9 @@ const SubelerimizPage = () => {
         phone2: "0432 214 15 55",
         services: ["paket", "gel-al", "masa"],
         hours: "10:00 - 00:00",
-        mapsUrl: "https://maps.google.com",
-        lat: 38.495,
-        lng: 43.38,
+        mapsUrl: "https://maps.google.com/maps?q=38.492,43.383&z=17&t=m",
+        lat: 38.492,
+        lng: 43.383,
       },
       {
         id: "dx-bitlis-tatvan",
@@ -312,9 +348,9 @@ const SubelerimizPage = () => {
         phone2: "0434 827 0077",
         services: ["paket", "gel-al", "masa"],
         hours: "10:00 - 00:00",
-        mapsUrl: "https://maps.google.com",
-        lat: 38.5,
-        lng: 42.3,
+        mapsUrl: "https://maps.google.com/maps?q=38.502,42.298&z=17&t=m",
+        lat: 38.502,
+        lng: 42.298,
       },
       {
         id: "dx-van-caldiran",
@@ -325,9 +361,9 @@ const SubelerimizPage = () => {
         phone: "0546 181 15 64",
         services: ["paket", "gel-al", "masa"],
         hours: "10:00 - 00:00",
-        mapsUrl: "https://maps.google.com",
-        lat: 38.495,
-        lng: 43.38,
+        mapsUrl: "https://maps.google.com/maps?q=39.148,43.652&z=17&t=m",
+        lat: 39.148,
+        lng: 43.652,
       },
       {
         id: "dx-bitlis-merkez",
@@ -338,9 +374,9 @@ const SubelerimizPage = () => {
         phone: "0434 228 80 13",
         services: ["paket", "gel-al", "masa"],
         hours: "10:00 - 00:00",
-        mapsUrl: "https://maps.google.com",
-        lat: 38.4,
-        lng: 42.1,
+        mapsUrl: "https://maps.google.com/maps?q=38.401,42.108&z=17&t=m",
+        lat: 38.401,
+        lng: 42.108,
       },
       {
         id: "dx-van-edremit",
@@ -352,9 +388,9 @@ const SubelerimizPage = () => {
         
         services: ["paket", "gel-al", "masa"],
         hours: "10:00 - 00:00",
-        mapsUrl: "https://maps.google.com",
-        lat: 38.4525,
-        lng: 43.33,
+        mapsUrl: "https://maps.google.com/maps?q=38.452,43.328&z=17&t=m",
+        lat: 38.452,
+        lng: 43.328,
       },
 
       {
@@ -366,9 +402,9 @@ const SubelerimizPage = () => {
         phone: "0543 866 79 60",
         services: ["paket", "gel-al", "masa"],
         hours: "10:00 - 00:00",
-        mapsUrl: "https://maps.google.com",
-        lat: 38.4,
-        lng: 42.1,
+        mapsUrl: "https://maps.google.com/maps?q=38.408,42.115&z=17&t=m",
+        lat: 38.408,
+        lng: 42.115,
       },
       {
         id: "dx-hakkari-cukurca",
@@ -379,9 +415,9 @@ const SubelerimizPage = () => {
         phone: "0532 171 24 98",
         services: ["paket", "gel-al", "masa"],
         hours: "10:00 - 00:00",
-        mapsUrl: "https://maps.google.com",
-        lat: 37.2,
-        lng: 43.6,
+        mapsUrl: "https://maps.google.com/maps?q=37.198,43.602&z=17&t=m",
+        lat: 37.198,
+        lng: 43.602,
       },
       {
         id: "dx-van-tusba-kalecik",
@@ -393,9 +429,9 @@ const SubelerimizPage = () => {
       
         services: ["paket", "gel-al", "masa"],
         hours: "10:00 - 00:00",
-        mapsUrl: "https://maps.google.com",
-        lat: 38.495,
-        lng: 43.38,
+        mapsUrl: "https://maps.google.com/maps?q=38.518,43.418&z=17&t=m",
+        lat: 38.518,
+        lng: 43.418,
       },
 
       {
@@ -407,22 +443,22 @@ const SubelerimizPage = () => {
         phone: "0531 665 78 68",
         services: ["paket", "gel-al", "masa"],
         hours: "10:00 - 00:00",
-        mapsUrl: "https://maps.google.com",
-        lat: 38.495,
-        lng: 43.38,
+        mapsUrl: "https://maps.google.com/maps?q=38.322,43.278&z=17&t=m",
+        lat: 38.322,
+        lng: 43.278,
       },
       {
         id: "dx-van-organize",
         name: "Organize Dürümx Şube",
-        city: "Van",
+        city: "Bitlis",
         district: "-",
         address: "Şemsibey Mahallesi Osb Kavşağı Anadolu Plaza No:5 Tuşba/Van",
         phone: "0432 504 15 55",
         services: ["paket", "gel-al", "masa"],
         hours: "10:00 - 00:00",
-        mapsUrl: "https://maps.google.com",
-        lat: 38.495,
-        lng: 43.38,
+        mapsUrl: "https://maps.google.com/maps?q=38.478,43.348&z=17&t=m",
+        lat: 38.478,
+        lng: 43.348,
       },
       {
         id: "dx-van-iskele",
@@ -433,9 +469,9 @@ const SubelerimizPage = () => {
         phone: "0553 523 65 25",
         services: ["paket", "gel-al", "masa"],
         hours: "10:00 - 00:00",
-        mapsUrl: "https://maps.google.com",
-        lat: 38.495,
-        lng: 43.38,
+        mapsUrl: "https://maps.google.com/maps?q=38.508,43.408&z=17&t=m",
+        lat: 38.508,
+        lng: 43.408,
       },
       {
         id: "dx-hakkari-derecik",
@@ -446,9 +482,9 @@ const SubelerimizPage = () => {
         phone: "0536 516 31 31",
         services: ["paket", "gel-al", "masa"],
         hours: "10:00 - 00:00",
-        mapsUrl: "https://maps.google.com",
-        lat: 38.495,
-        lng: 43.38,
+        mapsUrl: "https://maps.google.com/maps?q=37.248,44.618&z=17&t=m",
+        lat: 37.248,
+        lng: 44.618,
       },
     ],
     []
@@ -458,9 +494,9 @@ const SubelerimizPage = () => {
     <div className="min-h-screen w-full bg-gradient-to-br from-gray-50 via-white to-gray-100 antialiased relative overflow-hidden">
       {/* Background Effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-red-600/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-red-500/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-red-400/5 rounded-full blur-3xl" />
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-red-600/5 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-red-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-red-400/3 rounded-full blur-3xl" />
       </div>
 
       {/* Hero Section */}
@@ -471,7 +507,7 @@ const SubelerimizPage = () => {
               <h1 className="text-5xl md:text-7xl font-black tracking-tight bg-gradient-to-r from-gray-800 via-red-600 to-red-500 bg-clip-text text-transparent">
                 Şubelerimiz
               </h1>
-              <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 to-transparent blur-3xl" />
+              <div className="absolute inset-0 bg-gradient-to-r from-red-600/10 to-transparent blur-3xl" />
             </div>
             
             <p className="mt-6 max-w-3xl text-lg md:text-xl text-gray-600 leading-relaxed">
@@ -515,14 +551,14 @@ const SubelerimizPage = () => {
         <div className="max-w-6xl mx-auto px-6 py-8">
           <div className="text-center mb-6">
             <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-gray-800 to-red-600 bg-clip-text text-transparent mb-4">
-              İnteraktif Harita
+              İnteraktif Şube Haritası
             </h2>
-            <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-              Şubelerimizin konumlarını haritada görüntüleyin
+            <p className="text-gray-500 text-lg max-w-3xl mx-auto">
+              Tüm DürümX şubelerimizin konumlarını interaktif haritada keşfedin. Her işaretçiye tıklayarak şube bilgilerini görüntüleyebilir, telefon ile arayabilir veya haritada açabilirsiniz.
             </p>
           </div>
           
-          <div className="relative rounded-3xl overflow-hidden border border-gray-200/60 shadow-xl bg-gradient-to-br from-white/90 to-gray-50/80 backdrop-blur-xl">
+          <div className="relative rounded-3xl overflow-hidden border border-gray-200/40 shadow-lg bg-gradient-to-br from-white/95 to-gray-50/90">
             <div className="aspect-[1/1] md:aspect-[4/3] lg:aspect-[16/9] w-full">
               <InteractiveBranchesMap branches={allBranches} />
             </div>
@@ -539,13 +575,7 @@ const SubelerimizPage = () => {
         }`}
       >
         <div className="max-w-6xl mx-auto px-6 py-16">
-          <div className="relative rounded-3xl bg-gradient-to-br from-white/90 to-gray-50/80 backdrop-blur-xl border border-gray-200/60 p-8 md:p-12 shadow-xl overflow-hidden">
-            {/* Background effects */}
-            <div className="absolute inset-0 opacity-20">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(220,38,38,0.4),transparent_50%)]" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(220,38,38,0.3),transparent_50%)]" />
-            </div>
-            
+          <div className="relative rounded-3xl bg-gradient-to-br from-white/95 to-gray-50/90 border border-gray-200/40 p-8 md:p-12 shadow-lg overflow-hidden">
             <div className="relative z-10 text-center">
               <h3 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-gray-800 to-red-600 bg-clip-text text-transparent">
                 Yeni Şube Öneriniz Var mı?
@@ -567,5 +597,4 @@ const SubelerimizPage = () => {
 };
 
 export default SubelerimizPage;
-
 
