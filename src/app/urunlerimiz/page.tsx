@@ -81,15 +81,7 @@ const MENU_ITEMS: MenuItem[] = [
     category: "Dönerler",
     ingredients: ["Dana eti", "Tavuk eti", "Zurna ekmeği", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
   },
-  {
-    id: 8,
-    name: "Zurna Köfte Döner",
-    desc: "Ev yapımı köfte, taze sebzeler ve özel soslar ile hazırlanmış, zurna şeklinde sarılmış döner.",
-    price: "105₺",
-    img: "/categories/menu/et-durum.png",
-    category: "Dönerler",
-    ingredients: ["Ev yapımı köfte", "Zurna ekmeği", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
-  },
+
 
   // SERVİSLER KATEGORİSİ
   {
@@ -291,11 +283,11 @@ const UrunlerimizPage = () => {
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-red-400/5 rounded-full blur-3xl" />
         </div>
 
-        <section className={`max-w-7xl w-full mx-auto py-12 px-4 transition-all duration-300 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+        <section className={`max-w-7xl w-full mx-auto py-8 md:py-12 px-4 transition-all duration-300 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
           {/* Hero Section */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-12 md:mb-16">
             <div className="relative mb-8">
-              <h1 className="text-4xl md:text-6xl font-black tracking-tight bg-gradient-to-r from-gray-800 via-red-600 to-red-500 bg-clip-text text-transparent leading-tight turkish-text-fix">
+              <h1 className="text-3xl md:text-6xl font-black tracking-tight bg-gradient-to-r from-gray-800 via-red-600 to-red-500 bg-clip-text text-transparent leading-tight turkish-text-fix">
                 Ürünlerimiz
               </h1>
               <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 to-transparent blur-3xl" />
@@ -303,12 +295,12 @@ const UrunlerimizPage = () => {
           </div>
 
           {/* Kategori Grid Layout */}
-          <div className={`grid grid-cols-1 lg:grid-cols-9 gap-8 transition-all duration-300 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ transitionDelay: "100ms" }}>
+          <div className={`grid grid-cols-1 lg:grid-cols-9 gap-6 md:gap-8 transition-all duration-300 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ transitionDelay: "100ms" }}>
             
             {/* Sol - Dönerler (biraz daha geniş) */}
             <div className="lg:col-span-2 lg:col-start-2">
               <div 
-                className="group relative h-96 lg:h-[500px] rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 ease-out hover:shadow-xl"
+                className="group relative h-80 md:h-96 lg:h-[500px] rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 ease-out hover:shadow-xl"
                 onClick={() => handleCategoryClick("Dönerler")}
                 tabIndex={0}
                 role="button"
@@ -324,7 +316,7 @@ const UrunlerimizPage = () => {
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-300 ease-out" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center text-white">
-                    <h3 className="text-xl lg:text-2xl font-bold mb-2">Dönerler</h3>
+                    <h3 className="text-lg md:text-xl lg:text-2xl font-bold mb-2">Dönerler</h3>
                     <p className="text-sm opacity-90">Geleneksel Lezzet</p>
                   </div>
                 </div>
@@ -332,10 +324,10 @@ const UrunlerimizPage = () => {
             </div>
 
             {/* Orta - Dikey 3 Kategori (daha geniş) */}
-            <div className="lg:col-span-3 space-y-9">
+            <div className="lg:col-span-3 space-y-6 md:space-y-9">
               {/* Servisler */}
               <div 
-                className="group relative h-32 md:h-36 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 ease-out hover:shadow-xl"
+                className="group relative h-28 md:h-36 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 ease-out hover:shadow-xl"
                 onClick={() => handleCategoryClick("Servisler")}
                 tabIndex={0}
                 role="button"
@@ -352,7 +344,7 @@ const UrunlerimizPage = () => {
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-300 ease-out" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center text-white">
-                    <h3 className="text-xl lg:text-2xl font-bold mb-2">Servisler</h3>
+                    <h3 className="text-lg md:text-xl lg:text-2xl font-bold mb-2">Servisler</h3>
                     <p className="text-sm opacity-90">Doyurucu Porsiyonlar</p>
                   </div>
                 </div>
@@ -360,7 +352,7 @@ const UrunlerimizPage = () => {
 
               {/* Burgerler */}
               <div 
-                className="group relative h-32 md:h-36 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 ease-out hover:shadow-xl"
+                className="group relative h-28 md:h-36 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 ease-out hover:shadow-xl"
                 onClick={() => handleCategoryClick("Burgerler")}
                 tabIndex={0}
                 role="button"
@@ -377,7 +369,7 @@ const UrunlerimizPage = () => {
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-300 ease-out" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center text-white">
-                    <h3 className="text-xl lg:text-2xl font-bold mb-2">Burgerler</h3>
+                    <h3 className="text-lg md:text-xl lg:text-2xl font-bold mb-2">Burgerler</h3>
                     <p className="text-sm opacity-90">Çıtır Lezzetler</p>
                   </div>
                 </div>
@@ -385,7 +377,7 @@ const UrunlerimizPage = () => {
 
               {/* İçecekler */}
               <div 
-                className="group relative h-32 md:h-36 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 ease-out hover:shadow-xl"
+                className="group relative h-28 md:h-36 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 ease-out hover:shadow-xl"
                 onClick={() => handleCategoryClick("İçecekler")}
                 tabIndex={0}
                 role="button"
@@ -402,7 +394,7 @@ const UrunlerimizPage = () => {
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-300 ease-out" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center text-white">
-                    <h3 className="text-xl lg:text-2xl font-bold mb-2">İçecekler</h3>
+                    <h3 className="text-lg md:text-xl lg:text-2xl font-bold mb-2">İçecekler</h3>
                     <p className="text-sm opacity-90">Serinletici İçecekler</p>
                   </div>
                 </div>
@@ -412,7 +404,7 @@ const UrunlerimizPage = () => {
             {/* Sağ - Atıştırmalıklar (biraz daha geniş) */}
             <div className="lg:col-span-2">
               <div 
-                className="group relative h-96 lg:h-[500px] rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 ease-out hover:shadow-xl"
+                className="group relative h-80 md:h-96 lg:h-[500px] rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 ease-out hover:shadow-xl"
                 onClick={() => handleCategoryClick("Atıştırmalıklar")}
                 tabIndex={0}
                 role="button"
@@ -428,7 +420,7 @@ const UrunlerimizPage = () => {
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-300 ease-out" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center text-white">
-                    <h3 className="text-xl lg:text-2xl font-bold mb-2">Atıştırmalıklar</h3>
+                    <h3 className="text-lg md:text-xl lg:text-2xl font-bold mb-2">Atıştırmalıklar</h3>
                     <p className="text-sm opacity-90">Çıtır Lezzetler</p>
                   </div>
                 </div>
@@ -450,21 +442,21 @@ const UrunlerimizPage = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-red-400/5 rounded-full blur-3xl" />
       </div>
 
-      <section className={`max-w-7xl w-full mx-auto py-12 px-4 transition-all duration-300 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+      <section className={`max-w-7xl w-full mx-auto py-8 md:py-12 px-4 transition-all duration-300 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
         {/* Header with Back Button */}
-        <div className="flex items-center justify-between mb-12">
+        <div className="flex items-center justify-between mb-8 md:mb-12">
           <div>
-            <h1 className="text-4xl md:text-6xl font-black tracking-tight bg-gradient-to-r from-gray-800 via-red-600 to-red-500 bg-clip-text text-transparent">
+            <h1 className="text-3xl md:text-6xl font-black tracking-tight bg-gradient-to-r from-gray-800 via-red-600 to-red-500 bg-clip-text text-transparent">
               {selectedCategory}
             </h1>
-            <p className="mt-2 text-lg text-gray-600">
+            <p className="mt-2 text-base md:text-lg text-gray-600">
               {filteredItems.length} ürün bulundu
             </p>
           </div>
           
           <button
             onClick={handleBackToCategories}
-            className="px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white rounded-full font-medium hover:from-red-700 hover:to-red-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+            className="px-4 md:px-6 py-2.5 md:py-3 bg-gradient-to-r from-red-600 to-red-500 text-white rounded-full font-medium hover:from-red-700 hover:to-red-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm md:text-base"
             tabIndex={0}
             aria-label="Kategorilere geri dön"
           >
@@ -473,7 +465,7 @@ const UrunlerimizPage = () => {
         </div>
 
         {/* Ürün Grid */}
-        <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 transition-all duration-300 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ transitionDelay: "200ms" }}>
+        <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 transition-all duration-300 ease-out ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ transitionDelay: "200ms" }}>
           {filteredItems.map((item, i) => (
             <div
               key={item.id}
@@ -486,7 +478,7 @@ const UrunlerimizPage = () => {
               onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleImgClick(item.img); }}
             >
               {/* Photo area container */}
-              <div className="relative h-60 sm:h-64 md:h-72">
+              <div className="relative h-56 sm:h-60 md:h-72">
                 {/* Background image layer (blurs on hover) */}
                 <div
                   className="absolute inset-0 bg-center bg-no-repeat bg-contain transition-all duration-300 ease-out group-hover:blur-[3px]"
@@ -504,9 +496,9 @@ const UrunlerimizPage = () => {
                 </div>
               </div>
               {/* Name bar over photo */}
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 p-3 z-[3]">
-                <div className="w-full rounded-xl bg-white/90 backdrop-blur-md ring-1 ring-gray-200/60 shadow px-4 py-3 flex items-center justify-center">
-                  <span className="truncate text-[14px] sm:text-[15px] font-semibold text-gray-800">{item.name}</span>
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 p-2 md:p-3 z-[3]">
+                <div className="w-full rounded-xl bg-white/90 backdrop-blur-md ring-1 ring-gray-200/60 shadow px-3 md:px-4 py-2 md:py-3 flex items-center justify-center">
+                  <span className="truncate text-xs md:text-[15px] font-semibold text-gray-800">{item.name}</span>
                 </div>
               </div>
             </div>
@@ -515,22 +507,22 @@ const UrunlerimizPage = () => {
 
         {/* Lavaş Seçenekleri - Sadece Dönerler kategorisinde göster */}
         {selectedCategory === "Dönerler" && (
-          <div className="mt-12">
-            <div className="text-center mb-6">
-              <h2 className="text-xl md:text-2xl font-semibold text-gray-700 mb-2">Lavaş Seçenekleri</h2>
+          <div className="mt-8 md:mt-12">
+            <div className="text-center mb-4 md:mb-6">
+              <h2 className="text-lg md:text-2xl font-semibold text-gray-700 mb-2">Lavaş Seçenekleri</h2>
             </div>
             
-            <div className="flex justify-center gap-4 max-w-2xl mx-auto">
-              <div className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg">
-                <span className="text-sm font-medium text-gray-700">Tek Lavaş</span>
+            <div className="flex justify-center gap-3 md:gap-4 max-w-2xl mx-auto">
+              <div className="flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 bg-white border border-gray-300 rounded-lg">
+                <span className="text-xs md:text-sm font-medium text-gray-700">Tek Lavaş</span>
               </div>
               
-              <div className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg">
-                <span className="text-sm font-medium text-gray-700">Çift Lavaş</span>
+              <div className="flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 bg-white border border-gray-300 rounded-lg">
+                <span className="text-xs md:text-sm font-medium text-gray-700">Çift Lavaş</span>
               </div>
               
-              <div className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg">
-                <span className="text-sm font-medium text-gray-700">Üç Lavaş</span>
+              <div className="flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 bg-white border border-gray-300 rounded-lg">
+                <span className="text-xs md:text-sm font-medium text-gray-700">Üç Lavaş</span>
               </div>
             </div>
           </div>
@@ -575,10 +567,10 @@ const UrunlerimizPage = () => {
                   </div>
                   
                   {/* Sağ - Ürün Bilgileri */}
-                  <div className="p-8 lg:p-10 flex flex-col justify-center">
+                  <div className="p-6 md:p-8 lg:p-10 flex flex-col justify-center">
                     {/* Ürün Adı ve Kategori */}
-                    <div className="mb-6">
-                      <h2 className="text-3xl lg:text-4xl font-black text-gray-800 mb-3">
+                    <div className="mb-4 md:mb-6">
+                      <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-gray-800 mb-3">
                         {filteredItems.find(item => item.img === modalImg)?.name || "Ürün"}
                       </h2>
                       <div className="flex items-center">
@@ -589,24 +581,24 @@ const UrunlerimizPage = () => {
                     </div>
                     
                     {/* Ürün Açıklaması */}
-                    <div className="mb-8">
-                      <h3 className="text-lg font-semibold text-gray-700 mb-3">Açıklama</h3>
-                      <p className="text-gray-600 leading-relaxed">
+                    <div className="mb-6 md:mb-8">
+                      <h3 className="text-base md:text-lg font-semibold text-gray-700 mb-2 md:mb-3">Açıklama</h3>
+                      <p className="text-sm md:text-base text-gray-600 leading-relaxed">
                         {filteredItems.find(item => item.img === modalImg)?.desc || ""}
                       </p>
                     </div>
                     
                     {/* İçerik Listesi */}
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-700 mb-4">İçindekiler</h3>
-                      <div className="grid grid-cols-2 gap-3">
+                      <h3 className="text-base md:text-lg font-semibold text-gray-700 mb-3 md:mb-4">İçindekiler</h3>
+                      <div className="grid grid-cols-2 gap-2 md:gap-3">
                         {filteredItems.find(item => item.img === modalImg)?.ingredients?.map((ingredient, index) => (
                           <div 
                             key={index}
-                            className="flex items-center gap-2 p-3 bg-white/60 rounded-xl border border-gray-200/40 hover:bg-white/80 transition-all duration-200"
+                            className="flex items-center gap-1.5 md:gap-2 p-2 md:p-3 bg-white/60 rounded-xl border border-gray-200/40 hover:bg-white/80 transition-all duration-200"
                           >
-                            <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                            <span className="text-sm font-medium text-gray-700">{ingredient}</span>
+                            <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-red-500 rounded-full"></div>
+                            <span className="text-xs md:text-sm font-medium text-gray-700">{ingredient}</span>
                           </div>
                         ))}
                       </div>

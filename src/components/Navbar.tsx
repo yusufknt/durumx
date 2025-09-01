@@ -45,7 +45,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`sticky top-0 z-50 w-full shadow-xl flex items-center justify-between px-6 py-2 border-b border-white/30 rounded-b-2xl ${mobileMenuOpen ? 'bg-white' : 'bg-white/20 backdrop-blur-lg md:backdrop-blur-lg'}`}>
+    <nav className={`sticky top-0 z-50 w-full shadow-xl flex items-center justify-between px-6 py-4 md:py-2 border-b border-white/30 rounded-b-2xl ${mobileMenuOpen ? 'bg-white' : 'bg-white/20 backdrop-blur-lg md:backdrop-blur-lg'}`}>
       {/* Sol taraf */}
       <div className="hidden md:flex gap-8 items-center">
         {LEFT_NAV_LINKS.map((link) => (
@@ -72,24 +72,24 @@ const Navbar = () => {
       </div>
 
       {/* Logo */}
-      <div className="flex items-center justify-center flex-1 relative">
+      <div className="flex items-center justify-start flex-1 relative md:justify-center md:flex-1">
         <Link href="/" aria-label="DürümX Anasayfa" className="group relative">
           {/* Soft transparent frame extending below navbar */}
-          <div className="relative bg-white/95 backdrop-blur-lg rounded-2xl p-4 shadow-2xl border border-white/60 transform transition-all duration-300 group-hover:scale-105 group-hover:-translate-y-1 group-hover:bg-white group-hover:shadow-3xl" style={{ marginBottom: '-35px', zIndex: 60 }}>
+          <div className={`relative bg-white/95 backdrop-blur-lg rounded-2xl p-3 shadow-2xl border border-white/60 transform transition-all duration-300 group-hover:scale-105 group-hover:-translate-y-1 group-hover:bg-white group-hover:shadow-3xl md:p-4 md:rounded-2xl ${mobileMenuOpen ? 'opacity-50 blur-sm' : ''}`} style={{ marginBottom: '-35px', zIndex: 60 }}>
             {/* Main logo image */}
             <Image 
               src="/logo.png" 
               alt="DürümX Logo" 
               width={48} 
               height={48} 
-              className="h-12 w-auto object-contain relative z-10" 
+              className="h-8 w-auto object-contain relative z-10 md:h-12" 
               unoptimized 
               priority
               quality={75} 
             />
             
             {/* Bottom protruding shadow effect */}
-            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-2 bg-gradient-to-r from-red-500/30 via-red-400/20 to-transparent rounded-full blur-sm"></div>
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-2 bg-gradient-to-r from-red-500/30 via-red-400/20 to-transparent rounded-full blur-sm md:w-16"></div>
           </div>
         </Link>
       </div>
@@ -147,9 +147,24 @@ const Navbar = () => {
       {mobileMenuOpen && (
         <div ref={mobileMenuRef} className="fixed inset-0 z-50 flex justify-end md:hidden bg-black/30" onClick={() => setMobileMenuOpen(false)}>
           <div className="w-64 bg-white h-full shadow-2xl flex flex-col gap-2 p-6 animate-slide-in-right" onClick={e => e.stopPropagation()}>
-            <button className="self-end mb-4 p-2 rounded" onClick={() => setMobileMenuOpen(false)}>
-              <FaTimes size={24} />
-            </button>
+            {/* Mobile menu header with logo and close button */}
+            <div className="flex items-center justify-between mb-6">
+              <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center">
+                <Image 
+                  src="/logo.png" 
+                  alt="DürümX Logo" 
+                  width={32} 
+                  height={32} 
+                  className="h-8 w-auto object-contain" 
+                  unoptimized 
+                  priority
+                  quality={75} 
+                />
+              </Link>
+              <button className="p-2 rounded" onClick={() => setMobileMenuOpen(false)}>
+                <FaTimes size={24} />
+              </button>
+            </div>
             {[...LEFT_NAV_LINKS, ...RIGHT_NAV_LINKS].map((link) => (
               <Link 
                 key={link.href} 
@@ -157,6 +172,7 @@ const Navbar = () => {
                 className={`block text-[#22223b] font-semibold text-lg px-4 py-3 rounded-xl hover:bg-[#f7f7fa] transition-all duration-200 ${
                   isActiveLink(link.href) ? 'bg-[#ff1a1a]/10 text-[#ff1a1a] border-l-4 border-[#ff1a1a]' : ''
                 }`}
+                onClick={() => setMobileMenuOpen(false)}
               >
                 {link.label}
               </Link>

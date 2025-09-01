@@ -19,11 +19,6 @@ interface RefMap {
   [key: string]: HTMLElement | null;
 }
 
-interface ShinyButtonProps {
-  href: string;
-  label: string;
-  ariaLabel: string;
-}
 
 interface Branch {
   id: string;
@@ -93,17 +88,17 @@ const BranchCard: React.FC<{ branch: Branch }> = ({ branch }) => {
       role="article"
       aria-label={`${branch.name} şubesi kartı`}
       tabIndex={0}
-      className="group relative bg-gradient-to-br from-white/95 to-gray-50/90 border border-gray-200/40 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-200 hover:border-gray-300/60"
+      className="group relative bg-gradient-to-br from-white/95 to-gray-50/90 border border-gray-200/40 rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-xl transition-all duration-200 hover:border-gray-300/60"
     >
       <div className="flex items-start justify-between gap-3 mb-4">
-        <h3 className="text-xl font-bold text-gray-800">{branch.name}</h3>
+        <h3 className="text-lg md:text-xl font-bold text-gray-800">{branch.name}</h3>
         <span className="rounded-full bg-green-600 px-3 py-1 text-xs font-bold text-white">Açık</span>
       </div>
       
-      <p className="text-gray-600 mb-4 leading-relaxed">{branch.address}</p>
+      <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-4 leading-relaxed">{branch.address}</p>
       
-      <div className="flex flex-col gap-3 mb-4">
-        <div className="flex items-center gap-2 text-sm text-gray-500">
+      <div className="flex flex-col gap-2 md:gap-3 mb-3 md:mb-4">
+        <div className="flex items-center gap-2 text-xs md:text-sm text-gray-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -120,14 +115,14 @@ const BranchCard: React.FC<{ branch: Branch }> = ({ branch }) => {
         </div>
       </div>
       
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-wrap gap-2 md:gap-3">
         <a
           href={branch.mapsUrl}
           aria-label={`${branch.name} haritada aç`}
           tabIndex={0}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center rounded-full border border-gray-300 bg-gray-100 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-200 hover:text-gray-800 transition-colors duration-200"
+          className="inline-flex items-center justify-center rounded-full border border-gray-300 bg-gray-100 px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm font-semibold text-gray-700 hover:bg-gray-200 hover:text-gray-800 transition-colors duration-200"
         >
           Haritada Gör
         </a>
@@ -135,7 +130,7 @@ const BranchCard: React.FC<{ branch: Branch }> = ({ branch }) => {
           href={`tel:${branch.phone}`}
           aria-label={`${branch.name} paket servis için ara`}
           tabIndex={0}
-          className="inline-flex items-center gap-2 rounded-full bg-red-600 px-5 py-2 text-white text-sm font-bold shadow-md hover:bg-red-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-white"
+          className="inline-flex items-center gap-1.5 md:gap-2 rounded-full bg-red-600 px-4 md:px-5 py-1.5 md:py-2 text-white text-xs md:text-sm font-bold shadow-md hover:bg-red-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-white"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -500,17 +495,17 @@ const SubelerimizPage = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="relative pt-20 pb-16">
+      <section className="relative pt-16 md:pt-20 pb-12 md:pb-16">
         <div className="relative max-w-6xl mx-auto px-6">
           <div className="flex flex-col items-center text-center">
             <div className="relative mb-8">
-              <h1 className="text-5xl md:text-7xl font-black tracking-tight bg-gradient-to-r from-gray-800 via-red-600 to-red-500 bg-clip-text text-transparent">
+              <h1 className="text-3xl md:text-7xl font-black tracking-tight bg-gradient-to-r from-gray-800 via-red-600 to-red-500 bg-clip-text text-transparent">
                 Şubelerimiz
               </h1>
               <div className="absolute inset-0 bg-gradient-to-r from-red-600/10 to-transparent blur-3xl" />
             </div>
             
-            <p className="mt-6 max-w-3xl text-lg md:text-xl text-gray-600 leading-relaxed">
+            <p className="mt-6 max-w-3xl text-base md:text-xl text-gray-600 leading-relaxed">
               Türkiye&apos;nin dört bir yanında hizmet veren DürümX şubelerimizi keşfedin
             </p>
           </div>
@@ -525,14 +520,14 @@ const SubelerimizPage = () => {
           revealed["grid"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-6 py-8">
-          <div className="mb-6">
-            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-gray-800 to-red-600 bg-clip-text text-transparent">
+        <div className="max-w-6xl mx-auto px-6 py-6 md:py-8">
+          <div className="mb-4 md:mb-6">
+            <h2 className="text-2xl md:text-4xl font-bold bg-gradient-to-r from-gray-800 to-red-600 bg-clip-text text-transparent">
               Tüm Şubelerimiz
             </h2>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {allBranches.map((b) => (
               <BranchCard key={b.id} branch={b} />
             ))}
@@ -548,12 +543,12 @@ const SubelerimizPage = () => {
           revealed["map"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-6 py-8">
-          <div className="text-center mb-6">
-            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-gray-800 to-red-600 bg-clip-text text-transparent mb-4">
+        <div className="max-w-6xl mx-auto px-6 py-6 md:py-8">
+          <div className="text-center mb-4 md:mb-6">
+            <h2 className="text-2xl md:text-4xl font-bold bg-gradient-to-r from-gray-800 to-red-600 bg-clip-text text-transparent mb-3 md:mb-4">
               İnteraktif Şube Haritası
             </h2>
-            <p className="text-gray-500 text-lg max-w-3xl mx-auto">
+            <p className="text-gray-500 text-sm md:text-lg max-w-3xl mx-auto">
               Tüm DürümX şubelerimizin konumlarını interaktif haritada keşfedin. Her işaretçiye tıklayarak şube bilgilerini görüntüleyebilir, telefon ile arayabilir veya haritada açabilirsiniz.
             </p>
           </div>
@@ -574,13 +569,13 @@ const SubelerimizPage = () => {
           revealed["cta"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-6 py-16">
-          <div className="relative rounded-3xl bg-gradient-to-br from-white/95 to-gray-50/90 border border-gray-200/40 p-8 md:p-12 shadow-lg overflow-hidden">
+        <div className="max-w-6xl mx-auto px-6 py-8 md:py-16">
+          <div className="relative rounded-3xl bg-gradient-to-br from-white/95 to-gray-50/90 border border-gray-200/40 p-6 md:p-12 shadow-lg overflow-hidden">
             <div className="relative z-10 text-center">
-              <h3 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-gray-800 to-red-600 bg-clip-text text-transparent">
+              <h3 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-gray-800 to-red-600 bg-clip-text text-transparent">
                 Yeni Şube Öneriniz Var mı?
               </h3>
-              <p className="mt-4 max-w-3xl mx-auto text-lg text-gray-600 leading-relaxed">
+              <p className="mt-4 max-w-3xl mx-auto text-base md:text-lg text-gray-600 leading-relaxed">
                 Bulunduğunuz bölgede DürümX görmek ister misiniz? Bize yazın, değerlendirelim.
               </p>
               

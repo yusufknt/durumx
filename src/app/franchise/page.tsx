@@ -97,16 +97,16 @@ const FranchisePage = () => {
 
       {/* Hero Section - Animasyonsuz */}
       <div className="relative max-w-6xl w-full mx-auto px-6">
-        <div className="relative pt-20 pb-16">
+        <div className="relative pt-16 md:pt-20 pb-12 md:pb-16">
           <div className="flex flex-col items-center text-center">
             <div className="relative mb-8">
-              <h1 className="text-5xl md:text-7xl font-black tracking-tight bg-gradient-to-r from-gray-800 via-red-600 to-red-500 bg-clip-text text-transparent">
+              <h1 className="text-3xl md:text-7xl font-black tracking-tight bg-gradient-to-r from-gray-800 via-red-600 to-red-500 bg-clip-text text-transparent">
                 Franchise
               </h1>
               <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 to-transparent blur-3xl" />
             </div>
             
-            <p className="mt-6 max-w-3xl text-lg md:text-xl text-gray-600 leading-relaxed">
+            <p className="mt-6 max-w-3xl text-base md:text-xl text-gray-600 leading-relaxed">
               DürümX franchise programı ile kendi işinizi kurun ve başarı hikayenizi yazın
             </p>
           </div>
@@ -121,9 +121,9 @@ const FranchisePage = () => {
       >
 
         {/* DÜRÜMX FRANCHISE – Modern Split Hero */}
-        <section className="mb-16 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <section className="mb-12 md:mb-16 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-center">
           {/* Left: Headline, copy, CTAs, stats */}
-          <div className="relative p-8 rounded-3xl bg-gradient-to-br from-white/90 to-gray-50/80 backdrop-blur-sm border border-gray-200/60 shadow-xl overflow-hidden">
+          <div className="relative p-6 md:p-8 rounded-3xl bg-gradient-to-br from-white/90 to-gray-50/80 backdrop-blur-sm border border-gray-200/60 shadow-xl overflow-hidden">
             {/* Background pattern */}
             <div className="absolute inset-0 opacity-10">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(220,38,38,0.2),transparent_50%)]" />
@@ -135,18 +135,18 @@ const FranchisePage = () => {
                 DÜRÜMX FRANCHISE
               </div>
               
-              <h3 className="mt-4 text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-800">
+              <h3 className="mt-4 text-2xl md:text-4xl font-extrabold tracking-tight text-gray-800">
                 Lezzeti Markaya Dönüştürün
                 <span className="block bg-gradient-to-r from-red-600 to-red-500 bg-clip-text text-transparent">Güçlü Franchise Ekosistemi</span>
               </h3>
               
-              <p className="mt-4 text-gray-600 leading-relaxed">
+              <p className="mt-4 text-sm md:text-base text-gray-600 leading-relaxed">
                 DürümX; standartlaştırılmış lezzet, güçlü operasyon ve modern pazarlama ile
                 girişimcilere kârlı ve sürdürülebilir bir iş modeli sunar. Bugün adım atın,
                 birlikte büyüyelim.
               </p>
 
-              <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-gray-600">
+              <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs md:text-sm text-gray-600">
                 <li className="flex items-start gap-2">
                   <span className="mt-1 h-1.5 w-1.5 rounded-full bg-red-500" />
                   Güçlü ve tanınan marka
@@ -165,17 +165,17 @@ const FranchisePage = () => {
                 </li>
               </ul>
 
-              <div className="mt-6 grid grid-cols-3 gap-4 text-center">
-                <div className="rounded-xl bg-gray-100/80 border border-gray-200/60 p-3 backdrop-blur-sm">
-                  <div className="text-2xl font-extrabold text-red-600">50K+</div>
+              <div className="mt-6 grid grid-cols-3 gap-3 md:gap-4 text-center">
+                <div className="rounded-xl bg-gray-100/80 border border-gray-200/60 p-2 md:p-3 backdrop-blur-sm">
+                  <div className="text-lg md:text-2xl font-extrabold text-red-600">50K+</div>
                   <div className="text-xs text-gray-500">Aylık Ziyaret</div>
                 </div>
-                <div className="rounded-xl bg-gray-100/80 border border-gray-200/60 p-3 backdrop-blur-sm">
-                  <div className="text-2xl font-extrabold text-red-600">%98</div>
+                <div className="rounded-xl bg-gray-100/80 border border-gray-200/60 p-2 md:p-3 backdrop-blur-sm">
+                  <div className="text-lg md:text-2xl font-extrabold text-red-600">%98</div>
                   <div className="text-xs text-gray-500">Memnuniyet</div>
                 </div>
-                <div className="rounded-xl bg-gray-100/80 border border-gray-200/60 p-3 backdrop-blur-sm">
-                  <div className="text-2xl font-extrabold text-red-600">7/24</div>
+                <div className="rounded-xl bg-gray-100/80 border border-gray-200/60 p-2 md:p-3 backdrop-blur-sm">
+                  <div className="text-lg md:text-2xl font-extrabold text-red-600">7/24</div>
                   <div className="text-xs text-gray-500">Operasyon Desteği</div>
                 </div>
               </div>
@@ -198,11 +198,11 @@ const FranchisePage = () => {
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-white/10" aria-hidden="true" />
             </div>
 
-            <div className="mt-4 w-full max-w-md mx-auto rounded-2xl bg-gradient-to-br from-white/90 to-gray-50/80 backdrop-blur-sm border border-gray-200/60 shadow-lg p-4">
-              <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-full bg-red-600 flex items-center justify-center text-white text-sm font-bold" aria-hidden="true">DX</div>
+            <div className="mt-4 w-full max-w-md mx-auto rounded-2xl bg-gradient-to-br from-white/90 to-gray-50/80 backdrop-blur-sm border border-gray-200/60 shadow-lg p-3 md:p-4">
+              <div className="flex items-center gap-2 md:gap-3">
+                <div className="h-8 w-8 md:h-10 md:w-10 rounded-full bg-red-600 flex items-center justify-center text-white text-xs md:text-sm font-bold" aria-hidden="true">DX</div>
                 <div className="flex-1">
-                  <p className="text-sm font-semibold text-gray-800">Açılış Öncesi Eğitim</p>
+                  <p className="text-xs md:text-sm font-semibold text-gray-800">Açılış Öncesi Eğitim</p>
                   <p className="text-xs text-gray-500">Operasyon, servis ve pazarlama destekleri.</p>
                 </div>
               </div>
@@ -213,7 +213,7 @@ const FranchisePage = () => {
         {/* Başvuru Formu - Altta Tek Parça */}
         <div
           id="form"
-          className="relative rounded-3xl bg-gradient-to-br from-white/90 to-gray-50/80 backdrop-blur-sm shadow-xl border border-gray-200/60 p-8 overflow-hidden"
+          className="relative rounded-3xl bg-gradient-to-br from-white/90 to-gray-50/80 backdrop-blur-sm shadow-xl border border-gray-200/60 p-6 md:p-8 overflow-hidden"
         >
           {/* Background pattern */}
           <div className="absolute inset-0 opacity-10">
@@ -221,7 +221,7 @@ const FranchisePage = () => {
           </div>
           
           <div className="relative z-10">
-            <h2 className="text-3xl font-bold mb-8 text-center bg-gradient-to-r from-gray-800 to-red-600 bg-clip-text text-transparent">
+            <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center bg-gradient-to-r from-gray-800 to-red-600 bg-clip-text text-transparent">
               Franchise Başvuru Formu
             </h2>
 
@@ -236,9 +236,9 @@ const FranchisePage = () => {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
                 {/* İsim Soyisim */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                   <InputField
                     icon={<User size={18} />}
                     label="Ad *"
@@ -258,7 +258,7 @@ const FranchisePage = () => {
                 </div>
 
                 {/* İletişim */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                   <InputField
                     icon={<Mail size={18} />}
                     label="E-posta *"
@@ -280,7 +280,7 @@ const FranchisePage = () => {
                 </div>
 
                 {/* Lokasyon */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                   <InputField
                     icon={<MapPin size={18} />}
                     label="Şehir *"
@@ -300,7 +300,7 @@ const FranchisePage = () => {
                 </div>
 
                 {/* Yatırım ve Deneyim */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                   <SelectField
                     icon={<Wallet size={18} />}
                     label="Yatırım Miktarı *"
@@ -336,7 +336,7 @@ const FranchisePage = () => {
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-sm font-medium text-gray-600 mb-3"
+                    className="block text-xs md:text-sm font-medium text-gray-600 mb-2 md:mb-3"
                   >
                     Ek Bilgiler
                   </label>
@@ -346,23 +346,23 @@ const FranchisePage = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={4}
-                    className="w-full px-4 py-3 border border-gray-300 bg-white/80 text-gray-700 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors resize-none placeholder-gray-500"
+                    className="w-full px-4 py-2.5 md:py-3 border border-gray-300 bg-white/80 text-gray-700 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors resize-none placeholder-gray-500 text-sm md:text-base"
                     placeholder="Kendiniz ve projeniz hakkında bilgi verebilirsiniz..."
                   />
                 </div>
 
                 {/* Sözleşme */}
-                <div className="flex items-start gap-3">
+                <div className="flex items-start gap-2 md:gap-3">
                   <input
                     type="checkbox"
                     id="agreement"
                     name="agreement"
                     checked={formData.agreement}
                     onChange={handleInputChange}
-                    className="mt-1 w-5 h-5 text-red-500 border-gray-300 rounded focus:ring-red-500/60 bg-white"
+                    className="mt-1 w-4 h-4 md:w-5 md:h-5 text-red-500 border-gray-300 rounded focus:ring-red-500/60 bg-white"
                     required
                   />
-                  <label htmlFor="agreement" className="text-sm text-gray-600">
+                  <label htmlFor="agreement" className="text-xs md:text-sm text-gray-600">
                     <a href="#" className="text-red-600 hover:text-red-700 transition-colors">
                       Franchise sözleşmesi
                     </a>{" "}
@@ -374,7 +374,7 @@ const FranchisePage = () => {
                 <button
                   type="submit"
                   disabled={!isFormValid() || isSubmitting}
-                  className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 ${
+                  className={`w-full py-3 md:py-4 px-6 rounded-xl font-bold text-base md:text-lg transition-all duration-300 ${
                     isFormValid() && !isSubmitting
                       ? "bg-gradient-to-r from-red-600 to-red-500 text-white hover:from-red-700 hover:to-red-600 hover:shadow-xl hover:shadow-red-500/25"
                       : "bg-gray-300 text-gray-500 cursor-not-allowed"
@@ -397,7 +397,7 @@ const FranchisePage = () => {
         {/* İletişim Bilgileri */}
         <div
           id="contact-info"
-          className="mt-16 relative rounded-3xl bg-gradient-to-br from-white/90 to-gray-50/80 backdrop-blur-sm p-8 border border-gray-200/60 text-center overflow-hidden"
+          className="mt-12 md:mt-16 relative rounded-3xl bg-gradient-to-br from-white/90 to-gray-50/80 backdrop-blur-sm p-6 md:p-8 border border-gray-200/60 text-center overflow-hidden"
         >
           {/* Background effects */}
           <div className="absolute inset-0 opacity-10">
@@ -405,18 +405,18 @@ const FranchisePage = () => {
           </div>
           
           <div className="relative z-10">
-            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-gray-800 to-red-600 bg-clip-text text-transparent">
+            <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4 bg-gradient-to-r from-gray-800 to-red-600 bg-clip-text text-transparent">
               Franchise Hakkında Daha Fazla Bilgi
             </h2>
-            <p className="text-lg text-gray-600 mb-8">
+            <p className="text-base md:text-lg text-gray-600 mb-6 md:mb-8">
               Franchise programımız hakkında detaylı bilgi almak için bizimle
               iletişime geçin.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a className="bg-gradient-to-r from-red-600 to-red-500 text-white px-6 py-3 rounded-full font-bold hover:from-red-700 hover:to-red-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-red-500/25 cursor-pointer">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
+              <a className="bg-gradient-to-r from-red-600 to-red-500 text-white px-5 md:px-6 py-2.5 md:py-3 rounded-full font-bold hover:from-red-700 hover:to-red-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-red-500/25 cursor-pointer text-sm md:text-base">
                 📞 0555 123 4567
               </a>
-              <a className="bg-gradient-to-r from-red-600 to-red-500 text-white px-6 py-3 rounded-full font-bold hover:from-red-700 hover:to-red-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-red-500/25 cursor-pointer">
+              <a className="bg-gradient-to-r from-red-600 to-red-500 text-white px-5 md:px-6 py-2.5 md:py-3 rounded-full font-bold hover:from-red-700 hover:to-red-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-red-500/25 cursor-pointer text-sm md:text-base">
                 ✉️ franchise@durumx.com
               </a>
             </div>
@@ -452,7 +452,7 @@ const InputField = ({
   <div>
     <label
       htmlFor={id}
-      className="block text-sm font-medium text-gray-600 mb-3"
+      className="block text-xs md:text-sm font-medium text-gray-600 mb-2 md:mb-3"
     >
       {label}
     </label>
@@ -466,7 +466,7 @@ const InputField = ({
         name={name}
         value={value}
         onChange={onChange}
-        className="w-full pl-10 pr-4 py-3 border border-gray-300 bg-white/80 text-gray-700 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors placeholder-gray-500"
+        className="w-full pl-10 pr-4 py-2.5 md:py-3 border border-gray-300 bg-white/80 text-gray-700 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors placeholder-gray-500 text-sm md:text-base"
         required
       />
     </div>
@@ -496,7 +496,7 @@ const SelectField = ({
   <div>
     <label
       htmlFor={id}
-      className="block text-sm font-medium text-gray-600 mb-3"
+      className="block text-xs md:text-sm font-medium text-gray-600 mb-2 md:mb-3"
     >
       {label}
     </label>
@@ -509,7 +509,7 @@ const SelectField = ({
         name={name}
         value={value}
         onChange={onChange}
-        className="w-full pl-10 pr-4 py-3 border border-gray-300 bg-white/80 text-gray-700 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors"
+        className="w-full pl-10 pr-4 py-2.5 md:py-3 border border-gray-300 bg-white/80 text-gray-700 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors text-sm md:text-base"
         required
       >
         <option value="">Seçiniz</option>

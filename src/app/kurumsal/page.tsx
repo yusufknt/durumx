@@ -107,22 +107,22 @@ const KurumsalPage = () => {
         tabIndex={0}
         onKeyDown={handleKeyDown}
       >
-        <div className={`relative w-full h-full rounded-2xl bg-gradient-to-br ${variants[variant]} border border-opacity-40 p-8 shadow-lg transition-all duration-200 hover:shadow-xl hover:shadow-red-500/10`}>
+        <div className={`relative w-full h-full rounded-2xl bg-gradient-to-br ${variants[variant]} border border-opacity-40 p-4 md:p-8 shadow-lg transition-all duration-200 hover:shadow-xl hover:shadow-red-500/10`}>
           {/* Content */}
           <div className="relative z-10">
-            <h3 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-red-600 transition-colors duration-150">
+            <h3 className="text-lg md:text-2xl font-bold text-gray-800 mb-3 md:mb-4 group-hover:text-red-600 transition-colors duration-150">
               {title}
             </h3>
-            <div className="text-gray-600 leading-relaxed">
+            <div className="text-sm md:text-base text-gray-600 leading-relaxed">
               {children}
             </div>
           </div>
 
           {/* Badge */}
           {badgeTop && badgeBottom && (
-            <div className="absolute top-4 right-4 w-16 h-16 bg-gradient-to-br from-red-600 to-red-700 rounded-xl border border-red-500/20 flex flex-col items-center justify-center shadow-md">
+            <div className="absolute top-3 md:top-4 right-3 md:right-4 w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-red-600 to-red-700 rounded-xl border border-red-500/20 flex flex-col items-center justify-center shadow-md">
               <span className="text-xs font-bold text-white/90">{badgeTop}</span>
-              <span className="text-lg font-black text-white">{badgeBottom}</span>
+              <span className="text-sm md:text-lg font-black text-white">{badgeBottom}</span>
             </div>
           )}
         </div>
@@ -131,26 +131,26 @@ const KurumsalPage = () => {
   };
 
   const StatCard: React.FC<StatCardProps> = ({ number, label }) => (
-    <div className="relative bg-gradient-to-br from-white/95 to-gray-50/90 border border-gray-200/40 rounded-2xl p-6 text-center shadow-lg hover:shadow-xl hover:shadow-red-500/10 transition-all duration-200 hover:scale-105">
-      <div className="text-4xl font-black text-red-600 mb-2">{number}</div>
-      <div className="text-sm font-medium text-gray-600">{label}</div>
+    <div className="relative bg-gradient-to-br from-white/95 to-gray-50/90 border border-gray-200/40 rounded-2xl p-4 md:p-6 text-center shadow-lg hover:shadow-xl hover:shadow-red-500/10 transition-all duration-200 hover:scale-105">
+      <div className="text-2xl md:text-4xl font-black text-red-600 mb-1 md:mb-2">{number}</div>
+      <div className="text-xs md:text-sm font-medium text-gray-600">{label}</div>
     </div>
   );
 
   const TimelineItem: React.FC<TimelineItemProps> = ({ year, text }) => (
-    <li className="relative mb-8 ml-8 group">
+    <li className="relative mb-6 md:mb-8 ml-6 md:ml-8 group">
       {/* Timeline line */}
       <div className="absolute left-0 top-0 w-0.5 h-full bg-gradient-to-b from-gray-300 via-red-500 to-gray-300" />
       
       {/* Year marker */}
-      <div className="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-red-600 to-red-700 rounded-full border-4 border-white shadow-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+      <div className="absolute -left-3 md:-left-4 top-0 w-6 h-6 md:w-8 md:h-8 bg-gradient-to-br from-red-600 to-red-700 rounded-full border-2 md:border-4 border-white shadow-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
         <span className="text-xs font-bold text-white">{year.slice(-2)}</span>
       </div>
       
       {/* Content */}
-      <div className="ml-6 bg-gradient-to-br from-white/95 to-gray-50/90 border border-gray-200/40 rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-200">
-        <h4 className="text-lg font-semibold text-gray-800 mb-2">{year}</h4>
-        <p className="text-gray-600">{text}</p>
+      <div className="ml-4 md:ml-6 bg-gradient-to-br from-white/95 to-gray-50/90 border border-gray-200/40 rounded-xl p-3 md:p-4 shadow-lg hover:shadow-xl transition-all duration-200">
+        <h4 className="text-base md:text-lg font-semibold text-gray-800 mb-1 md:mb-2">{year}</h4>
+        <p className="text-sm md:text-base text-gray-600">{text}</p>
       </div>
     </li>
   );
@@ -200,17 +200,17 @@ const KurumsalPage = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="relative pt-20 pb-16">
+      <section className="relative pt-16 md:pt-20 pb-12 md:pb-16">
         <div className="relative max-w-6xl mx-auto px-6">
           <div className="flex flex-col items-center text-center">
             <div className="relative mb-8">
-              <h1 className="text-5xl md:text-7xl font-black tracking-tight bg-gradient-to-r from-gray-800 via-red-600 to-red-500 bg-clip-text text-transparent">
+              <h1 className="text-3xl md:text-7xl font-black tracking-tight bg-gradient-to-r from-gray-800 via-red-600 to-red-500 bg-clip-text text-transparent">
                 Kurumsal
               </h1>
               <div className="absolute inset-0 bg-gradient-to-r from-red-600/10 to-transparent blur-3xl" />
             </div>
             
-            <p className="mt-6 max-w-3xl text-lg md:text-xl text-gray-600 leading-relaxed">
+            <p className="mt-6 max-w-3xl text-base md:text-xl text-gray-600 leading-relaxed">
               Gelenekten geleceğe, her lokmada aynı özen. DürümX; kalite, hız ve
               misafir memnuniyeti için modern çözümler sunar.
             </p>
@@ -231,7 +231,7 @@ const KurumsalPage = () => {
           revealed["about"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-6 py-16">
+        <div className="max-w-6xl mx-auto px-6 py-8 md:py-16">
           <GlassCard title="DürümX Hakkında" ariaLabel="DürümX Hakkında kartı" badgeTop="HKK" badgeBottom="DX" variant="accent">
             <p className="text-lg leading-relaxed text-gray-700">
               DürümX; aile sıcaklığını modern hizmet anlayışıyla buluşturan yenilikçi bir döner markasıdır. <br /> Her gün
@@ -250,8 +250,8 @@ const KurumsalPage = () => {
           revealed["mission"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-6 py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+        <div className="max-w-6xl mx-auto px-6 py-8 md:py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-stretch">
             <GlassCard title="İlkelerimiz" ariaLabel="İlkelerimiz kartı" badgeTop="ILKE" badgeBottom="DX" variant="primary">
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {principles.map((principle) => (
@@ -282,14 +282,14 @@ const KurumsalPage = () => {
           revealed["stats"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-6 py-16">
-          <div className="relative rounded-3xl bg-gradient-to-br from-white/95 to-gray-50/90 border border-gray-200/40 p-8 md:p-12 shadow-lg overflow-hidden">
+        <div className="max-w-6xl mx-auto px-6 py-8 md:py-16">
+          <div className="relative rounded-3xl bg-gradient-to-br from-white/95 to-gray-50/90 border border-gray-200/40 p-6 md:p-12 shadow-lg overflow-hidden">
             <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 bg-gradient-to-r from-gray-800 to-red-600 bg-clip-text text-transparent">
+              <h2 className="text-2xl md:text-4xl font-bold text-center mb-6 md:mb-8 bg-gradient-to-r from-gray-800 to-red-600 bg-clip-text text-transparent">
                 Rakamlarla DürümX
               </h2>
               
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                 {stats.map((stat) => (
                   <StatCard key={stat.label} {...stat} />
                 ))}
@@ -307,12 +307,12 @@ const KurumsalPage = () => {
           revealed["timeline"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-6 py-16">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-800 to-red-600 bg-clip-text text-transparent mb-4">
+        <div className="max-w-6xl mx-auto px-6 py-8 md:py-16">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-gray-800 to-red-600 bg-clip-text text-transparent mb-3 md:mb-4">
               Yolculuğumuz
             </h2>
-            <p className="text-gray-500 text-lg max-w-2xl mx-auto">
+            <p className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto">
               Başarı hikayemizin kilometre taşları
             </p>
           </div>
@@ -335,12 +335,12 @@ const KurumsalPage = () => {
           revealed["certificates"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-6 py-16">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-800 to-red-600 bg-clip-text text-transparent mb-4">
+        <div className="max-w-6xl mx-auto px-6 py-8 md:py-16">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-gray-800 to-red-600 bg-clip-text text-transparent mb-3 md:mb-4">
               Sertifikalarımız
             </h2>
-            <p className="text-gray-500 text-lg max-w-2xl mx-auto">
+            <p className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto">
               Kalite ve güvenilirliğimizi kanıtlayan belgelerimiz
             </p>
           </div>
@@ -367,13 +367,13 @@ const KurumsalPage = () => {
           revealed["cta"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-6 py-16">
-          <div className="relative rounded-3xl bg-gradient-to-br from-white/95 to-gray-50/90 border border-gray-200/40 p-8 md:p-12 shadow-lg overflow-hidden">
+        <div className="max-w-6xl mx-auto px-6 py-8 md:py-16">
+          <div className="relative rounded-3xl bg-gradient-to-br from-white/95 to-gray-50/90 border border-gray-200/40 p-6 md:p-12 shadow-lg overflow-hidden">
             <div className="relative z-10 text-center">
-              <h3 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-gray-800 to-red-600 bg-clip-text text-transparent">
+              <h3 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-gray-800 to-red-600 bg-clip-text text-transparent">
                 İş Ortağımız Olmak İster misiniz?
               </h3>
-              <p className="mt-4 max-w-3xl mx-auto text-lg text-gray-600 leading-relaxed">
+              <p className="mt-4 max-w-3xl mx-auto text-base md:text-lg text-gray-600 leading-relaxed">
                 Kurumsal iş birliği, toplu sipariş ve etkinlik çözümlerimiz için bize ulaşın. Size en kısa sürede dönüş yapalım.
               </p>
               

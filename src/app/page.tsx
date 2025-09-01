@@ -91,7 +91,7 @@ export default function HomePage() {
       </div>
 
       {/* Modern Kategoriler Bölümü */}
-      <section className="relative py-24 bg-gradient-to-br from-gray-50 via-white to-gray-50 overflow-hidden">
+      <section className="relative py-12 md:py-24 bg-gradient-to-br from-gray-50 via-white to-gray-50 overflow-hidden">
         {/* Background Decorative Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-red-100/30 to-orange-100/30 rounded-full blur-3xl"></div>
@@ -108,7 +108,7 @@ export default function HomePage() {
               <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
             </div>
 
-            <h2 className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-gray-800 via-red-600 to-gray-800 bg-clip-text text-transparent leading-tight tracking-tight" data-aos="fade-up" data-aos-delay="200">
+            <h2 className="text-3xl md:text-7xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-gray-800 via-red-600 to-gray-800 bg-clip-text text-transparent leading-tight tracking-tight" data-aos="fade-up" data-aos-delay="200">
               Menü Kategorilerimiz
             </h2>
 
@@ -123,15 +123,15 @@ export default function HomePage() {
               <Link
                 key={category.name}
                 href={category.href}
-                className="group relative w-52 bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105"
+                className="group relative w-40 md:w-52 bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105"
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
                 data-aos-duration="600"
               >
                 {/* Card Content */}
-                <div className="p-5">
+                <div className="p-3 md:p-5">
                   {/* Image Container */}
-                  <div className="relative mb-3 overflow-hidden rounded-xl bg-gray-50">
+                  <div className="relative mb-2 md:mb-3 overflow-hidden rounded-xl bg-gray-50">
                     <div className="aspect-square relative overflow-hidden">
                       <Image
                         src={category.bgImage}
@@ -144,8 +144,8 @@ export default function HomePage() {
                   </div>
 
                   {/* Text Content */}
-                  <div className="text-center space-y-2">
-                    <h3 className="text-lg font-semibold text-gray-800 group-hover:text-red-600 transition-colors duration-300">
+                  <div className="text-center space-y-1 md:space-y-2">
+                    <h3 className="text-sm md:text-lg font-semibold text-gray-800 group-hover:text-red-600 transition-colors duration-300">
                       {category.name}
                     </h3>
                     <p className="text-xs text-gray-600 leading-relaxed">
@@ -185,65 +185,65 @@ export default function HomePage() {
       <div className="h-10 w-full bg-gradient-to-b from-transparent to-gray-900/80" />
 
       {/* Modern Dürümx Geçmişi Bölümü */}
-      <section className="relative py-24 bg-gradient-to-br from-gray-900 via-red-900 to-gray-900 overflow-hidden">
+      <section className="relative py-12 md:py-24 bg-gradient-to-br from-gray-900 via-red-900 to-gray-900 overflow-hidden">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-yellow-500/20 to-red-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-orange-500/10 to-red-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }}></div>
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-full blur-3xl animate-pulse md:animate-pulse"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-yellow-500/20 to-red-500/20 rounded-full blur-3xl md:animate-pulse" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-orange-500/10 to-red-500/10 rounded-full blur-3xl md:animate-pulse" style={{ animationDelay: '4s' }}></div>
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           {/* Header Section */}
           <div className="text-center mb-20">
-            <div className="inline-flex items-center gap-3 mb-6 px-6 py-3 bg-gradient-to-r from-red-500/20 to-orange-500/20 rounded-full border border-red-400/30 backdrop-blur-sm" data-aos="fade-down" data-aos-delay="100">
-              <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
+            <div className="inline-flex items-center gap-3 mb-6 px-6 py-3 bg-gradient-to-r from-red-500/20 to-orange-500/20 rounded-full border border-red-400/30 backdrop-blur-sm" data-aos="fade-down" data-aos-delay="100" data-aos-disable="mobile">
+              <div className="w-2 h-2 bg-red-400 rounded-full md:animate-pulse"></div>
               <span className="text-red-300 font-semibold text-sm">Şirket Tarihçesi</span>
-              <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+              <div className="w-2 h-2 bg-orange-400 rounded-full md:animate-pulse" style={{ animationDelay: '0.5s' }}></div>
             </div>
 
-            <h2 className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-white via-red-200 to-white bg-clip-text text-transparent leading-tight tracking-tight" data-aos="fade-up" data-aos-delay="200">
+            <h2 className="text-3xl md:text-7xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-white via-red-200 to-white bg-clip-text text-transparent leading-tight tracking-tight" data-aos="fade-up" data-aos-delay="200" data-aos-disable="mobile">
               Dürümx Geçmişi
             </h2>
 
-            <div className="inline-flex items-center gap-4 px-6 py-3 bg-gradient-to-r from-red-500/20 to-orange-500/20 rounded-full border border-red-400/30 backdrop-blur-sm" data-aos="fade-up" data-aos-delay="300">
-              <div className="w-3 h-3 bg-red-400 rounded-full animate-bounce"></div>
+            <div className="inline-flex items-center gap-4 px-6 py-3 bg-gradient-to-r from-red-500/20 to-orange-500/20 rounded-full border border-red-400/30 backdrop-blur-sm" data-aos="fade-up" data-aos-delay="300" data-aos-disable="mobile">
+              <div className="w-3 h-3 bg-red-400 rounded-full md:animate-bounce"></div>
               <span className="text-red-300 font-bold text-lg">2008&apos;dan Bugüne</span>
-              <div className="w-3 h-3 bg-orange-400 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></div>
+              <div className="w-3 h-3 bg-orange-400 rounded-full md:animate-bounce" style={{ animationDelay: '0.3s' }}></div>
             </div>
           </div>
 
           {/* Main Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center mb-12 md:mb-20">
             {/* Left Side - Text Content */}
-            <div className="space-y-8" data-aos="fade-right" data-aos-delay="400">
-              <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20 shadow-2xl">
-                <p className="text-xl text-gray-200 leading-relaxed mb-6">
+            <div className="space-y-6 md:space-y-8" data-aos="fade-right" data-aos-delay="400" data-aos-disable="mobile">
+              <div className="bg-white/10 backdrop-blur-sm md:backdrop-blur-sm rounded-3xl p-4 md:p-8 border border-white/20 shadow-2xl">
+                <p className="text-base md:text-xl text-gray-200 leading-relaxed mb-4 md:mb-6">
                   Faaliyete geçtiğinden beri Dürümx lezzetini tadanların müptelası haline gelen şirketimizin hizmet standartları ve çalışma şartlarıyla hem müşterilerini hem de personellerini mutlu etmeyi bilmektedir.
                 </p>
-                <p className="text-lg text-gray-300 leading-relaxed">
+                <p className="text-sm md:text-lg text-gray-300 leading-relaxed">
                   Hızla gelişen modern çağa ayak uydurmayı başarabilen bir firmadır Dürümx. Müşterileri için ürünlerini en kaliteli bir şekilde seçerek hijyenik ortamlarda hazırlayıp müptela eden doyurucu Dürümx lezzetini sofralarınıza sunar.
                 </p>
               </div>
             </div>
 
             {/* Right Side - Animated Stats */}
-            <div className="space-y-6" data-aos="fade-left" data-aos-delay="500">
-              <div className="grid grid-cols-2 gap-6">
-                <div className="bg-gradient-to-br from-red-500/20 to-orange-500/20 backdrop-blur-sm rounded-2xl p-6 border border-red-400/30 text-center group hover:scale-105 transition-all duration-300">
-                  <div className="text-4xl font-bold text-red-300 mb-2 group-hover:text-white transition-colors duration-300">13+</div>
-                  <div className="text-red-200 text-sm">Yıllık Deneyim</div>
+            <div className="space-y-4 md:space-y-6" data-aos="fade-left" data-aos-delay="500" data-aos-disable="mobile">
+              <div className="grid grid-cols-2 gap-4 md:gap-6">
+                <div className="bg-gradient-to-br from-red-500/20 to-orange-500/20 backdrop-blur-sm md:backdrop-blur-sm rounded-2xl p-4 md:p-6 border border-red-400/30 text-center group md:hover:scale-105 transition-all duration-300">
+                  <div className="text-2xl md:text-4xl font-bold text-red-300 mb-1 md:mb-2 md:group-hover:text-white transition-colors duration-300">13+</div>
+                  <div className="text-red-200 text-xs md:text-sm">Yıllık Deneyim</div>
                 </div>
-                <div className="bg-gradient-to-br from-orange-500/20 to-yellow-500/20 backdrop-blur-sm rounded-2xl p-6 border border-orange-400/30 text-center group hover:scale-105 transition-all duration-300">
-                  <div className="text-4xl font-bold text-orange-300 mb-2 group-hover:text-white transition-colors duration-300">1000+</div>
-                  <div className="text-orange-200 text-sm">Mutlu Müşteri</div>
+                <div className="bg-gradient-to-br from-orange-500/20 to-yellow-500/20 backdrop-blur-sm md:backdrop-blur-sm rounded-2xl p-4 md:p-6 border border-orange-400/30 text-center group md:hover:scale-105 transition-all duration-300">
+                  <div className="text-2xl md:text-4xl font-bold text-orange-300 mb-1 md:mb-2 md:group-hover:text-white transition-colors duration-300">1000+</div>
+                  <div className="text-orange-200 text-xs md:text-sm">Mutlu Müşteri</div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
             {[
               { title: "Hijyenik Üretim", icon: "🧼", color: "from-green-500/20 to-emerald-500/20", borderColor: "border-green-400/30", textColor: "text-green-300" },
               { title: "Helal Kesim", icon: "🕌", color: "from-blue-500/20 to-indigo-500/20", borderColor: "border-blue-400/30", textColor: "text-blue-300" },
@@ -254,17 +254,18 @@ export default function HomePage() {
             ].map((feature, index) => (
               <div
                 key={feature.title}
-                className="group relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2"
+                className="group relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm md:backdrop-blur-sm rounded-2xl p-3 md:p-6 border border-white/20 shadow-xl md:hover:shadow-2xl transition-all duration-500 md:hover:scale-105 md:hover:-translate-y-2"
               data-aos="fade-up"
                 data-aos-delay={600 + index * 100}
               data-aos-duration="800"
+              data-aos-disable="mobile"
             >
                 {/* Hover Effect Background */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} rounded-2xl opacity-0 md:group-hover:opacity-100 transition-opacity duration-500`}></div>
                 
                 {/* Content */}
                 <div className="relative z-10 text-center">
-                  <div className="mb-4 h-16 md:h-20 flex items-center justify-center">
+                  <div className="mb-2 md:mb-4 h-12 md:h-20 flex items-center justify-center">
                     {feature.title === "Hijyenik Üretim" ? (
                       <Image
                         src="/logo/hijyenik.png"
@@ -325,23 +326,23 @@ export default function HomePage() {
                       <div className="text-5xl leading-none group-hover:scale-110 transition-transform duration-300">{feature.icon}</div>
                     )}
                   </div>
-                  <h3 className={`text-xl font-bold ${feature.textColor} group-hover:text-white transition-colors duration-300`}>
+                  <h3 className={`text-sm md:text-xl font-bold ${feature.textColor} md:group-hover:text-white transition-colors duration-300`}>
                     {feature.title}
                   </h3>
                 </div>
 
                 {/* Floating Particles */}
                 <div className="absolute inset-0 overflow-hidden rounded-2xl">
-                  <div className="absolute top-2 left-2 w-1 h-1 bg-white/30 rounded-full animate-ping"></div>
-                  <div className="absolute top-4 right-4 w-1 h-1 bg-white/20 rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
-                  <div className="absolute bottom-4 left-4 w-1 h-1 bg-white/40 rounded-full animate-ping" style={{ animationDelay: '2s' }}></div>
+                  <div className="absolute top-2 left-2 w-1 h-1 bg-white/30 rounded-full md:animate-ping"></div>
+                  <div className="absolute top-4 right-4 w-1 h-1 bg-white/20 rounded-full md:animate-ping" style={{ animationDelay: '1s' }}></div>
+                  <div className="absolute bottom-4 left-4 w-1 h-1 bg-white/40 rounded-full md:animate-ping" style={{ animationDelay: '2s' }}></div>
                 </div>
               </div>
             ))}
           </div>
 
           {/* Bottom CTA */}
-          <div className="text-center mt-20" data-aos="fade-up" data-aos-delay="800">
+          <div className="text-center mt-20" data-aos="fade-up" data-aos-delay="800" data-aos-disable="mobile">
             <Link 
               href="/kurumsal"
               className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-red-500 to-orange-500 rounded-2xl text-white font-semibold shadow-lg hover:shadow-2xl hover:from-red-600 hover:to-orange-600 transition-all duration-300 ease-out hover:scale-105"
@@ -356,7 +357,7 @@ export default function HomePage() {
       </section>
 
       {/* Fast & Hot Courier + Partner Logos (Yeni Bölüm) */}
-      <section className="relative pt-24 pb-28 bg-gradient-to-br from-gray-900 via-[#0f0f10] to-gray-900 overflow-hidden">
+      <section className="relative pt-12 md:pt-24 pb-16 md:pb-28 bg-gradient-to-br from-gray-900 via-[#0f0f10] to-gray-900 overflow-hidden">
         {/* Background accents */}
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -top-32 -right-24 w-72 h-72 bg-red-500/20 rounded-full blur-3xl"></div>
@@ -380,7 +381,7 @@ export default function HomePage() {
                 />
               </div>
 
-              <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1] bg-gradient-to-r from-white via-red-200 to-white bg-clip-text text-transparent">
+              <h2 className="text-3xl md:text-6xl font-extrabold tracking-tight leading-[1.1] bg-gradient-to-r from-white via-red-200 to-white bg-clip-text text-transparent">
                 Fast and Hot
                 <br /> DürümX
               </h2>
@@ -421,18 +422,18 @@ export default function HomePage() {
 
             {/* Right: Partner Logos Card */}
             <div className="relative" data-aos="fade-left" data-aos-delay="150">
-              <div className="relative rounded-3xl p-10 md:p-12 bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl overflow-hidden">
+              <div className="relative rounded-3xl p-6 md:p-12 bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl overflow-hidden">
                 {/* Decorative */}
                 <div className="absolute -top-10 -right-10 w-48 h-48 bg-gradient-to-br from-red-400/20 to-orange-300/20 rounded-full blur-2xl" />
                 <div className="absolute -bottom-16 -left-16 w-56 h-56 bg-gradient-to-br from-white/10 to-white/5 rounded-full blur-2xl" />
 
                 <div className="relative z-10">
                   <p className="text-white/80 text-sm font-semibold tracking-widest uppercase mb-4">Ortaklarımız</p>
-                  <h3 className="text-white text-2xl md:text-3xl font-extrabold mb-10">
+                  <h3 className="text-white text-lg md:text-3xl font-extrabold mb-6 md:mb-10">
                     En sevdiğiniz platformlarda DürümX
                   </h3>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-8">
                     <a
                       href="https://getir.com/yemek/restoran/hatay-doneri-durum-x-ipekyolu-halilaga-mah-ipekyolu-van/"
                       target="_blank"
