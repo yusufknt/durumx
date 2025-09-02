@@ -2,8 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    // Serve images from public/ as-is; avoids optimizer/caching issues on Vercel
-    unoptimized: true,
+    // Enable Next/Image optimizer and serve modern formats when supported
+    unoptimized: false,
+    formats: ["image/avif", "image/webp"],
   },
   // Ensure static assets use correct base path in all environments
   assetPrefix: process.env.NEXT_PUBLIC_ASSET_PREFIX || undefined,

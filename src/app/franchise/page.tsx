@@ -414,10 +414,11 @@ const FranchisePage = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
               <a className="bg-gradient-to-r from-red-600 to-red-500 text-white px-5 md:px-6 py-2.5 md:py-3 rounded-full font-bold hover:from-red-700 hover:to-red-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-red-500/25 cursor-pointer text-sm md:text-base">
-                📞 0555 123 4567
+                📞 0530 346 77 82 / 0545 662 60 65
+
               </a>
               <a className="bg-gradient-to-r from-red-600 to-red-500 text-white px-5 md:px-6 py-2.5 md:py-3 rounded-full font-bold hover:from-red-700 hover:to-red-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-red-500/25 cursor-pointer text-sm md:text-base">
-                ✉️ franchise@durumx.com
+                ✉️ info@durumx.com
               </a>
             </div>
           </div>

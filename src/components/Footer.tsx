@@ -30,7 +30,7 @@ const Footer = () => (
         {/* Contact / Hours */}
         <div className="space-y-3">
           <p className="text-white/80 font-semibold tracking-wide">İletişim</p>
-          <p className="text-sm text-white/70">Atatürk Cad. No: 123, Antakya / HATAY</p>
+          <p className="text-sm text-white/70">Bahçıvan Mahallesi, Yüzbaşıoğlu Sokak No:65, 65130 İpekyolu/Van</p>
           <p className="text-sm text-white/70">Her gün <span className="font-semibold text-white">10:00 - 23:00</span></p>
           <div className="flex flex-wrap items-center gap-3 pt-2">
             <a
@@ -45,9 +45,9 @@ const Footer = () => (
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 px-4 py-2 text-sm font-bold shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all focus:outline-none focus:ring-2 focus:ring-white/40"
-              aria-label="WhatsApp ile İletişim: 0432 215 15 55"
+              aria-label="WhatsApp ile İletişim: 0534 385 81 66"
             >
-              WhatsApp: 0432 215 15 55
+              WhatsApp: 0534 385 81 66
             </a>
           </div>
         </div>
