@@ -149,7 +149,7 @@ const ContactPage = () => {
                     </a>
                   </div>
                   
-                  <a href="https://wa.me/904322151555" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp ile yaz" tabIndex={0} className="group flex items-center gap-3 rounded-xl border border-gray-300 bg-gray-100/80 px-4 py-3 shadow-lg transition-all hover:shadow-xl hover:bg-gray-200/80 focus:outline-none focus:ring-2 focus:ring-emerald-500 w-fit backdrop-blur-sm mb-6">
+                  <a href="https://wa.me/905343858166" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp ile yaz" tabIndex={0} className="group flex items-center gap-3 rounded-xl border border-gray-300 bg-gray-100/80 px-4 py-3 shadow-lg transition-all hover:shadow-xl hover:bg-gray-200/80 focus:outline-none focus:ring-2 focus:ring-emerald-500 w-fit backdrop-blur-sm mb-6">
                     <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-600 text-white shadow-lg"><FaWhatsapp /></span>
                     <div className="flex flex-col">
                       <span className="text-gray-500 text-xs">WhatsApp</span>
@@ -161,7 +161,7 @@ const ContactPage = () => {
                     {["instagram", "tiktok", "whatsapp"].map((type, i) => {
                       const iconProps = {
                         instagram: {
-                          href: "https://instagram.com",
+                          href: "https://www.instagram.com/durum_x/?hl=tr",
                           className: "group relative text-gray-500 hover:text-[#e1306c] rounded-full p-3 transition-all duration-200 shadow-lg hover:shadow-xl bg-gray-100/80 hover:bg-gray-200/80 backdrop-blur-sm",
                           icon: <FaInstagram size={24} />,
                           tooltip: "Instagram",
@@ -175,7 +175,7 @@ const ContactPage = () => {
                           tooltipClass: "bg-gray-600"
                         },
                         whatsapp: {
-                          href: "https://wa.me/904322151555",
+                          href: "https://wa.me/905343858166",
                           className: "group relative text-gray-500 hover:text-[#38b000] rounded-full p-3 transition-all duration-200 shadow-lg hover:shadow-xl bg-gray-100/80 hover:bg-gray-200/80 backdrop-blur-sm",
                           icon: <FaWhatsapp size={24} />,
                           tooltip: "WhatsApp",

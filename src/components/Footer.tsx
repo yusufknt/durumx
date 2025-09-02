@@ -41,7 +41,7 @@ const Footer = () => (
               Telefon: 0432 215 15 55
             </a>
             <a
-              href="https://wa.me/904322151555"
+              href="https://wa.me/905343858166"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 px-4 py-2 text-sm font-bold shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all focus:outline-none focus:ring-2 focus:ring-white/40"
@@ -57,7 +57,7 @@ const Footer = () => (
           <p className="text-white/80 font-semibold tracking-wide">Bizi Takip Edin</p>
           <div className="flex items-center gap-4">
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/durum_x/?hl=tr"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
@@ -77,7 +77,7 @@ const Footer = () => (
               <FaTiktok size={20} />
             </a>
             <a
-              href="https://wa.me/904322151555"
+              href="https://wa.me/905343858166"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp"
