@@ -496,8 +496,12 @@ const UrunlerimizPage = () => {
                   fill
                   className="object-contain transition-transform duration-300 ease-out group-hover:scale-105"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  loading="lazy"
-                  quality={85}
+                  loading={i < 1 ? "eager" : "lazy"}
+                  fetchPriority={i < 1 ? "high" : "auto"}
+                  decoding="async"
+                  placeholder="blur"
+                  blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMzIwJyBoZWlnaHQ9JzE4MCcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48cmVjdCB3aWR0aD0nMTAwJScgaGVpZ2h0PScxMDAlJyBmaWxsPSIjZWVlIi8+PC9zdmc+"
+                  quality={75}
                 />
                 {/* Persistent gradient above photo to avoid pop */}
                 <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white/60 via-white/35 to-transparent z-[2]"></div>
