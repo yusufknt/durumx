@@ -206,7 +206,6 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           onWaiting={handleWaiting}
           onEnded={handleVideoEnded}
         >
-          <source src={videoSrc.endsWith('.mp4') ? videoSrc.replace(/\.mp4$/, '.webm') : `${videoSrc}.webm`} type="video/webm" />
           <source src={videoSrc} type="video/mp4" />
         </video>
       ))}
