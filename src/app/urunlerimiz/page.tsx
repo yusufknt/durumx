@@ -489,10 +489,15 @@ const UrunlerimizPage = () => {
             >
               {/* Photo area container */}
               <div className="relative h-56 sm:h-60 md:h-72">
-                {/* Background image layer (blurs on hover) */}
-                <div
-                  className="absolute inset-0 bg-center bg-no-repeat bg-contain transition-all duration-300 ease-out group-hover:blur-[3px]"
-                  style={{ backgroundImage: `url(${item.img})` }}
+                {/* Optimized product image */}
+                <Image
+                  src={item.img}
+                  alt={`${item.name} ürünü`}
+                  fill
+                  className="object-contain transition-transform duration-300 ease-out group-hover:scale-105"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  loading="lazy"
+                  quality={85}
                 />
                 {/* Persistent gradient above photo to avoid pop */}
                 <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white/60 via-white/35 to-transparent z-[2]"></div>
