@@ -184,8 +184,9 @@ const KurumsalPage = () => {
     () => [
       { year: "2008", text: "İlk şube ve marka kuruluşu" },
       { year: "2015", text: "Menü ve operasyonel süreçlerin güçlendirilmesi" },
-      { year: "2023", text: "Çevrimiçi sipariş kanallarında büyüme" },
-      { year: "2024", text: "Kurumsal iş birlikleri ve yeni şubeler" },
+      { year: "2017", text: "Üçüncü Şube Açılışı" },
+      { year: "2021", text: "Kurumsal iş birlikleri ve yeni şubeler" },
+      { year: "2025", text: "Onuncu Şube Açılışı" },
     ],
     []
   );
