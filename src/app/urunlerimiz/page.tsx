@@ -23,7 +23,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Et Döner",
     desc: "Özel marine edilmiş dana eti, taze sebzeler ve geleneksel soslar ile hazırlanmış.",
     price: "110₺",
-    img: "/categories/menu/et-durum.png",
+    img: "/categories/menu/et-durum.webp",
     category: "Dönerler",
     ingredients: ["Dana eti", "Lavaş", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
   },
@@ -32,7 +32,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Tavuk Döner",
     desc: "Özel baharatlı tavuk eti, çıtır lavaş, bol yeşillik ve Hatay usulü sos.",
     price: "95₺",
-    img: "/categories/menu/et-durum.png",
+    img: "/categories/menu/et-durum.webp",
     category: "Dönerler",
     ingredients: ["Tavuk eti", "Lavaş", "Domates", "Salatalık", "Soğan", "Marul", "Hatay sosu", "Baharatlar"]
   },
@@ -41,7 +41,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Mix Döner",
     desc: "Et ve tavuk karışımı, özel soslar ile harmanlanmış lezzetli döner.",
     price: "105₺",
-    img: "/categories/menu/et-durum.png",
+    img: "/categories/menu/et-durum.webp",
     category: "Dönerler",
     ingredients: ["Dana eti", "Tavuk eti", "Lavaş", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
   },
@@ -50,7 +50,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Köfte Döner",
     desc: "Ev yapımı köfte, taze sebzeler ve özel soslar ile hazırlanmış döner.",
     price: "100₺",
-    img: "/categories/menu/et-durum.png",
+    img: "/categories/menu/et-durum.webp",
     category: "Dönerler",
     ingredients: ["Ev yapımı köfte", "Lavaş", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
   },
@@ -89,7 +89,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Et Döner Porsiyon",
     desc: "Dana eti döner, pilav, salata ve özel soslar ile servis edilir.",
     price: "140₺",
-    img: "/categories/menu/et-porsiyon.png",
+    img: "/categories/menu/et-porsiyon.webp",
     category: "Servisler",
     ingredients: ["Dana eti döner", "Pilav", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
   },
@@ -98,7 +98,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Tavuk Döner Porsiyon",
     desc: "Tavuk eti döner, pilav, salata ve özel soslar ile servis edilir.",
     price: "125₺",
-    img: "/categories/menu/tavuk-porsiyon.png",
+    img: "/categories/menu/tavuk-porsiyon.webp",
     category: "Servisler",
     ingredients: ["Tavuk eti döner", "Pilav", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
   },
@@ -107,7 +107,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Mix Porsiyon",
     desc: "Et ve tavuk karışımı döner, pilav, salata ve özel soslar ile servis edilir.",
     price: "135₺",
-    img: "/categories/menu/mix-porsiyon.png",
+    img: "/categories/menu/mix-porsiyon.webp",
     category: "Servisler",
     ingredients: ["Et döner", "Tavuk döner", "Pilav", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
   },
@@ -116,7 +116,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Köfte Porsiyon",
     desc: "Ev yapımı köfte, pilav, salata ve özel soslar ile hazırlanmış.",
     price: "130₺",
-    img: "/categories/menu/köfte-porsiyon.png",
+    img: "/categories/menu/köfte-porsiyon.webp",
     category: "Servisler",
     ingredients: ["Ev yapımı köfte", "Pilav", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
   },
@@ -125,7 +125,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Tavuk İskender",
     desc: "Geleneksel Tavuk İskender, yoğurt, domates sosu ve tereyağı ile.",
     price: "145₺",
-    img: "/categories/menu/tavuk-porsiyon.png",
+    img: "/categories/menu/tavuk-porsiyon.webp",
     category: "Servisler",
     ingredients: ["Tavuk eti", "Yoğurt", "Domates sosu", "Tereyağı", "Pilav", "Baharatlar"]
   },
@@ -134,7 +134,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Et İskender",
     desc: "Geleneksel Et İskender, yoğurt, domates sosu ve tereyağı ile.",
     price: "160₺",
-    img: "/categories/menu/et-porsiyon.png",
+    img: "/categories/menu/et-porsiyon.webp",
     category: "Servisler",
     ingredients: ["Dana eti", "Yoğurt", "Domates sosu", "Tereyağı", "Pilav", "Baharatlar"]
   },
@@ -145,7 +145,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Tavuk Burger",
     desc: "Tavuk göğsü, taze sebzeler, özel sos ve çıtır ekmek ile hazırlanmış burger.",
     price: "85₺",
-    img: "/categories/menu/tavuk-burger.png",
+    img: "/categories/menu/tavuk-burger.webp",
     category: "Burgerler",
     ingredients: ["Tavuk göğsü", "Çıtır ekmek", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
   },
@@ -154,7 +154,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Et Burger",
     desc: "Dana eti köftesi, taze sebzeler, özel sos ve çıtır ekmek ile hazırlanmış burger.",
     price: "95₺",
-    img: "/categories/menu/et-burger.png",
+    img: "/categories/menu/et-burger.webp",
     category: "Burgerler",
     ingredients: ["Dana eti köftesi", "Çıtır ekmek", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
   },
@@ -163,7 +163,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Mix Burger",
     desc: "Et ve tavuk karışımı köfte, taze sebzeler, özel sos ve çıtır ekmek ile hazırlanmış burger.",
     price: "90₺",
-    img: "/categories/menu/köfte-burger.png",
+    img: "/categories/menu/köfte-burger.webp",
     category: "Burgerler",
     ingredients: ["Et köftesi", "Tavuk köftesi", "Çıtır ekmek", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
   },
@@ -172,7 +172,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Ekmek Arası Köfte",
     desc: "Ev yapımı köfte, taze sebzeler ve özel soslar ile hazırlanmış ekmek arası.",
     price: "75₺",
-    img: "/categories/menu/köfte-burger.png",
+    img: "/categories/menu/köfte-burger.webp",
     category: "Burgerler",
     ingredients: ["Ev yapımı köfte", "Taze ekmek", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
   },
@@ -183,7 +183,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Patates Kızartması",
     desc: "Çıtır çıtır patates kızartması, özel baharatlarla hazırlanmış.",
     price: "35₺",
-    img: "/categories/menu/atistirmaliklar.png",
+    img: "/categories/menu/atistirmaliklar.webp",
     category: "Atıştırmalıklar",
     ingredients: ["Patates", "Zeytinyağı", "Tuz", "Özel baharatlar"]
   },
@@ -194,7 +194,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Ayran",
     desc: "Doğal ve serinletici ayran.",
     price: "20₺",
-    img: "/categories/menu/ayran.png",
+    img: "/categories/menu/ayran.webp",
     category: "İçecekler",
     ingredients: ["Doğal yoğurt", "Su", "Tuz"]
   },
@@ -203,7 +203,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Kola",
     desc: "Buz gibi kola.",
     price: "25₺",
-    img: "/categories/menu/kola.png",
+    img: "/categories/menu/kola.webp",
     category: "İçecekler",
     ingredients: ["Kola", "Buz", "Limon dilimi"]
   }
@@ -318,7 +318,7 @@ const UrunlerimizPage = () => {
                 onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleCategoryClick("Dönerler"); }}
               >
                 <Image
-                  src="/categories/menu/et-durum.png"
+                  src="/categories/menu/et-durum.webp"
                   alt="Dönerler"
                   fill
                   className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"
@@ -345,7 +345,7 @@ const UrunlerimizPage = () => {
                 onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleCategoryClick("Servisler"); }}
               >
                 <Image
-                  src="/categories/menu/et-servis.png"
+                  src="/categories/menu/et-servis.webp"
                   alt="Servisler"
                   fill
                   className="object-contain transition-transform duration-300 ease-out group-hover:scale-105"
@@ -370,7 +370,7 @@ const UrunlerimizPage = () => {
                 onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleCategoryClick("Burgerler"); }}
               >
                 <Image
-                  src="/categories/menu/burger.png"
+                  src="/categories/menu/burger.webp"
                   alt="Burgerler"
                   fill
                   className="object-contain transition-transform duration-300 ease-out group-hover:scale-105"
@@ -395,7 +395,7 @@ const UrunlerimizPage = () => {
                 onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleCategoryClick("İçecekler"); }}
               >
                 <Image
-                  src="/categories/menu/ayran.png"
+                  src="/categories/menu/ayran.webp"
                   alt="İçecekler"
                   fill
                   className="object-contain transition-transform duration-300 ease-out group-hover:scale-105"
@@ -422,7 +422,7 @@ const UrunlerimizPage = () => {
                 onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleCategoryClick("Atıştırmalıklar"); }}
               >
                 <Image
-                  src="/categories/menu/atistirmaliklar.png"
+                  src="/categories/menu/atistirmaliklar.webp"
                   alt="Atıştırmalıklar"
                   fill
                   className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"

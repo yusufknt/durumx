@@ -192,6 +192,8 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           playsInline
           poster={fallbackImage}
           preload={index === 0 ? "metadata" : "none"}
+          disablePictureInPicture
+          controls={false}
           style={{
             willChange: 'opacity',
             transform: 'translateZ(0)',
@@ -204,6 +206,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           onWaiting={handleWaiting}
           onEnded={handleVideoEnded}
         >
+          <source src={videoSrc.endsWith('.mp4') ? videoSrc.replace(/\.mp4$/, '.webm') : `${videoSrc}.webm`} type="video/webm" />
           <source src={videoSrc} type="video/mp4" />
         </video>
       ))}
