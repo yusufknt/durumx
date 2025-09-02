@@ -61,6 +61,10 @@ export default function RootLayout({
         <title>DürümX - Gerçek Hatay Dürümü</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="Gerçek Hatay dürümü, burger ve daha fazlası şimdi DürümX'te!" />
+        <link rel="icon" href="/logo.png" sizes="any" />
+        <link rel="icon" type="image/png" href="/logo.png" />
+        <link rel="shortcut icon" href="/logo.png" />
+        <link rel="apple-touch-icon" href="/logo.png" />
         <link
           rel="preload"
           as="video"
