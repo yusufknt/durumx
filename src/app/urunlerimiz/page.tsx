@@ -59,7 +59,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Zurna Et Döner",
     desc: "Dana eti, özel baharatlarla marine edilmiş, zurna şeklinde sarılmış lezzetli döner.",
     price: "115₺",
-    img: "/categories/menu/et-durum.png",
+    img: "/categories/menu/zurna-doner.webp",
     category: "Dönerler",
     ingredients: ["Dana eti", "Zurna ekmeği", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
   },
@@ -68,7 +68,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Zurna Tavuk Döner",
     desc: "Tavuk eti, özel baharatlarla marine edilmiş, zurna şeklinde sarılmış lezzetli döner.",
     price: "100₺",
-    img: "/categories/menu/et-durum.png",
+    img: "/categories/menu/zurna-doner.webp",
     category: "Dönerler",
     ingredients: ["Tavuk eti", "Zurna ekmeği", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
   },
@@ -77,7 +77,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Zurna Mix Döner",
     desc: "Et ve tavuk karışımı, özel soslar ile harmanlanmış, zurna şeklinde sarılmış lezzetli döner.",
     price: "110₺",
-    img: "/categories/menu/et-durum.png",
+    img: "/categories/menu/zurna-doner.webp",
     category: "Dönerler",
     ingredients: ["Dana eti", "Tavuk eti", "Zurna ekmeği", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
   },
@@ -89,7 +89,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Et Döner Porsiyon",
     desc: "Dana eti döner, pilav, salata ve özel soslar ile servis edilir.",
     price: "140₺",
-    img: "/categories/menu/et-servis.png",
+    img: "/categories/menu/et-porsiyon.png",
     category: "Servisler",
     ingredients: ["Dana eti döner", "Pilav", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
   },
@@ -98,7 +98,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Tavuk Döner Porsiyon",
     desc: "Tavuk eti döner, pilav, salata ve özel soslar ile servis edilir.",
     price: "125₺",
-    img: "/categories/menu/tavuk-servis.png",
+    img: "/categories/menu/tavuk-porsiyon.png",
     category: "Servisler",
     ingredients: ["Tavuk eti döner", "Pilav", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
   },
@@ -107,7 +107,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Mix Porsiyon",
     desc: "Et ve tavuk karışımı döner, pilav, salata ve özel soslar ile servis edilir.",
     price: "135₺",
-    img: "/categories/menu/et-servis.png",
+    img: "/categories/menu/mix-porsiyon.png",
     category: "Servisler",
     ingredients: ["Et döner", "Tavuk döner", "Pilav", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
   },
@@ -116,7 +116,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Köfte Porsiyon",
     desc: "Ev yapımı köfte, pilav, salata ve özel soslar ile hazırlanmış.",
     price: "130₺",
-    img: "/categories/menu/et-servis.png",
+    img: "/categories/menu/köfte-porsiyon.png",
     category: "Servisler",
     ingredients: ["Ev yapımı köfte", "Pilav", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
   },
@@ -125,7 +125,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Tavuk İskender",
     desc: "Geleneksel Tavuk İskender, yoğurt, domates sosu ve tereyağı ile.",
     price: "145₺",
-    img: "/categories/menu/tavuk-servis.png",
+    img: "/categories/menu/tavuk-porsiyon.png",
     category: "Servisler",
     ingredients: ["Tavuk eti", "Yoğurt", "Domates sosu", "Tereyağı", "Pilav", "Baharatlar"]
   },
@@ -134,7 +134,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Et İskender",
     desc: "Geleneksel Et İskender, yoğurt, domates sosu ve tereyağı ile.",
     price: "160₺",
-    img: "/categories/menu/et-servis.png",
+    img: "/categories/menu/et-porsiyon.png",
     category: "Servisler",
     ingredients: ["Dana eti", "Yoğurt", "Domates sosu", "Tereyağı", "Pilav", "Baharatlar"]
   },
@@ -145,7 +145,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Tavuk Burger",
     desc: "Tavuk göğsü, taze sebzeler, özel sos ve çıtır ekmek ile hazırlanmış burger.",
     price: "85₺",
-    img: "/categories/menu/burger.png",
+    img: "/categories/menu/tavuk-burger.png",
     category: "Burgerler",
     ingredients: ["Tavuk göğsü", "Çıtır ekmek", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
   },
@@ -154,7 +154,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Et Burger",
     desc: "Dana eti köftesi, taze sebzeler, özel sos ve çıtır ekmek ile hazırlanmış burger.",
     price: "95₺",
-    img: "/categories/menu/burger.png",
+    img: "/categories/menu/et-burger.png",
     category: "Burgerler",
     ingredients: ["Dana eti köftesi", "Çıtır ekmek", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
   },
@@ -163,7 +163,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Mix Burger",
     desc: "Et ve tavuk karışımı köfte, taze sebzeler, özel sos ve çıtır ekmek ile hazırlanmış burger.",
     price: "90₺",
-    img: "/categories/menu/burger.png",
+    img: "/categories/menu/köfte-burger.png",
     category: "Burgerler",
     ingredients: ["Et köftesi", "Tavuk köftesi", "Çıtır ekmek", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
   },
@@ -172,7 +172,7 @@ const MENU_ITEMS: MenuItem[] = [
     name: "Ekmek Arası Köfte",
     desc: "Ev yapımı köfte, taze sebzeler ve özel soslar ile hazırlanmış ekmek arası.",
     price: "75₺",
-    img: "/categories/menu/burger.png",
+    img: "/categories/menu/köfte-burger.png",
     category: "Burgerler",
     ingredients: ["Ev yapımı köfte", "Taze ekmek", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
   },
@@ -206,6 +206,16 @@ const MENU_ITEMS: MenuItem[] = [
     img: "/categories/menu/kola.png",
     category: "İçecekler",
     ingredients: ["Kola", "Buz", "Limon dilimi"]
+  }
+  ,
+  {
+    id: 22,
+    name: "Fuse Tea Çeşitleri",
+    desc: "Şeftali, limon vb. ferahlatıcı soğuk çay seçenekleri.",
+    price: "25₺",
+    img: "/categories/menu/fuse-tea-cesitleri.webp",
+    category: "İçecekler",
+    ingredients: ["Şeftali", "Limon", "Buz"]
   }
 ];
 

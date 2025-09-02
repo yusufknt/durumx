@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
   },
   // Ensure static assets use correct base path in all environments
   assetPrefix: process.env.NEXT_PUBLIC_ASSET_PREFIX || undefined,
+  // Tip: Next.js 15'te allowedDevOrigins henüz kararlı değil; kaldırıldı
 };
 
 export default nextConfig;
