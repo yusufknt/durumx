@@ -144,7 +144,7 @@ export default function RootLayout({
             >
               {/* Main Modal Container */}
               <div
-                className="relative bg-gradient-to-br from-white/95 via-gray-50/95 to-white/95 backdrop-blur-xl rounded-3xl w-full max-w-md sm:max-w-2xl md:max-w-4xl max-h-[85vh] overflow-y-auto shadow-2xl border border-gray-200/50 overflow-hidden animate-modal-slide-in"
+                className="relative bg-gradient-to-br from-white/95 via-gray-50/95 to-white/95 backdrop-blur-xl rounded-3xl w-full max-w-md sm:max-w-2xl md:max-w-4xl max-h-[85vh] md:max-h-none overflow-y-auto md:overflow-visible shadow-2xl border border-gray-200/50 overflow-hidden animate-modal-slide-in"
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Close Button */}
