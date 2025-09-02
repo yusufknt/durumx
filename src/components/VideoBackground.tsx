@@ -150,22 +150,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
     );
   }
 
-  // Mobile: show static image instead of videos for performance
-  if (isMobile) {
-    return (
-      <div className="absolute inset-0 w-full h-full overflow-hidden bg-white">
-        <Image
-          src={fallbackImage}
-          alt="DürümX Hero Mobile"
-          fill
-          className="object-cover"
-          priority={false}
-        />
-        <div className="absolute inset-0 bg-black/10"></div>
-      </div>
-    );
-  }
-
+  // Return videos for all devices (mobile and desktop)
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden bg-white md:bg-black" style={{
       willChange: 'transform',
@@ -203,8 +188,8 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
         </video>
       ))}
       
-      {/* Dark overlay - desktop only */}
-      <div className="absolute inset-0 bg-black/20"></div>
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/10 md:bg-black/20"></div>
       
       {/* Video indicators */}
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
