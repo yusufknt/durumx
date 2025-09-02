@@ -20,6 +20,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   const [isMobile, setIsMobile] = useState(false);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const triedAutoplayRef = useRef<boolean>(false);
+  const [shouldUseStaticImage, setShouldUseStaticImage] = useState(false);
 
   // Get current videos based on screen size
   const currentVideos = isMobile ? mobileVideos : desktopVideos;
@@ -34,6 +35,24 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
     window.addEventListener('resize', checkScreenSize);
     
     return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+  // Detect data-saver / slow connection to fall back to static image
+  useEffect(() => {
+    try {
+      type MaybeNetworkInformation = { saveData?: boolean; effectiveType?: string } | undefined;
+      const navInfo = navigator as unknown as {
+        connection?: MaybeNetworkInformation;
+        mozConnection?: MaybeNetworkInformation;
+        webkitConnection?: MaybeNetworkInformation;
+      };
+      const connection = navInfo.connection || navInfo.mozConnection || navInfo.webkitConnection;
+      const saveData = connection?.saveData === true;
+      const slowType = connection?.effectiveType && ["slow-2g", "2g"].includes(connection.effectiveType);
+      if (saveData || slowType) {
+        setShouldUseStaticImage(true);
+      }
+    } catch {}
   }, []);
 
   useEffect(() => {
@@ -123,7 +142,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   };
 
   // Video hatası varsa fallback image göster
-  if (hasVideoError) {
+  if (hasVideoError || shouldUseStaticImage) {
     return (
       <div className="absolute inset-0 w-full h-full overflow-hidden bg-white md:bg-black">
         <Image
@@ -171,6 +190,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           muted
           autoPlay={index === currentVideoIndex}
           playsInline
+          poster={fallbackImage}
           preload={index === 0 ? "metadata" : "none"}
           style={{
             willChange: 'opacity',
