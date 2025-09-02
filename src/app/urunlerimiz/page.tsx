@@ -25,7 +25,7 @@ const MENU_ITEMS: MenuItem[] = [
     price: "110₺",
     img: "/categories/menu/et-durum.webp",
     category: "Dönerler",
-    ingredients: ["TerbiyeliDana eti", "Lavaş", "Domates", "Salatalık Turşusu", "Marul", "Özel Hatay sosu"," Çıtır Patates"]
+    ingredients: ["TerbiyeliDana eti", "Çıtır Patates", "Lavaş", "Domates", "Salatalık Turşusu", "Marul", "Özel Hatay sosu",]
   },
   {
     id: 2,
@@ -34,7 +34,7 @@ const MENU_ITEMS: MenuItem[] = [
     price: "95₺",
     img: "/categories/menu/et-durum.webp",
     category: "Dönerler",
-    ingredients: ["Terbiyeli Tavuk eti", "Lavaş", "Domates", "Salatalık Turşusu", "Marul", " Özel Hatay sosu", "Mayonez"]
+    ingredients: ["Terbiyeli Tavuk eti", "Çıtır Patates", "Lavaş", "Domates", "Salatalık Turşusu", "Marul", " Özel Hatay sosu", "Mayonez"]
   },
   {
     id: 3,
@@ -43,7 +43,7 @@ const MENU_ITEMS: MenuItem[] = [
     price: "105₺",
     img: "/categories/menu/et-durum.webp",
     category: "Dönerler",
-    ingredients: ["Terbiyeli Dana eti", "Terbiyeli Tavuk eti", "Lavaş", "Domates", "Salatalık Turşusu", "Marul", "Özel Hatay sosu", "Mayonez"]
+    ingredients: ["Terbiyeli Dana eti", "Çıtır Patates", "Terbiyeli Tavuk eti", "Lavaş", "Domates", "Salatalık Turşusu", "Marul", "Özel Hatay sosu", "Mayonez"]
   },
   {
     id: 4,
@@ -52,7 +52,7 @@ const MENU_ITEMS: MenuItem[] = [
     price: "100₺",
     img: "/categories/menu/et-durum.webp",
     category: "Dönerler",
-    ingredients: ["Ev yapımı köfte", "Lavaş", "Domates", "Salatalık Turşusu","Marul", "Özel Hatay sos",]
+    ingredients: ["Ev yapımı köfte", "Çıtır Patates", "Lavaş", "Domates", "Salatalık Turşusu","Marul", "Özel Hatay sosu",]
   },
   {
     id: 5,
@@ -61,7 +61,7 @@ const MENU_ITEMS: MenuItem[] = [
     price: "115₺",
     img: "/categories/menu/zurna-doner.webp",
     category: "Dönerler",
-    ingredients: ["Dana eti", "Zurna ekmeği", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
+    ingredients: ["Terbiyeli Dana eti", "Çıtır Patates", "Zurna ekmeği", "Domates", "Salatalık Turşusu", "Marul", "Özel Hatay sosu",]
   },
   {
     id: 6,
@@ -70,7 +70,7 @@ const MENU_ITEMS: MenuItem[] = [
     price: "100₺",
     img: "/categories/menu/zurna-doner.webp",
     category: "Dönerler",
-    ingredients: ["Tavuk eti", "Zurna ekmeği", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
+    ingredients: ["Terbiyeli Tavuk eti", "Çıtır Patates", "Zurna ekmeği", "Domates", "Salatalık Turşusu", "Marul", "Özel Hatay sosu", "Mayonez"]
   },
   {
     id: 7,
@@ -79,7 +79,7 @@ const MENU_ITEMS: MenuItem[] = [
     price: "110₺",
     img: "/categories/menu/zurna-doner.webp",
     category: "Dönerler",
-    ingredients: ["Dana eti", "Tavuk eti", "Zurna ekmeği", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
+    ingredients: ["Terbiyeli Dana eti", "Çıtır Patates", "Terbiyeli Tavuk eti", "Zurna ekmeği", "Domates", "Salatalık Turşusu", "Marul", "Özel Hatay sosu", "Mayonez"]
   },
 
 
@@ -87,38 +87,38 @@ const MENU_ITEMS: MenuItem[] = [
   {
     id: 9,
     name: "Et Döner Porsiyon",
-    desc: "Dana eti döner, pilav, salata ve özel soslar ile servis edilir.",
+    desc: "Dana eti döner, salata ve özel soslar ile servis edilir.",
     price: "140₺",
     img: "/categories/menu/et-porsiyon.webp",
     category: "Servisler",
-    ingredients: ["Dana eti döner", "Pilav", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
+    ingredients: ["Terbiyeli Dana Eti ", "Çıtır Patates", "Domates", "Salatalık Turşusu", "Özel Hatay sosu", "Özel Hatay Lavaşı"]
   },
   {
     id: 10,
     name: "Tavuk Döner Porsiyon",
-    desc: "Tavuk eti döner, pilav, salata ve özel soslar ile servis edilir.",
+    desc: "Tavuk eti döner, salata ve özel soslar ile servis edilir.",
     price: "125₺",
     img: "/categories/menu/tavuk-porsiyon.webp",
     category: "Servisler",
-    ingredients: ["Tavuk eti döner", "Pilav", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
+    ingredients: ["Terbiyeli Tavuk Eti ", "Domates", "Salatalık Turşusu", "Çıtır Patates",  "Özel Hatay sosu", "Özel Hatay Lavaşı"]
   },
   {
     id: 11,
     name: "Mix Porsiyon",
-    desc: "Et ve tavuk karışımı döner, pilav, salata ve özel soslar ile servis edilir.",
+    desc: "Et ve tavuk karışımı döner, salata ve özel soslar ile servis edilir.",
     price: "135₺",
     img: "/categories/menu/mix-porsiyon.webp",
     category: "Servisler",
-    ingredients: ["Et döner", "Tavuk döner", "Pilav", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
+    ingredients: ["Terbiyeli Dana Eti","Çıtır Patates", "Terbiyeli Tavuk Eti", "Domates", "Salatalık Turşusu", "Özel Hatay sosu", "Özel Hatay Lavaşı"]
   },
   {
     id: 12,
     name: "Köfte Porsiyon",
-    desc: "Ev yapımı köfte, pilav, salata ve özel soslar ile hazırlanmış.",
+    desc: "Ev yapımı köfte, salata ve özel soslar ile hazırlanmış.",
     price: "130₺",
     img: "/categories/menu/köfte-porsiyon.webp",
     category: "Servisler",
-    ingredients: ["Ev yapımı köfte", "Pilav", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
+    ingredients: ["Hatay Usulü Köfte", "Domates", "Salatalık Turşusu", "Çıtır Patates", "Özel Hatay Lavaşı",]
   },
   {
     id: 13,
@@ -127,7 +127,7 @@ const MENU_ITEMS: MenuItem[] = [
     price: "145₺",
     img: "/categories/menu/tavuk-porsiyon.webp",
     category: "Servisler",
-    ingredients: ["Tavuk eti", "Yoğurt", "Domates sosu", "Tereyağı", "Pilav", "Baharatlar"]
+    ingredients: ["Terbiyeli Tavuk Eti", "Yoğurt", "Özel Hatay Sosu", "Tereyağı", "İskender Ekmeği"]
   },
   {
     id: 14,
@@ -136,50 +136,86 @@ const MENU_ITEMS: MenuItem[] = [
     price: "160₺",
     img: "/categories/menu/et-porsiyon.webp",
     category: "Servisler",
-    ingredients: ["Dana eti", "Yoğurt", "Domates sosu", "Tereyağı", "Pilav", "Baharatlar"]
+    ingredients: ["Terbiyeli Dana Eti", "Yoğurt", "Özel Hatay Sosu", "Tereyağı",  "İskender Ekmeği"]
+  },
+  {
+    id: 15,
+    name: "Tavuk Az Kes",
+    desc: "Tavuk eti döner, salata ve özel soslar ile servis edilir.",
+    price: "160₺",
+    img: "/categories/menu/az-kes.webp",
+    category: "Servisler",
+    ingredients: ["Terbiyeli Tavuk Eti ", "Domates", "Salatalık Turşusu", "Çıtır Patates",  "Özel Hatay sosu", "Özel Hatay Lavaşı"]
+  },
+  {
+    id: 16,
+    name: "Et Az Kes",
+    desc: "Dana eti döner, salata ve özel soslar ile servis edilir.",
+    price: "160₺",
+    img: "/categories/menu/et-servis.webp",
+    category: "Servisler",
+    ingredients: ["Terbiyeli Dana Eti ", "Çıtır Patates", "Domates", "Salatalık Turşusu", "Özel Hatay sosu", "Özel Hatay Lavaşı"]
+  },
+  {
+    id: 17,
+    name: "Pilav Üstü Tavuk Döner",
+    desc: "Terbiyeli tavuk eti, pilav ve salata ile servis edilir.",
+    price: "160₺",
+    img: "/categories/menu/az-kes.webp",
+    category: "Servisler",
+    ingredients: ["Terbiyeli Tavuk Eti ", "Pilav", "Domates", "Salatalık Turşusu", "Özel Hatay Lavaşı"]
+  },
+  {
+    id: 18,
+    name: "Pilav Üstü Et Döner",
+    desc: "Terbiyeli dana eti, pilav ve salata ile servis edilir.",
+    price: "160₺",
+    img: "/categories/menu/et-servis.webp",
+    category: "Servisler",
+    ingredients: ["Terbiyeli Dana Eti ","Pilav", "Domates", "Salatalık Turşusu", "Özel Hatay Lavaşı"]
   },
 
   // BURGERLER KATEGORİSİ
   {
-    id: 15,
+    id: 19,
     name: "Tavuk Burger",
     desc: "Tavuk göğsü, taze sebzeler, özel sos ve çıtır ekmek ile hazırlanmış burger.",
     price: "85₺",
     img: "/categories/menu/tavuk-burger.webp",
     category: "Burgerler",
-    ingredients: ["Tavuk göğsü", "Çıtır ekmek", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
+    ingredients: ["Terbiyeli Tavuk Eti", "Çıtır Burger", "Domates", "Salatalık Turşusu", "Çıtır Patates", "Marul", "Ketçap", "Mayonez"]
   },
   {
-    id: 16,
+    id: 20,
     name: "Et Burger",
     desc: "Dana eti köftesi, taze sebzeler, özel sos ve çıtır ekmek ile hazırlanmış burger.",
     price: "95₺",
     img: "/categories/menu/et-burger.webp",
     category: "Burgerler",
-    ingredients: ["Dana eti köftesi", "Çıtır ekmek", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
+    ingredients: ["Terbiyeli Dana Eti", "Çıtır Burger","Çıtır Patates", "Domates", "Salatalık Turşusu", "Ketçap", "Mayonez"]
   },
   {
-    id: 17,
+    id: 21,
     name: "Mix Burger",
     desc: "Et ve tavuk karışımı köfte, taze sebzeler, özel sos ve çıtır ekmek ile hazırlanmış burger.",
     price: "90₺",
     img: "/categories/menu/köfte-burger.webp",
     category: "Burgerler",
-    ingredients: ["Et köftesi", "Tavuk köftesi", "Çıtır ekmek", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
+    ingredients: ["Terbiyeli Dana Eti", "Terbiyeli Tavuk Eti","Çıtır Patates", "Çıtır Burger", "Domates", "Salatalık Turşusu", "Marul", "Ketçap", "Mayonez"]
   },
   {
-    id: 18,
+    id: 22,
     name: "Ekmek Arası Köfte",
     desc: "Ev yapımı köfte, taze sebzeler ve özel soslar ile hazırlanmış ekmek arası.",
     price: "75₺",
     img: "/categories/menu/köfte-burger.webp",
     category: "Burgerler",
-    ingredients: ["Ev yapımı köfte", "Taze ekmek", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
+    ingredients: ["Hatay Usulü Köfte", "Çıtır Burger", "Domates", "Salatalık Turşusu", "Özel sos","Çıtır Patates"]
   },
 
   // ATIŞTIRMALIKLAR KATEGORİSİ
   {
-    id: 19,
+    id: 23,
     name: "Patates Kızartması",
     desc: "Çıtır çıtır patates kızartması, özel baharatlarla hazırlanmış.",
     price: "35₺",
@@ -190,32 +226,32 @@ const MENU_ITEMS: MenuItem[] = [
 
   // İÇECEKLER KATEGORİSİ
   {
-    id: 20,
+    id: 24,
     name: "Ayran",
     desc: "Doğal ve serinletici ayran.",
     price: "20₺",
     img: "/categories/menu/ayran.webp",
     category: "İçecekler",
-    ingredients: ["Doğal yoğurt", "Su", "Tuz"]
+    ingredients: []
   },
   {
-    id: 21,
+    id: 25,
     name: "Kola",
     desc: "Buz gibi kola.",
     price: "25₺",
     img: "/categories/menu/kola.webp",
     category: "İçecekler",
-    ingredients: ["Kola", "Buz", "Limon dilimi"]
+    ingredients: []
   }
   ,
   {
-    id: 22,
+    id: 26,
     name: "Fuse Tea Çeşitleri",
     desc: "Şeftali, limon vb. ferahlatıcı soğuk çay seçenekleri.",
     price: "25₺",
     img: "/categories/menu/fuse-tea-cesitleri.webp",
     category: "İçecekler",
-    ingredients: ["Şeftali", "Limon", "Buz"]
+    ingredients: []
   }
 ];
 
@@ -349,7 +385,7 @@ const UrunlerimizPage = () => {
                 onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleCategoryClick("Servisler"); }}
               >
                 <Image
-                  src="/categories/menu/et-servis.webp"
+                  src="/categories/menu/et-porsiyon.webp"
                   alt="Servisler"
                   fill
                   className="object-contain transition-transform duration-300 ease-out group-hover:scale-105"
