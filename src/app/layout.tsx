@@ -65,28 +65,7 @@ export default function RootLayout({
         <link rel="icon" type="image/png" href="/logo.png" />
         <link rel="shortcut icon" href="/logo.png" />
         <link rel="apple-touch-icon" href="/logo.png" />
-        <link
-          rel="preload"
-          as="video"
-          href="/videos/doner-preparation.mp4"
-          type="video/mp4"
-          crossOrigin="anonymous"
-          fetchPriority="high"
-        />
-        <link
-          rel="preload"
-          as="video"
-          href="/videos/hero-video-2.mp4"
-          type="video/mp4"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          as="video"
-          href="/videos/hero-video-3.mp4"
-          type="video/mp4"
-          crossOrigin="anonymous"
-        />
+        
         <style>{`
           .cards {
             display: flex;
@@ -193,7 +172,6 @@ export default function RootLayout({
                           width={56}
                           height={56}
                           className="h-14 w-auto object-contain"
-                          unoptimized
                           quality={100}
                         />
                       </div>

@@ -552,11 +552,11 @@ const UrunlerimizPage = () => {
         {/* Modal (Portal to body for true viewport centering) */}
         {isMounted && modalImg && createPortal(
           <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/80 backdrop-blur-sm" onClick={handleClose} role="dialog" aria-modal="true" aria-label="Ürün detay görüntüleme">
-            <div className="relative w-full max-w-6xl max-h-[90vh] mx-4 sm:mx-6 md:mx-8" onClick={e => e.stopPropagation()}>
+            <div className="relative w-full max-w-6xl max-h-[90vh] mx-4 sm:mx-6 md:mx-8 overflow-y-auto overscroll-contain" onClick={e => e.stopPropagation()}>
               <button
                 onClick={handleClose}
                 aria-label="Kapat"
-                className="absolute -top-3 -right-3 sm:top-2 sm:right-2 bg-white/90 hover:bg-gray-100 text-red-600 rounded-full p-2 shadow-lg focus:outline-none transition-colors duration-200 z-10 border border-gray-200/60"
+                className="absolute top-3 right-3 md:top-4 md:right-4 bg-white/95 hover:bg-gray-100 text-red-600 rounded-full p-2.5 shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500/40 transition-colors duration-200 z-10 border border-gray-200/60"
               >
                 <span className="text-2xl font-bold">&times;</span>
               </button>
