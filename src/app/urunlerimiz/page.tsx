@@ -25,7 +25,7 @@ const MENU_ITEMS: MenuItem[] = [
     price: "110₺",
     img: "/categories/menu/et-durum.webp",
     category: "Dönerler",
-    ingredients: ["Dana eti", "Lavaş", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
+    ingredients: ["TerbiyeliDana eti", "Lavaş", "Domates", "Salatalık Turşusu", "Marul", "Özel Hatay sosu"," Çıtır Patates"]
   },
   {
     id: 2,
@@ -34,7 +34,7 @@ const MENU_ITEMS: MenuItem[] = [
     price: "95₺",
     img: "/categories/menu/et-durum.webp",
     category: "Dönerler",
-    ingredients: ["Tavuk eti", "Lavaş", "Domates", "Salatalık", "Soğan", "Marul", "Hatay sosu", "Baharatlar"]
+    ingredients: ["Terbiyeli Tavuk eti", "Lavaş", "Domates", "Salatalık Turşusu", "Marul", " Özel Hatay sosu", "Mayonez"]
   },
   {
     id: 3,
@@ -43,7 +43,7 @@ const MENU_ITEMS: MenuItem[] = [
     price: "105₺",
     img: "/categories/menu/et-durum.webp",
     category: "Dönerler",
-    ingredients: ["Dana eti", "Tavuk eti", "Lavaş", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
+    ingredients: ["Terbiyeli Dana eti", "Terbiyeli Tavuk eti", "Lavaş", "Domates", "Salatalık Turşusu", "Marul", "Özel Hatay sosu", "Mayonez"]
   },
   {
     id: 4,
@@ -52,7 +52,7 @@ const MENU_ITEMS: MenuItem[] = [
     price: "100₺",
     img: "/categories/menu/et-durum.webp",
     category: "Dönerler",
-    ingredients: ["Ev yapımı köfte", "Lavaş", "Domates", "Salatalık", "Soğan", "Marul", "Özel sos", "Baharatlar"]
+    ingredients: ["Ev yapımı köfte", "Lavaş", "Domates", "Salatalık Turşusu","Marul", "Özel Hatay sos",]
   },
   {
     id: 5,
@@ -222,7 +222,7 @@ const MENU_ITEMS: MenuItem[] = [
 
 
 const UrunlerimizPage = () => {
-  const [modalImg, setModalImg] = useState<string | null>(null);
+  const [selectedItemId, setSelectedItemId] = useState<number | null>(null);
   const [show, setShow] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [isMounted, setIsMounted] = useState(false);
@@ -258,7 +258,7 @@ const UrunlerimizPage = () => {
   }, []);
 
   useEffect(() => {
-    if (!modalImg) return;
+    if (selectedItemId == null) return;
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         handleClose();
@@ -266,10 +266,10 @@ const UrunlerimizPage = () => {
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [modalImg]);
+  }, [selectedItemId]);
 
-  const handleClose = () => setModalImg(null);
-  const handleImgClick = (img: string) => setModalImg(img);
+  const handleClose = () => setSelectedItemId(null);
+  const handleItemClick = (id: number) => setSelectedItemId(id);
   const handleCategoryClick = (categoryName: string) => {
     setSelectedCategory(categoryName);
   };
@@ -281,6 +281,10 @@ const UrunlerimizPage = () => {
   const filteredItems = selectedCategory 
     ? MENU_ITEMS.filter(item => item.category === selectedCategory)
     : [];
+
+  const selectedItem = selectedItemId != null
+    ? MENU_ITEMS.find(item => item.id === selectedItemId) || null
+    : null;
 
   // Kategori seçilmemişse ana sayfa göster
   if (!selectedCategory) {
@@ -481,11 +485,11 @@ const UrunlerimizPage = () => {
               key={item.id}
               className={`group bg-gradient-to-br from-white/90 to-gray-50/80 backdrop-blur-xl rounded-3xl shadow-xl border border-gray-200/60 transition-all duration-500 relative overflow-hidden hover:shadow-red-500/20 ${show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-98"}`}
               style={{ transitionDelay: `${250 + i * 50}ms` }}
-              onClick={() => handleImgClick(item.img)}
+              onClick={() => handleItemClick(item.id)}
               tabIndex={0}
               role="button"
-              aria-label={`${item.name} görselini büyüt`}
-              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleImgClick(item.img); }}
+              aria-label={`${item.name} detaylarını aç`}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleItemClick(item.id); }}
             >
               {/* Photo area container */}
               <div className="relative h-56 sm:h-60 md:h-72">
@@ -559,7 +563,7 @@ const UrunlerimizPage = () => {
         )}
 
         {/* Modal (Portal to body for true viewport centering) */}
-        {isMounted && modalImg && createPortal(
+        {isMounted && selectedItem && createPortal(
           <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/80 backdrop-blur-sm" onClick={handleClose} role="dialog" aria-modal="true" aria-label="Ürün detay görüntüleme">
             <div className="relative w-full max-w-6xl max-h-[90vh] mx-4 sm:mx-6 md:mx-8 overflow-y-auto overscroll-contain" onClick={e => e.stopPropagation()}>
               <button
@@ -576,7 +580,7 @@ const UrunlerimizPage = () => {
                   {/* Sol - Fotoğraf */}
                   <div className="relative h-[50vh] lg:h-[70vh] bg-gradient-to-br from-gray-100 to-gray-200">
                     <Image
-                      src={modalImg || ""}
+                      src={selectedItem?.img || ""}
                       alt="Ürün görseli"
                       fill
                       className="object-contain p-6"
@@ -590,11 +594,11 @@ const UrunlerimizPage = () => {
                     {/* Ürün Adı ve Kategori */}
                     <div className="mb-4 md:mb-6">
                       <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-gray-800 mb-3">
-                        {filteredItems.find(item => item.img === modalImg)?.name || "Ürün"}
+                        {selectedItem?.name || "Ürün"}
                       </h2>
                       <div className="flex items-center">
                         <span className="px-3 py-1 bg-red-100 text-red-700 text-sm font-medium rounded-full">
-                          {filteredItems.find(item => item.img === modalImg)?.category || ""}
+                          {selectedItem?.category || ""}
                         </span>
                       </div>
                     </div>
@@ -603,7 +607,7 @@ const UrunlerimizPage = () => {
                     <div className="mb-6 md:mb-8">
                       <h3 className="text-base md:text-lg font-semibold text-gray-700 mb-2 md:mb-3">Açıklama</h3>
                       <p className="text-sm md:text-base text-gray-600 leading-relaxed">
-                        {filteredItems.find(item => item.img === modalImg)?.desc || ""}
+                        {selectedItem?.desc || ""}
                       </p>
                     </div>
                     
@@ -611,7 +615,7 @@ const UrunlerimizPage = () => {
                     <div>
                       <h3 className="text-base md:text-lg font-semibold text-gray-700 mb-3 md:mb-4">İçindekiler</h3>
                       <div className="grid grid-cols-2 gap-2 md:gap-3">
-                        {filteredItems.find(item => item.img === modalImg)?.ingredients?.map((ingredient, index) => (
+                        {selectedItem?.ingredients?.map((ingredient, index) => (
                           <div 
                             key={index}
                             className="flex items-center gap-1.5 md:gap-2 p-2 md:p-3 bg-white/60 rounded-xl border border-gray-200/40 hover:bg-white/80 transition-all duration-200"

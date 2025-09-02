@@ -26,15 +26,15 @@ const Hero = () => {
 
   // Video arrays for different screen sizes
   const mobileVideos = [
-    "/videos/hero-video-mobil-2.mp4", // 4:3 format için
-    "/videos/hero-video-mobil-3.mp4", 
-    "/videos/hero-video-mobil-1.mp4"
+    "/videos/hero-video-mobil-2.webm", // 4:3 format için
+    "/videos/hero-video-mobil-3.webm", 
+    "/videos/hero-video-mobil-1.webm"
   ];
   
   const desktopVideos = [
-    "/videos/doner-preparation.mp4",
-    "/videos/hero-video-2.mp4", 
-    "/videos/hero-video-3.mp4"
+    "/videos/doner-preparation.webm",
+    "/videos/hero-video-2.webm", 
+    "/videos/hero-video-3.webm"
   ];
 
   return (
