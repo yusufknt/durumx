@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { Inter } from 'next/font/google';
-import './globals.css';
-import { createContext, useContext, useState, useEffect } from 'react';
-import Link from 'next/link';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import { FaTimes, FaPhone } from 'react-icons/fa';
-import Image from 'next/image';
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
+import { Inter } from "next/font/google";
+import Image from "next/image";
+import Link from "next/link";
+import { createContext, useContext, useEffect, useState } from "react";
+import { FaPhone, FaTimes } from "react-icons/fa";
+import "./globals.css";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 // Modal Context
 const ModalContext = createContext<{
@@ -32,12 +32,12 @@ export default function RootLayout({
   // Prevent body scroll when order modal is open
   useEffect(() => {
     if (orderOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [orderOpen]);
 
@@ -46,13 +46,13 @@ export default function RootLayout({
     if (!orderOpen) return;
 
     const handleEscKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         setOrderOpen(false);
       }
     };
 
-    document.addEventListener('keydown', handleEscKey);
-    return () => document.removeEventListener('keydown', handleEscKey);
+    document.addEventListener("keydown", handleEscKey);
+    return () => document.removeEventListener("keydown", handleEscKey);
   }, [orderOpen, setOrderOpen]);
 
   return (
@@ -60,12 +60,12 @@ export default function RootLayout({
       <head>
         <title>DürümX - Gerçek Hatay Dürümü</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="Gerçek Hatay dürümü, burger ve daha fazlası şimdi DürümX'te!" />
-        <link rel="icon" href="/logo.png" sizes="any" />
-        <link rel="icon" type="image/png" href="/logo.png" />
-        <link rel="shortcut icon" href="/logo.png" />
-        <link rel="apple-touch-icon" href="/logo.png" />
-        
+        <meta
+          name="description"
+          content="Gerçek Hatay dürümü, burger ve daha fazlası şimdi DürümX'te!"
+        />
+        {/* Favicons are auto-generated from src/app/icon.png by Next.js */}
+
         <style>{`
           .cards {
             display: flex;
@@ -128,12 +128,12 @@ export default function RootLayout({
           }
         `}</style>
       </head>
-      <body className={`bg-gradient-to-br from-[#fff0e6] via-[#fff] to-[#f7f7fa] text-[#22223b] min-h-screen flex flex-col antialiased ${inter.className} scroll-smooth`}>
+      <body
+        className={`bg-gradient-to-br from-[#fff0e6] via-[#fff] to-[#f7f7fa] text-[#22223b] min-h-screen flex flex-col antialiased ${inter.className} scroll-smooth`}
+      >
         <ModalContext.Provider value={{ orderOpen, setOrderOpen }}>
           <Navbar />
-          <main className="flex-1 flex flex-col">
-            {children}
-          </main>
+          <main className="flex-1 flex flex-col">{children}</main>
           <Footer />
 
           {/* Global Order Modal - Now accessible from any page */}
@@ -144,7 +144,10 @@ export default function RootLayout({
             >
               {/* Main Modal Container */}
               <div
-                className="relative bg-gradient-to-br from-white/95 via-gray-50/95 to-white/95 backdrop-blur-xl rounded-3xl w-full max-w-md sm:max-w-2xl md:max-w-4xl max-h-[85vh] md:max-h-none overflow-y-auto md:overflow-visible shadow-2xl border border-gray-200/50 overflow-hidden animate-modal-slide-in"
+                className="relative bg-gradient-to-br from-white/95 via-gray-50/95 to-white/95 backdrop-blur-xl rounded-3xl w-full max-w-md sm:max-w-xl md:max-w-2xl max-h-[90vh] overflow-hidden shadow-2xl border border-gray-200/50 animate-modal-slide-in"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="order-modal-title"
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Close Button */}
@@ -153,45 +156,49 @@ export default function RootLayout({
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    console.log('Close button clicked');
+                    console.log("Close button clicked");
                     setOrderOpen(false);
                   }}
                   aria-label="Kapat"
                 >
-                  <FaTimes size={18} className="text-gray-600 group-hover:text-red-500 transition-colors" />
+                  <FaTimes
+                    size={18}
+                    className="text-gray-600 group-hover:text-red-500 transition-colors"
+                  />
                 </button>
 
                 {/* Header Section */}
-                <div className="relative z-10 text-center py-6 md:py-8 px-6 md:px-8">
-                  <div className="flex justify-center mb-4">
-                    <div className="relative">
-                      <div className="bg-gradient-to-br from-red-50 to-orange-50 backdrop-blur-sm rounded-full p-2.5 md:p-3 shadow-lg border border-red-200/50">
-                        <Image
-                          src="/logo.png"
-                          alt="DürümX Logo"
-                          width={56}
-                          height={56}
-                          className="h-12 w-auto md:h-14 object-contain"
-                          quality={100}
-                        />
-                      </div>
+                <div className="relative z-10 text-center py-3 md:py-4 px-6 md:px-8">
+                  <div className="flex justify-center mb-0">
+                    <div className="relative w-44 h-16 md:w-52 md:h-20 bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl p-2 md:p-3 shadow-lg border border-red-200/50">
+                      <Image
+                        src="/logo.png"
+                        alt="DürümX Logo"
+                        fill
+                        className="object-contain"
+                        quality={100}
+                        priority
+                        sizes="(max-width: 768px) 224px, 256px"
+                      />
                     </div>
                   </div>
-                  
-                  <h2 className="text-3xl md:text-4xl font-black bg-gradient-to-r from-red-600 via-orange-500 to-red-700 bg-clip-text text-transparent mb-1 md:mb-2">
+
+                  <h2
+                    id="order-modal-title"
+                    className="text-3xl md:text-3xl font-black bg-gradient-to-r from-red-600 via-orange-500 to-red-700 bg-clip-text text-transparent mt-1 mb-1 leading-tight"
+                  >
                     Sipariş Ver
                   </h2>
-                  <p className="text-gray-600 text-base md:text-lg font-medium">
+                  <p className="text-gray-600 text-sm md:text-base font-medium">
                     Size en uygun sipariş yöntemini seçin
                   </p>
                 </div>
 
                 {/* Order Options Grid */}
-                <div className="relative z-10 px-6 md:px-8 pb-6 md:pb-8">
-                  <div className="cards flex flex-col gap-3 md:gap-4 items-center">
-                    
+                <div className="relative z-10 px-6 md:px-8 pt-2 pb-5 md:pt-3 md:pb-6">
+                  <div className="cards grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-4 items-center justify-items-center">
                     {/* Branches Page Redirect */}
-                    <div className="card red h-20 w-56 sm:h-24 sm:w-64">
+                    <div className="card red h-20 sm:h-20 w-56 sm:w-60 md:w-64">
                       <Link
                         href="/subelerimiz"
                         className="flex items-center justify-center flex-col text-center h-full w-full rounded-xl text-white cursor-pointer transition-all duration-400"
@@ -199,13 +206,17 @@ export default function RootLayout({
                         aria-label="Şubelerimiz sayfasına git"
                       >
                         <FaPhone size={28} className="mb-1 md:mb-1" />
-                        <p className="tip text-sm md:text-base font-bold">Şubelerimiz</p>
-                        <p className="second-text text-[11px] md:text-xs opacity-90">Tüm şubeleri görüntüle</p>
+                        <p className="tip text-sm md:text-base font-bold">
+                          Şubelerimiz
+                        </p>
+                        <p className="second-text text-[11px] md:text-xs opacity-90">
+                          Tüm şubeleri görüntüle
+                        </p>
                       </Link>
                     </div>
 
                     {/* Yemeksepeti */}
-                    <div className="card orange h-20 w-56 sm:h-24 sm:w-64">
+                    <div className="card orange h-20 sm:h-20 w-56 sm:w-60 md:w-64">
                       <a
                         href="https://www.yemeksepeti.com/restaurant/meej/durumx-meej"
                         target="_blank"
@@ -219,13 +230,17 @@ export default function RootLayout({
                           height={28}
                           className="mb-1 object-contain drop-shadow-lg"
                         />
-                        <p className="tip text-sm md:text-base font-bold">Yemeksepeti</p>
-                        <p className="second-text text-[11px] md:text-xs opacity-90">Online sipariş</p>
+                        <p className="tip text-sm md:text-base font-bold">
+                          Yemeksepeti
+                        </p>
+                        <p className="second-text text-[11px] md:text-xs opacity-90">
+                          Online sipariş
+                        </p>
                       </a>
                     </div>
 
                     {/* Getir */}
-                    <div className="card purple h-20 w-56 sm:h-24 sm:w-64">
+                    <div className="card purple h-20 sm:h-20 w-56 sm:w-60 md:w-64">
                       <a
                         href="https://getir.com/yemek/restoran/hatay-doneri-durum-x-ipekyolu-halilaga-mah-ipekyolu-van/"
                         target="_blank"
@@ -239,13 +254,17 @@ export default function RootLayout({
                           height={28}
                           className="mb-1 object-contain drop-shadow-lg"
                         />
-                        <p className="tip text-sm md:text-base font-bold">Getir Yemek</p>
-                        <p className="second-text text-[11px] md:text-xs opacity-90">Hızlı teslimat</p>
+                        <p className="tip text-sm md:text-base font-bold">
+                          Getir Yemek
+                        </p>
+                        <p className="second-text text-[11px] md:text-xs opacity-90">
+                          Hızlı teslimat
+                        </p>
                       </a>
                     </div>
 
                     {/* Trendyol */}
-                    <div className="card blue h-20 w-56 sm:h-24 sm:w-64">
+                    <div className="card blue h-20 sm:h-20 w-56 sm:w-60 md:w-64">
                       <a
                         href="https://tgoyemek.com/restoranlar/127596"
                         target="_blank"
@@ -259,17 +278,21 @@ export default function RootLayout({
                           height={28}
                           className="mb-1 object-contain drop-shadow-lg"
                         />
-                        <p className="tip text-sm md:text-base font-bold">Trendyol Yemek</p>
-                        <p className="second-text text-[11px] md:text-xs opacity-90">Güvenilir sipariş</p>
+                        <p className="tip text-sm md:text-base font-bold">
+                          Trendyol Yemek
+                        </p>
+                        <p className="second-text text-[11px] md:text-xs opacity-90">
+                          Güvenilir sipariş
+                        </p>
                       </a>
                     </div>
                   </div>
                 </div>
 
                 {/* Footer */}
-                <div className="relative z-10 text-center py-4 md:py-6 border-t border-gray-200/50 bg-gradient-to-r from-gray-50/50 via-white/50 to-gray-50/50">
+                <div className="relative z-10 text-center py-3 md:py-4 border-t border-gray-200/50 bg-gradient-to-r from-gray-50/50 via-white/50 to-gray-50/50">
                   <p className="text-gray-600 text-sm md:text-base font-medium">
-                    Tüm siparişleriniz için teşekkür ederiz! 
+                    Tüm siparişleriniz için teşekkür ederiz!
                   </p>
                 </div>
               </div>
