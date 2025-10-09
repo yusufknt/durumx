@@ -21,6 +21,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const triedAutoplayRef = useRef<boolean>(false);
   const [shouldUseStaticImage, setShouldUseStaticImage] = useState(false);
+  const [supportsWebm, setSupportsWebm] = useState(true);
 
   // Get current videos based on screen size
   const currentVideos = isMobile ? mobileVideos : desktopVideos;
@@ -60,9 +61,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
     try {
       const testVideo = document.createElement('video');
       const canPlayWebm = testVideo.canPlayType('video/webm; codecs="vp8, vorbis"') || testVideo.canPlayType('video/webm');
-      if (!canPlayWebm) {
-        setShouldUseStaticImage(true);
-      }
+      setSupportsWebm(!!canPlayWebm);
     } catch {}
   }, []);
 
@@ -219,7 +218,10 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           onWaiting={handleWaiting}
           onEnded={handleVideoEnded}
         >
-          <source src={videoSrc} type={videoSrc.endsWith('.webm') ? 'video/webm' : 'video/mp4'} />
+          {supportsWebm && (
+            <source src={videoSrc} type="video/webm" />
+          )}
+          <source src={videoSrc.replace(/\.webm$/, '.mp4')} type="video/mp4" />
         </video>
       ))}
       
