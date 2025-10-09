@@ -55,6 +55,17 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
     } catch {}
   }, []);
 
+  // Detect WebM support (older Safari versions)
+  useEffect(() => {
+    try {
+      const testVideo = document.createElement('video');
+      const canPlayWebm = testVideo.canPlayType('video/webm; codecs="vp8, vorbis"') || testVideo.canPlayType('video/webm');
+      if (!canPlayWebm) {
+        setShouldUseStaticImage(true);
+      }
+    } catch {}
+  }, []);
+
   useEffect(() => {
     const first = videoRefs.current[0];
     if (first && !triedAutoplayRef.current) {
@@ -190,6 +201,8 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           muted
           autoPlay={index === currentVideoIndex}
           playsInline
+          webkit-playsinline="true"
+          x5-playsinline="true"
           poster={fallbackImage}
           preload={index === 0 ? "metadata" : "none"}
           disablePictureInPicture
@@ -206,7 +219,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           onWaiting={handleWaiting}
           onEnded={handleVideoEnded}
         >
-          <source src={videoSrc} type="video/mp4" />
+          <source src={videoSrc} type={videoSrc.endsWith('.webm') ? 'video/webm' : 'video/mp4'} />
         </video>
       ))}
       
