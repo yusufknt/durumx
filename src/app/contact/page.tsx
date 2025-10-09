@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { FaInstagram, FaTiktok, FaWhatsapp, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import emailjs from '@emailjs/browser';
  
 
 const ContactPage = () => {
@@ -56,26 +57,24 @@ const ContactPage = () => {
     setSubmitStatus('idle');
 
     try {
-      // Formspree ile form gönderimi (daha basit)
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-        }),
-      });
+      // EmailJS ile form gönderimi
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        to_email: 'info@durumx.com', // Sizin email adresiniz
+      };
 
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', message: '' });
-        setTimeout(() => setSubmitStatus('idle'), 3000);
-      } else {
-        throw new Error('Form gönderimi başarısız');
-      }
+      // EmailJS konfigürasyonu
+      const serviceId = 'service_5nrn0pu';
+      const templateId = 'template_k1sp3j9';
+      const publicKey = 'ECyqBLsuahLujQ0-k';
+
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+      setTimeout(() => setSubmitStatus('idle'), 3000);
     } catch (error) {
       console.error('Form gönderimi başarısız:', error);
       setSubmitStatus('error');

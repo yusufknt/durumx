@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Mail, Phone, User, MapPin, Building2, Briefcase, Wallet } from "lucide-react";
+import emailjs from '@emailjs/browser';
 
 interface FranchiseForm {
   firstName: string;
@@ -59,26 +60,51 @@ const FranchisePage = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      // EmailJS ile form gönderimi
+      const templateParams = {
+        from_name: `${formData.firstName} ${formData.lastName}`,
+        from_email: formData.email,
+        phone: formData.phone,
+        city: formData.city,
+        district: formData.district,
+        investment_amount: formData.investmentAmount,
+        experience: formData.experience,
+        message: formData.message,
+        to_email: 'info@durumx.com', // Sizin email adresiniz
+      };
 
-    setIsSubmitting(false);
-    setSubmitSuccess(true);
+      // EmailJS konfigürasyonu
+      const serviceId = 'service_5nrn0pu';
+      const templateId = 'template_6gjp147';
+      const publicKey = 'ECyqBLsuahLujQ0-k';
 
-    setTimeout(() => {
-      setSubmitSuccess(false);
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        city: "",
-        district: "",
-        investmentAmount: "",
-        experience: "",
-        message: "",
-        agreement: false,
-      });
-    }, 3000);
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+
+      setIsSubmitting(false);
+      setSubmitSuccess(true);
+
+      setTimeout(() => {
+        setSubmitSuccess(false);
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          city: "",
+          district: "",
+          investmentAmount: "",
+          experience: "",
+          message: "",
+          agreement: false,
+        });
+      }, 3000);
+    } catch (error) {
+      console.error('Franchise form gönderimi başarısız:', error);
+      setIsSubmitting(false);
+      // Hata durumunda kullanıcıya bilgi ver
+      alert('Form gönderilirken bir hata oluştu. Lütfen tekrar deneyin.');
+    }
   };
 
   const isFormValid = () => {
