@@ -1,0 +1,187 @@
+"use client";
+import Link from "next/link";
+import { useState, useRef, useEffect } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { useModal } from "@/app/layout";
+
+const LEFT_NAV_LINKS = [
+  { href: "/kurumsal", label: "Kurumsal" },
+  { href: "/subelerimiz", label: "Şubelerimiz" },
+  { href: "/franchise", label: "Franchise" },
+];
+
+const RIGHT_NAV_LINKS = [
+  { href: "/urunlerimiz", label: "Ürünlerimiz" },
+  { href: "/contact", label: "İletişim" },
+];
+
+const Navbar = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const [hoveredLink, setHoveredLink] = useState<string | null>(null);
+  const pathname = usePathname();
+  const { setOrderOpen } = useModal();
+
+  const handleMobileMenuToggle = () => setMobileMenuOpen((prev) => !prev);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(e.target as Node)) {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener("mousedown", handleClickOutside);
+    return () => window.removeEventListener("mousedown", handleClickOutside);
+  }, [mobileMenuOpen]);
+
+  // Check if a link is active (current page)
+  const isActiveLink = (href: string) => {
+    if (href === "/" && pathname === "/") return true;
+    if (href !== "/" && pathname.startsWith(href)) return true;
+    return false;
+  };
+
+  return (
+    <nav className={`sticky top-0 z-50 w-full shadow-xl flex items-center justify-between px-6 py-4 md:py-2 border-b border-white/10 rounded-b-2xl ${mobileMenuOpen ? 'bg-white' : 'bg-black/90 backdrop-blur-lg md:backdrop-blur-lg'}`}>
+      {/* Sol taraf */}
+      <div className="hidden md:flex gap-8 items-center">
+        {LEFT_NAV_LINKS.map((link) => (
+          <div key={link.href} className="relative">
+            <Link
+              href={link.href}
+              className={`text-white font-semibold text-lg px-4 py-3 rounded-xl transition-all duration-200 block ${
+                isActiveLink(link.href) ? 'text-[#ff1a1a]' : 'hover:text-gray-300'
+              }`}
+              onMouseEnter={() => setHoveredLink(link.href)}
+              onMouseLeave={() => setHoveredLink(null)}
+            >
+              {link.label}
+            </Link>
+            {/* Hover ve Active çizgisi */}
+            <div 
+              className={`absolute bottom-0 left-1/2 h-1 bg-gradient-to-r from-red-500 to-white rounded-full transition-all duration-300 transform -translate-x-1/2 ${
+                isActiveLink(link.href) || hoveredLink === link.href ? 'w-4/5 opacity-100' : 'w-0 opacity-0'
+              }`}
+              style={{ zIndex: 10 }}
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Logo */}
+      <div className="flex items-center justify-start flex-1 relative md:justify-center md:flex-1">
+        <Link href="/" aria-label="DürümX Anasayfa" className="group relative">
+          {/* Soft transparent frame extending below navbar - Dark background for red/white logo */}
+          <div className={`relative bg-black/90 backdrop-blur-lg rounded-2xl p-3 shadow-xl border border-white/10 transform transition-all duration-300 group-hover:scale-105 group-hover:-translate-y-1 group-hover:shadow-2xl group-hover:border-white/20 md:p-4 md:rounded-2xl ${mobileMenuOpen ? 'opacity-50 blur-sm' : ''}`} style={{ marginBottom: '-35px', zIndex: 60 }}>
+            {/* Main logo image */}
+            <Image 
+              src="/logo.png" 
+              alt="DürümX Logo" 
+              width={48} 
+              height={48} 
+              className="h-8 w-auto object-contain relative z-10 md:h-12" 
+              unoptimized 
+              priority
+              quality={75} 
+            />
+            
+            {/* Bottom protruding shadow effect */}
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-2 bg-gradient-to-r from-white/20 via-white/10 to-transparent rounded-full blur-md md:w-16"></div>
+          </div>
+        </Link>
+      </div>
+
+      {/* Sağ taraf */}
+      <div className="hidden md:flex gap-8 items-center">
+        {RIGHT_NAV_LINKS.map((link) => (
+          <div key={link.href} className="relative">
+            <Link
+              href={link.href}
+              className={`text-white font-semibold text-lg px-4 py-3 rounded-xl transition-all duration-300 block ${
+                isActiveLink(link.href) ? 'text-[#ff1a1a]' : 'hover:text-gray-300'
+              }`}
+              onMouseEnter={() => setHoveredLink(link.href)}
+              onMouseLeave={() => setHoveredLink(null)}
+            >
+              {link.label}
+            </Link>
+            {/* Hover ve Active çizgisi */}
+            <div 
+              className={`absolute bottom-0 left-1/2 h-1 bg-gradient-to-r from-red-500 to-white rounded-full transition-all duration-300 transform -translate-x-1/2 ${
+                isActiveLink(link.href) || hoveredLink === link.href ? 'w-4/5 opacity-100' : 'w-0 opacity-0'
+              }`}
+              style={{ zIndex: 10 }}
+            />
+          </div>
+        ))}
+        <button
+          className="px-6 py-2 rounded-full text-white font-bold text-base shadow-lg hover:scale-105 transition-all duration-200"
+          style={{ background: 'linear-gradient(90deg, #ff1a1a 0%, #000 100%)' }}
+          onClick={() => setOrderOpen(true)}
+        >
+          Sipariş Ver
+        </button>
+      </div>
+
+      {/* Mobilde Sipariş Ver ve Menü */}
+      <div className="md:hidden flex items-center gap-2 absolute right-3 top-3">
+        <button
+          className="px-3 py-2 rounded-full text-white text-sm font-bold shadow"
+          style={{ background: 'linear-gradient(90deg, #ff1a1a 0%, #000 100%)' }}
+          onClick={() => setOrderOpen(true)}
+        >
+          Sipariş Ver
+        </button>
+        <button
+          className="flex items-center justify-center p-2 rounded-lg text-white"
+          onClick={handleMobileMenuToggle}
+        >
+          {mobileMenuOpen ? <FaTimes size={28} /> : <FaBars size={28} />}
+        </button>
+      </div>
+
+      {/* Mobil açılır menü */}
+      {mobileMenuOpen && (
+        <div ref={mobileMenuRef} className="fixed inset-0 z-50 flex justify-end md:hidden bg-black/30" onClick={() => setMobileMenuOpen(false)}>
+          <div className="w-64 bg-white h-full shadow-2xl flex flex-col gap-2 p-6 animate-slide-in-right" onClick={e => e.stopPropagation()}>
+            {/* Mobile menu header with logo and close button */}
+            <div className="flex items-center justify-between mb-6">
+              <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center">
+                <Image 
+                  src="/logo.png" 
+                  alt="DürümX Logo" 
+                  width={32} 
+                  height={32} 
+                  className="h-8 w-auto object-contain" 
+                  unoptimized 
+                  priority
+                  quality={75} 
+                />
+              </Link>
+              <button className="p-2 rounded" onClick={() => setMobileMenuOpen(false)}>
+                <FaTimes size={24} />
+              </button>
+            </div>
+            {[...LEFT_NAV_LINKS, ...RIGHT_NAV_LINKS].map((link) => (
+              <Link 
+                key={link.href} 
+                href={link.href} 
+                className={`block text-[#22223b] font-semibold text-lg px-4 py-3 rounded-xl hover:bg-[#f7f7fa] transition-all duration-200 ${
+                  isActiveLink(link.href) ? 'bg-[#ff1a1a]/10 text-[#ff1a1a] border-l-4 border-[#ff1a1a]' : ''
+                }`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+    </nav>
+  );
+}
+
+export default Navbar;
