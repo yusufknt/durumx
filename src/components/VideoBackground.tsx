@@ -17,7 +17,8 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [hasVideoError, setHasVideoError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [isMobile, setIsMobile] = useState(false);
+  // Mobile-first: mobilde doğru videoların hemen yüklenmesi için varsayılan true
+  const [isMobile, setIsMobile] = useState(true);
   const [isVideoReady, setIsVideoReady] = useState(false);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const triedAutoplayRef = useRef<boolean>(false);
@@ -164,7 +165,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   // Video hatası varsa fallback image göster
   if (hasVideoError || shouldUseStaticImage) {
     return (
-      <div className="absolute inset-0 w-full h-full overflow-hidden bg-white md:bg-black">
+      <div className="absolute inset-0 z-10 w-full h-full overflow-hidden bg-white md:bg-black">
         <Image
           src={fallbackImage}
           alt="DürümX Hero Background"
@@ -180,7 +181,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   // Loading state: show a lightweight spinner overlay (no poster image)
   if (isLoading) {
     return (
-      <div className="absolute inset-0 w-full h-full overflow-hidden bg-white md:bg-black flex items-center justify-center">
+      <div className="absolute inset-0 z-10 w-full h-full overflow-hidden bg-white md:bg-black flex items-center justify-center">
         <div className="text-black md:text-white text-center">
           <div className="animate-spin rounded-full h-16 w-16 border-4 border-black/30 md:border-white/30 border-t-black md:border-t-white mx-auto mb-4"></div>
           <p className="text-lg font-semibold">Video hazırlanıyor...</p>
@@ -191,7 +192,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
 
   // Return videos for all devices (mobile and desktop)
   return (
-    <div className="absolute inset-0 w-full h-full overflow-hidden bg-white md:bg-black" style={{
+    <div className="absolute inset-0 z-10 w-full h-full overflow-hidden bg-white md:bg-black" style={{
       willChange: 'transform',
       transform: 'translateZ(0)',
       backfaceVisibility: 'hidden'
@@ -205,7 +206,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
             }
           }}
           className={`absolute inset-0 w-full h-full object-cover md:object-cover transition-opacity duration-1000 md:translate-y-0 ${
-            index === currentVideoIndex && isVideoReady ? "opacity-100" : "opacity-0"
+            index === currentVideoIndex && (isVideoReady || !isLoading) ? "opacity-100" : "opacity-0"
           }`}
           muted
           autoPlay={index === currentVideoIndex}
