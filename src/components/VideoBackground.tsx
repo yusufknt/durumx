@@ -22,6 +22,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
   const [isVideoReady, setIsVideoReady] = useState(false);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const triedAutoplayRef = useRef<boolean>(false);
+  const preloadedNextRef = useRef<boolean>(false);
   const [shouldUseStaticImage, setShouldUseStaticImage] = useState(false);
   const [supportsWebm, setSupportsWebm] = useState(true);
 
@@ -84,41 +85,69 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
       } catch {}
     }
 
-    // Güvenlik amaçlı: en geç 1.5s sonra loading'i kaldır
+    // Mobilde daha hızlı gösterme (1s), desktop'ta 1.5s
+    const isMobileCheck = typeof window !== 'undefined' && window.innerWidth < 768;
     const safety = setTimeout(() => {
       setIsLoading(false);
-    }, 1500);
+    }, isMobileCheck ? 1000 : 1500);
 
     return () => clearTimeout(safety);
   }, [currentVideos]);
 
-  // Handle video end event to move to next video
+  // Sıradaki videoyu bitişe yakın önceden yükle (takılmadan geçiş) - mobilde daha erken
+  const handleTimeUpdate = (e: React.SyntheticEvent<HTMLVideoElement>) => {
+    if (!isMobile || currentVideos.length <= 1 || preloadedNextRef.current) return;
+    const video = e.currentTarget;
+    if (!Number.isFinite(video.duration)) return;
+    const timeLeft = video.duration - video.currentTime;
+    // Mobilde 8 saniye kala yükle (daha fazla buffer = daha az takılma)
+    const preloadThreshold = isMobile ? 8 : 4;
+    if (timeLeft > 0 && timeLeft < preloadThreshold) {
+      const nextIdx = (currentVideoIndex + 1) % currentVideos.length;
+      const nextEl = videoRefs.current[nextIdx];
+      if (nextEl) {
+        nextEl.load();
+        preloadedNextRef.current = true;
+      }
+    }
+  };
+
+  // Handle video end event to move to next video - mobilde buffer kontrolü ile takılmadan geçiş
   const handleVideoEnded = () => {
-    setCurrentVideoIndex((prevIndex) => {
-      const newIndex = (prevIndex + 1) % currentVideos.length;
-      
-      // First fade out current video
+    preloadedNextRef.current = false;
+    const prevIndex = currentVideoIndex;
+    const newIndex = (prevIndex + 1) % currentVideos.length;
+    const nextVideo = videoRefs.current[newIndex];
+
+    const doSwitch = () => {
+      setCurrentVideoIndex(newIndex);
       setIsVideoReady(false);
-      
-      // Stop current video
       if (videoRefs.current[prevIndex]) {
         videoRefs.current[prevIndex]!.pause();
         videoRefs.current[prevIndex]!.currentTime = 0;
       }
-      
-      // Start next video and fade in after a smooth transition
-      setTimeout(() => {
-        if (videoRefs.current[newIndex]) {
-          const nextVideo = videoRefs.current[newIndex]!;
-          nextVideo.currentTime = 0;
-          nextVideo.play().then(() => {
-            setIsVideoReady(true);
-          }).catch(console.log);
+      requestAnimationFrame(() => {
+        const next = videoRefs.current[newIndex];
+        if (next) {
+          next.currentTime = 0;
+          next.play().then(() => setIsVideoReady(true)).catch(() => {});
         }
-      }, 200);
-      
-      return newIndex;
-    });
+      });
+    };
+
+    // Mobilde: sıradaki video yeterince buffer'lı mı? (readyState 3+ = HAVE_FUTURE_DATA)
+    if (isMobile && nextVideo && nextVideo.readyState < 3) {
+      const checkBuffer = () => {
+        if (nextVideo.readyState >= 3) {
+          doSwitch();
+        } else {
+          setTimeout(checkBuffer, 100);
+        }
+      };
+      setTimeout(checkBuffer, 50);
+    } else {
+      doSwitch();
+    }
   };
 
   const handleVideoError = () => {
@@ -190,55 +219,63 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
     );
   }
 
-  // Return videos for all devices (mobile and desktop)
+  // Mobilde sadece mevcut + sıradaki videoyu render et (bellek ve performans)
+  const videosToRender = isMobile
+    ? [currentVideoIndex, (currentVideoIndex + 1) % currentVideos.length]
+    : currentVideos.map((_, i) => i);
+  const uniqueIndices = isMobile ? [...new Set(videosToRender)] : videosToRender;
+
   return (
     <div className="absolute inset-0 z-10 w-full h-full overflow-hidden bg-white md:bg-black" style={{
-      willChange: 'transform',
       transform: 'translateZ(0)',
       backfaceVisibility: 'hidden'
     }}>
-      {currentVideos.map((videoSrc, index) => (
-        <video
-          key={`video-${index}`}
-          ref={(el) => {
-            if (videoRefs.current) {
-              videoRefs.current[index] = el;
-            }
-          }}
-          className={`absolute inset-0 w-full h-full object-cover md:object-cover transition-opacity duration-1000 md:translate-y-0 ${
-            index === currentVideoIndex && (isVideoReady || !isLoading) ? "opacity-100" : "opacity-0"
-          }`}
-          muted
-          autoPlay={index === currentVideoIndex}
-          playsInline
-          webkit-playsinline="true"
-          x5-playsinline="true"
-          preload={index === 0 ? "metadata" : "none"}
-          disablePictureInPicture
-          controls={false}
-          style={{
-            willChange: 'opacity',
-            transform: 'translateZ(0)',
-            backfaceVisibility: 'hidden'
-          }}
-          onError={handleVideoError}
-          onLoadedData={handleVideoLoad}
-          onLoadedMetadata={handleMetadataLoad}
-          onCanPlay={handleCanPlay}
-          onWaiting={handleWaiting}
-          onEnded={handleVideoEnded}
-        >
-          {supportsWebm && (
-            <source src={videoSrc} type="video/webm" />
-          )}
-          <source src={videoSrc.replace(/\.webm$/, '.mp4')} type="video/mp4" />
-        </video>
-      ))}
+      {uniqueIndices.map((index) => {
+        const videoSrc = currentVideos[index];
+        return (
+          <video
+            key={`video-${index}`}
+            ref={(el) => {
+              if (videoRefs.current) {
+                videoRefs.current[index] = el;
+              }
+            }}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity ${
+              isMobile ? "duration-0" : "duration-1000"
+            } ${index === currentVideoIndex && (isVideoReady || !isLoading) ? "opacity-100" : "opacity-0"}`}
+            muted
+            autoPlay={index === currentVideoIndex}
+            playsInline
+            disablePictureInPicture
+            disableRemotePlayback
+            controls={false}
+            preload={index === currentVideoIndex ? "auto" : (isMobile && index === (currentVideoIndex + 1) % currentVideos.length) ? "metadata" : "none"}
+            style={{
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden',
+              contain: 'paint'
+            }}
+            onError={handleVideoError}
+            onLoadedData={handleVideoLoad}
+            onLoadedMetadata={handleMetadataLoad}
+            onCanPlay={handleCanPlay}
+            onWaiting={handleWaiting}
+            onTimeUpdate={handleTimeUpdate}
+            onEnded={currentVideos.length > 1 ? handleVideoEnded : undefined}
+            loop={currentVideos.length === 1}
+          >
+            {/* WebM önce (tüm videolarda mevcut), MP4 fallback (mobilvideo4 için) */}
+            {supportsWebm && <source src={videoSrc} type="video/webm" />}
+            <source src={videoSrc.replace(/\.webm$/, '.mp4')} type="video/mp4" />
+          </video>
+        );
+      })}
       
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/10 md:bg-black/20"></div>
       
-      {/* Video indicators */}
+      {/* Video indicators - sadece birden fazla video varsa */}
+      {currentVideos.length > 1 && (
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
         {currentVideos.map((_, index) => (
           <div
@@ -251,6 +288,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
           />
         ))}
       </div>
+      )}
     </div>
   );
 };

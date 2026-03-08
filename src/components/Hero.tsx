@@ -24,12 +24,12 @@ const Hero = () => {
     setShow(true);
   }, []);
 
-  // Video arrays for different screen sizes
+  // Mobilde 4 video - 480p/600kbps optimize versiyonlar (takılma/kasma önleme)
   const mobileVideos = [
-    "/videos/mobilvideo4.webm", // Bursa Görükle yeni şube videosu (mobil)
-    "/videos/hero-video-mobil-2.webm", // 4:3 format için
-    "/videos/hero-video-mobil-3.webm", 
-    "/videos/hero-video-mobil-1.webm"
+    "/videos/mobilvideo4-mobile.webm",
+    "/videos/hero-video-mobil-2-mobile.webm",
+    "/videos/hero-video-mobil-3-mobile.webm",
+    "/videos/hero-video-mobil-1-mobile.webm"
   ];
   
   const desktopVideos = [
