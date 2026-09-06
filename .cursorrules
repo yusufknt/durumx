@@ -1,0 +1,9 @@
+# DürümX Global Agent Kuralları
+
+Bu proje katı bir Agent-Friendly mimariye sahiptir. Kod yazmadan önce aşağıdaki kurallara **kesinlikle** uymalısın:
+
+1. **Bağlam (Context) Kuralları**: Ne yapacağına bağlı olarak `docs/ai/` altındaki ilgili dosyayı oku. Bütün projeyi tarama.
+2. **Doğrulama (Validation)**: Bir dosyada değişiklik yaptıktan sonra daima terminalde `npm run validate` komutunu çalıştır. Hata alırsan düzeltmeden yanıt verme.
+3. **Mimari Kararlar (ADR)**: Yeni bir kütüphane ekleyeceksen veya mimari bir değişiklik yapacaksan önce `docs/ai/ADR/` klasörünü kontrol et.
+4. **Hata Yönetimi**: Bileşenler (components) içinde asla raw `try/catch` ve `console.error` kullanma. Daima `src/utils/errorHandler.ts` kullan.
+5. **JSDoc**: Yazdığın her yeni fonksiyon veya karmaşık component için açıklayıcı JSDoc/TSDoc yorumu ekle.

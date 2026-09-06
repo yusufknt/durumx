@@ -929,3 +929,64 @@ body[data-aos-easing="ease-out-cubic"] [data-aos] {
     opacity: 1;
   }
 }
+
+/* Order Modal Cards CSS */
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.cards .red {
+  background-color: #f43f5e;
+}
+
+.cards .orange {
+  background-color: #f97316;
+}
+
+.cards .purple {
+  background-color: #8b5cf6;
+}
+
+.cards .blue {
+  background-color: #3b82f6;
+}
+
+.cards .card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  height: 96px;
+  width: 256px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: 400ms;
+}
+
+.cards .card p.tip {
+  font-size: 1em;
+  font-weight: 700;
+}
+
+.cards .card p.second-text {
+  font-size: .7em;
+}
+
+.cards .card:hover {
+  transform: scale(1.05, 1.05);
+}
+
+/* Hover edilen kart dışındaki TÜM kartları bulanıklaştır ve küçült */
+.cards:has(.card:hover) .card {
+  filter: blur(3px);
+  transform: scale(0.95, 0.95);
+}
+/* Hover edilen kart net ve büyük kalsın */
+.cards:has(.card:hover) .card:hover {
+  filter: none;
+  transform: scale(1.05, 1.05);
+}

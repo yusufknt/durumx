@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useModal } from "@/app/layout";
+import { useModal } from "@/providers/ModalProvider";
 import VideoBackground from "./VideoBackground";
 
 const Hero = () => {

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useModal } from "@/app/layout";
+import { useModal } from "@/providers/ModalProvider";
 
 const NewBranchFloatingBanner = () => {
   const [isVisible, setIsVisible] = useState(false);

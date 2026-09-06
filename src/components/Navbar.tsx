@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useModal } from "@/app/layout";
+import { useModal } from "@/providers/ModalProvider";
 
 const LEFT_NAV_LINKS = [
   { href: "/kurumsal", label: "Kurumsal" },
